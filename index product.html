@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page Layout</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- RESET & BASICS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #1a1a1a;
+            background-color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- ANNOUNCEMENT BAR --- */
+        .announcement-bar {
+            width: 100%;
+            height: 30px;
+            background-color: #f9f9f9;
+            text-align: center;
+            padding: 6px 0;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        /* --- HEADER --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            flex-wrap: wrap;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #555;
+            align-items: center;
+        }
+        
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        /* --- CONTACT DROPDOWN STYLES --- */
+        .nav-item-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-item-dropdown::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -15px;
+            height: 20px;
+            background: transparent;
+        }
+
+        .nav-item-dropdown > a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .nav-item-dropdown > a i {
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-item-dropdown:hover > a i {
+            transform: rotate(180deg);
+        }
+
+        .contact-dropdown-menu {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            z-index: 999;
+            border: 1px solid #eee;
+            
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s ease;
+            margin-top: 0;
+        }
+
+        .contact-dropdown-menu li {
+            border-bottom: 1px solid #f5f5f5;
+        }
+        .contact-dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .contact-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            color: #333;
+            transition: background 0.2s;
+        }
+
+        .contact-dropdown-menu a:hover {
+            background-color: #f5f5f5;
+            color: #000;
+        }
+
+        .contact-dropdown-menu a i {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .nav-item-dropdown:hover .contact-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0px);
+        }
+
+        /* --- LANGUAGE SWITCHER STYLES --- */
+        .lang-switcher {
+            position: relative;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #333;
+            transition: border-color 0.2s;
+        }
+
+        .lang-btn:hover {
+            border-color: #333;
+        }
+
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #fff;
+            min-width: 130px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            z-index: 1000;
+            margin-top: 8px;
+            border: 1px solid #eee;
+        }
+
+        .lang-dropdown.show {
+            display: block;
+        }
+
+        .lang-dropdown a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.2s;
+        }
+
+        .lang-dropdown a:hover {
+            background-color: #f5f5f5;
+        }
+
+        .lang-dropdown a.active-lang {
+            background-color: #f0f0f0;
+            font-weight: 600;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background-image: url('header88.png');
+            background-size: cover;
+            background-position: center bottom;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- PRODUCT MAIN SECTION --- */
+        .product-main-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .product-image-gallery {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .gallery-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .gallery-column img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        
+        .gallery-column img:hover {
+            opacity: 0.8;
+        }
+
+        .product-info-sidebar {
+            flex: 1;
+            min-width: 350px;
+        }
+
+        .product-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .divider {
+            border: 0;
+            height: 1px;
+            background: #e5e5e5;
+            margin-bottom: 25px;
+        }
+
+        /* --- WHATSAPP BUTTON STYLES --- */
+        .wa-button-container {
+            margin-bottom: 25px;
+        }
+
+        .wa-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background-color 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .wa-btn:hover {
+            background-color: #20bd5a;
+            color: #fff;
+        }
+
+        .wa-btn:active {
+            transform: scale(0.95);
+        }
+
+        .wa-btn i {
+            font-size: 20px;
+        }
+
+        .description-block {
+            margin-top: 10px;
+        }
+
+        .description-block h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .info-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .info-list {
+            list-style: none;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .info-list li {
+            margin-bottom: 6px;
+        }
+
+        .info-list strong {
+            font-weight: 700;
+        }
+
+        .info-list ul {
+            padding-left: 20px;
+            list-style-type: disc;
+            margin-top: 5px;
+        }
+
+        /* --- IMAGE LIGHTBOX STYLES --- */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-overlay.show {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: #bbb;
+        }
+
+        /* --- WHATSAPP FORM MODAL STYLES --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .modal-content h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+            background-color: #fff;
+            color: #1a1a1a;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #25D366;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        /* --- PHONE INPUT WITH AUTO-FILL BUTTON --- */
+        .phone-input-wrapper {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .phone-input-wrapper input {
+            flex: 1;
+        }
+
+        .btn-autofill-phone {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            color: #333;
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .btn-autofill-phone:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* FLAVOR GROUP DROPDOWN STYLES */
+        .flavor-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .flavor-group .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .flavor-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+            background-color: #fff;
+            color: #1a1a1a;
+            font-family: inherit;
+        }
+
+        .flavor-group select:focus {
+            border-color: #25D366;
+        }
+
+        /* TOTAL PRICE DISPLAY (Simplified) */
+        .total-price-display {
+            background-color: #f9f9f9;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .total-qty-display {
+            background-color: #f9f9f9;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-cancel {
+            background-color: #e5e5e5;
+            color: #333;
+        }
+
+        .btn-cancel:hover {
+            background-color: #d4d4d4;
+        }
+
+        .btn-submit {
+            background-color: #25D366;
+            color: #fff;
+        }
+
+        .btn-submit:hover {
+            background-color: #20bd5a;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 15px;
+            }
+            .nav-left {
+                gap: 15px;
+            }
+            .nav-links {
+                gap: 15px;
+                font-size: 13px;
+            }
+            .hero {
+                height: 300px;
+            }
+            .product-main-section {
+                flex-direction: column;
+                margin: 30px auto;
+            }
+            /* Stack flavor dropdowns on mobile */
+            .flavor-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .phone-input-wrapper {
+                flex-wrap: wrap;
+            }
+            .btn-autofill-phone {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" data-i18n="announcement">Welcome to OTOKO ICHIBAN</div>
+    
+    <!-- Header -->
+    <header>
+        <div class="nav-left">
+            <div class="logo">ナンバーワン</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" data-i18n="nav_home">Home</a></li>
+                    
+                    <li class="nav-item-dropdown">
+                        <a href="javascript:void(0);" data-i18n="nav_contact">Contact Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="contact-dropdown-menu">
+                            <li>
+                                <a href="https://www.facebook.com/share/1RnE86tJaX/" target="_blank">
+                                    <i class="fab fa-facebook-f" style="color: #1877F2;"></i> Facebook
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/numberone.my" target="_blank">
+                                    <i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.tiktok.com/@numberone.my" target="_blank">
+                                    <i class="fab fa-tiktok" style="color: #000;"></i> TikTok
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://wa.me/601137424783" target="_blank">
+                                    <i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- LANGUAGE SWITCHER -->
+        <div class="lang-switcher">
+            <button class="lang-btn" onclick="toggleLangMenu()">
+                <i class="fas fa-globe"></i> <span id="current-lang-label">EN</span>
+            </button>
+            <div class="lang-dropdown" id="lang-dropdown">
+                <a href="#" class="active-lang" onclick="setLanguage('en', event)">English (EN)</a>
+                <a href="#" onclick="setLanguage('zh', event)">中文 (ZH)</a>
+                <a href="#" onclick="setLanguage('ms', event)">Bahasa Melayu (MS)</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Text removed -->
+    </section>
+
+    <!-- Product Main Section -->
+    <section class="product-main-section">
+        
+        <!-- Left: Images -->
+        <div class="product-image-gallery">
+            <!-- Column 1 -->
+            <div class="gallery-column">
+                <img src="no1-black.png" alt="Product Shot 1" onclick="openLightbox(this)">
+                <img src="promo-1.jpg" alt="Product Shot 3" onclick="openLightbox(this)">
+            </div>
+            <!-- Column 2 -->
+            <div class="gallery-column">
+                <img src="no1-coklat.png" alt="Product Shot 2" onclick="openLightbox(this)">
+                <img src="promo-2.jpg" alt="Product Shot 3" onclick="openLightbox(this)">
+            </div>
+            <!-- Column 3 -->
+            <div class="gallery-column">
+                <img src="banana-1.png" alt="Product Shot 3" onclick="openLightbox(this)">
+            </div>
+        </div>
+
+        <!-- Right: Info -->
+        <div class="product-info-sidebar">
+            <h1 class="product-title" data-i18n="prod_title">Number One / Otoko Ichiban</h1>
+            <span class="product-price">RM168.00 MYR</span>
+            
+            <!-- WHATSAPP BUTTON (UPDATED TO OPEN MODAL) -->
+            <div class="wa-button-container">
+                <button class="wa-btn" onclick="openOrderModal()">
+                    <i class="fab fa-whatsapp"></i> <span data-i18n="wa_btn_text">Inquire on WhatsApp</span>
+                </button>
+            </div>
+
+            <hr class="divider">
+
+            <div class="description-block">
+                <h3 data-i18n="prod_quote">"Man's pride, life's quality!<br>Otoko Ichiban – Let every man be more confident and stronger!"</h3>
+                
+                <div class="info-title" data-i18n="prod_info_title">Product Information</div>
+                <ul class="info-list">
+                    <li><strong data-i18n="prod_name_label">Product Name:</strong> <span data-i18n="prod_name_val">男一番 (OTOKO ICHIBAN)</span></li>
+                    <li><strong data-i18n="prod_type_label">Type:</strong> <span data-i18n="prod_type_val">Men's Oral Dissolving Film</span></li>
+                    <li><strong data-i18n="prod_qty_label">Quantity:</strong> <span data-i18n="prod_qty_val">3 pieces per box</span></li>
+                    <li><strong data-i18n="prod_features_label">Key Features:</strong>
+                        <ul>
+                            <li data-i18n="prod_feat_1">Quick Absorption</li>
+                            <li data-i18n="prod_feat_2">Herbal Formula</li>
+                            <li data-i18n="prod_feat_3">Long Lasting</li>
+                            <li data-i18n="prod_feat_4">Premium Quality</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- LIGHTBOX OVERLAY (Hidden by default) -->
+    <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-image" src="">
+    </div>
+
+    <!-- WHATSAPP ORDER MODAL (Hidden by default) -->
+    <div id="order-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 data-i18n="modal_title">Order Information</h2>
+            
+            <div class="form-group">
+                <label for="cust-name" data-i18n="modal_name">Name</label>
+                <input type="text" id="cust-name" placeholder="Enter your name">
+            </div>
+            
+            <div class="form-group">
+                <label for="cust-phone" data-i18n="modal_phone">Phone Number</label>
+                <!-- UPDATED: Added a wrapper with an autofill button -->
+                <div class="phone-input-wrapper">
+                    <input type="text" id="cust-phone" placeholder="e.g. 0123456789">
+                    <button type="button" class="btn-autofill-phone" onclick="autofillPhoneNumber()">
+                        <i class="fas fa-phone-alt"></i> Use My Number
+                    </button>
+                </div>
+            </div>
+
+            <!-- Address Field -->
+            <div class="form-group">
+                <label for="cust-address" data-i18n="modal_address">Delivery Address</label>
+                <textarea id="cust-address" placeholder="Enter your full delivery address"></textarea>
+            </div>
+
+            <!-- Split Flavor & Quantity Dropdowns -->
+            <label style="display:block; font-weight:600; font-size:14px; margin-bottom:5px;" data-i18n="modal_flavor">Select Flavors & Quantities</label>
+            <div class="flavor-group">
+                <div class="form-group">
+                    <label style="font-weight:400; font-size:13px; color:#666;">Original</label>
+                    <select id="cust-qty-original" onchange="updateTotalPrice()">
+                        <option value="0">0</option>
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label style="font-weight:400; font-size:13px; color:#666;">Chocolate</label>
+                    <select id="cust-qty-chocolate" onchange="updateTotalPrice()">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- SIMPLIFIED TOTALS (No Preview Box) -->
+            <div class="total-qty-display">
+                <span data-i18n="modal_qty">Total Quantity:</span> <span id="total-qty">1</span>
+            </div>
+            <div class="total-price-display">
+                <span data-i18n="modal_total">Total:</span> RM<span id="total-price">168.00</span>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeOrderModal()" data-i18n="modal_cancel">Cancel</button>
+                <button class="btn-submit" onclick="submitOrderToWhatsApp()" data-i18n="modal_submit">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- --- JAVASCRIPT FOR TRANSLATION, MODAL, WHATSAPP --- -->
+    <script>
+        // Dictionary of translations (Global scope)
+        const translations = {
+            'en': {
+                'announcement': 'Welcome to OTOKO ICHIBAN',
+                'nav_home': 'Home',
+                'nav_contact': 'Contact Us',
+                'prod_title': 'Number One / Otoko Ichiban',
+                'prod_quote': '"Man\'s pride, life\'s quality!<br>Otoko Ichiban – Let every man be more confident and stronger!"',
+                'prod_info_title': 'Product Information',
+                'prod_name_label': 'Product Name:',
+                'prod_name_val': '男一番 (OTOKO ICHIBAN)',
+                'prod_type_label': 'Type:',
+                'prod_type_val': "Men's Oral Dissolving Film",
+                'prod_qty_label': 'Quantity:',
+                'prod_qty_val': '3 pieces per box',
+                'prod_features_label': 'Key Features:',
+                'prod_feat_1': 'Quick Absorption',
+                'prod_feat_2': 'Herbal Formula',
+                'prod_feat_3': 'Long Lasting',
+                'prod_feat_4': 'Premium Quality',
+                'wa_btn_text': 'Inquire on WhatsApp',
+                'modal_title': 'Order Information',
+                'modal_name': 'Name',
+                'modal_phone': 'Phone Number',
+                'modal_address': 'Delivery Address',
+                'modal_flavor': 'Select Flavors & Quantities',
+                'modal_qty': 'Total Quantity:',
+                'modal_total': 'Total:',
+                'modal_cancel': 'Cancel',
+                'modal_submit': 'Submit'
+            },
+            'zh': {
+                'announcement': '欢迎来到OTOKO ICHIBAN',
+                'nav_home': '主页',
+                'nav_contact': '联系我们',
+                'prod_title': 'Number One / 男一番',
+                'prod_quote': '"男人的骄傲，生活的品质！<br>男一番 – 让每个男人更自信、更强大！"',
+                'prod_info_title': '产品信息',
+                'prod_name_label': '产品名称：',
+                'prod_name_val': '男一番 (OTOKO ICHIBAN)',
+                'prod_type_label': '类型：',
+                'prod_type_val': '男士口服膜片',
+                'prod_qty_label': '数量：',
+                'prod_qty_val': '每盒3片',
+                'prod_features_label': '主要特点：',
+                'prod_feat_1': '快速吸收',
+                'prod_feat_2': '植物配方',
+                'prod_feat_3': '持久强劲',
+                'prod_feat_4': '品质保证',
+                'wa_btn_text': '通过 WhatsApp 咨询',
+                'modal_title': '订单信息',
+                'modal_name': '姓名',
+                'modal_phone': '电话号码',
+                'modal_address': '送货地址',
+                'modal_flavor': '选择口味和数量',
+                'modal_qty': '总数量：',
+                'modal_total': '总计：',
+                'modal_cancel': '取消',
+                'modal_submit': '提交'
+            },
+            'ms': {
+                'announcement': 'Selamat datang ke OTOKO ICHIBAN',
+                'nav_home': 'Laman Utama',
+                'nav_contact': 'Hubungi Kami',
+                'prod_title': 'Number One / Otoko Ichiban',
+                'prod_quote': '"Kebanggaan lelaki, kualiti hidup!<br>Otoko Ichiban – Biarkan setiap lelaki lebih yakin dan lebih kuat!"',
+                'prod_info_title': 'Maklumat Produk',
+                'prod_name_label': 'Nama Produk:',
+                'prod_name_val': '男一番 (OTOKO ICHIBAN)',
+                'prod_type_label': 'Jenis:',
+                'prod_type_val': 'Filem Oral Pelarut Lelaki',
+                'prod_qty_label': 'Kuantiti:',
+                'prod_qty_val': '3 keping setiap kotak',
+                'prod_features_label': 'Ciri-ciri Utama:',
+                'prod_feat_1': 'Penyerapan Pantas',
+                'prod_feat_2': 'Formula Herba',
+                'prod_feat_3': 'Tahan Lama',
+                'prod_feat_4': 'Kualiti Premium',
+                'wa_btn_text': 'Tanya di WhatsApp',
+                'modal_title': 'Maklumat Pesanan',
+                'modal_name': 'Nama',
+                'modal_phone': 'Nombor Telefon',
+                'modal_address': 'Alamat Penghantaran',
+                'modal_flavor': 'Pilih Perisa & Kuantiti',
+                'modal_qty': 'Jumlah Kuantiti:',
+                'modal_total': 'Jumlah:',
+                'modal_cancel': 'Batal',
+                'modal_submit': 'Hantar'
+            }
+        };
+
+        let currentLanguage = 'en'; 
+
+        // LANGUAGE FUNCTIONS
+        function toggleLangMenu() {
+            const dropdown = document.getElementById('lang-dropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.closest('.lang-switcher')) {
+                document.getElementById('lang-dropdown').classList.remove('show');
+            }
+        }
+
+        function setLanguage(langCode, event) {
+            event.preventDefault(); 
+            currentLanguage = langCode; 
+            
+            document.querySelectorAll('.lang-dropdown a').forEach(el => el.classList.remove('active-lang'));
+            event.target.closest('a').classList.add('active-lang');
+
+            const labelMap = {'en': 'EN', 'zh': '中文', 'ms': 'MS'};
+            document.getElementById('current-lang-label').innerText = labelMap[langCode];
+            document.getElementById('lang-dropdown').classList.remove('show');
+
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[langCode][key]) {
+                    el.innerHTML = translations[langCode][key];
+                }
+            });
+        }
+
+        // --- IMAGE LIGHTBOX FUNCTIONS ---
+        function openLightbox(imgElement) {
+            document.getElementById('lightbox-image').src = imgElement.src;
+            document.getElementById('lightbox-overlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-overlay').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // --- WHATSAPP ORDER MODAL FUNCTIONS ---
+        // Automatically pulls the price from the HTML displayed price
+        function getUnitPrice() {
+            const priceText = document.querySelector('.product-price').innerText;
+            // Extracts 168.00 from "RM168.00 MYR"
+            const match = priceText.match(/(\d+\.?\d*)/);
+            return match ? parseFloat(match[0]) : 0;
+        }
+
+        function openOrderModal() {
+            document.getElementById('order-modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+            updateTotalPrice(); 
+        }
+
+        function closeOrderModal() {
+            document.getElementById('order-modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateTotalPrice() {
+            const qtyOrig = parseInt(document.getElementById('cust-qty-original').value) || 0;
+            const qtyChoc = parseInt(document.getElementById('cust-qty-chocolate').value) || 0;
+            
+            const qtyTotal = qtyOrig + qtyChoc;
+            const unitPrice = getUnitPrice(); 
+            const total = qtyTotal * unitPrice;
+            
+            // Update Total Quantity and Total Price Displays
+            document.getElementById('total-qty').innerText = qtyTotal;
+            document.getElementById('total-price').innerText = total.toFixed(2);
+        }
+
+        function submitOrderToWhatsApp() {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+            
+            const qtyOrig = parseInt(document.getElementById('cust-qty-original').value) || 0;
+            const qtyChoc = parseInt(document.getElementById('cust-qty-chocolate').value) || 0;
+            
+            const unitPrice = getUnitPrice();
+            const totalQty = qtyOrig + qtyChoc;
+            const total = totalQty * unitPrice;
+            
+            const productName = document.querySelector('.product-title').innerText;
+
+            // Basic Validation
+            if (name === '' || phone === '' || address === '') {
+                alert("Please fill in all required fields (Name, Phone, and Address).");
+                return;
+            }
+
+            if (totalQty === 0) {
+                alert("Please select at least 1 item to order.");
+                return;
+            }
+
+            // YOUR WHATSAPP NUMBER
+            const phoneNumber = "601137424783"; 
+
+            // FORMATTING THE EXACT MESSAGE SENT TO WHATSAPP
+            let flavorText = "";
+            if(qtyOrig > 0) flavorText += `- Original: ${qtyOrig}\n`;
+            if(qtyChoc > 0) flavorText += `- Chocolate: ${qtyChoc}\n`;
+
+            const message = `✨ *NEW ORDER REQUEST* ✨\n\n` +
+                            `📦 *Product:* ${productName}\n` +
+                            `👤 *Name:* ${name}\n` +
+                            `📞 *Phone:* ${phone}\n` +
+                            `📍 *Address:* ${address}\n` +
+                            `🍫 *Flavors:*\n${flavorText}` +
+                            `🔢 *Total Quantity:* ${totalQty}\n` +
+                            `💰 *Total Price:* RM${total.toFixed(2)}\n\n` +
+                            `⏳ Please confirm my order. Thank you!`;
+
+            // Create link and send
+            const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(waUrl, '_blank');
+
+            // Close the modal after sending
+            closeOrderModal();
+            
+            // Clear the form
+            document.getElementById('cust-name').value = '';
+            document.getElementById('cust-phone').value = '';
+            document.getElementById('cust-address').value = '';
+            document.getElementById('cust-qty-original').value = '1';
+            document.getElementById('cust-qty-chocolate').value = '0';
+            updateTotalPrice();
+        }
+
+        // --- AUTO-FILL PHONE NUMBER FUNCTION ---
+        function autofillPhoneNumber() {
+            // Checks if the browser supports the Contact Picker API
+            if ('contacts' in navigator && 'select' in navigator.contacts) {
+                navigator.contacts.select(['tel'], { multiple: false })
+                .then(contacts => {
+                    if (contacts.length > 0) {
+                        const phoneNumber = contacts[0].tel[0];
+                        document.getElementById('cust-phone').value = phoneNumber;
+                    }
+                })
+                .catch(err => {
+                    console.log("User cancelled or error:", err);
+                });
+            } else {
+                alert("Your browser does not support auto-filling contacts. Please enter your phone number manually.");
+            }
+        }
+    </script>
+
+</body>
+</html>
