@@ -325,7 +325,7 @@
 
             <!-- Menu Links beside Language -->
             <ul class="nav-links-left">
-                <li><a href="https://natdey79.github.io/numberone-landing/index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
                 
                 <li class="nav-item-dropdown">
                     <a href="javascript:void(0);" data-i18n="nav_contact">Contact <i class="fas fa-chevron-down"></i></a>
@@ -448,12 +448,7 @@
             </div>
             <div class="form-group">
                 <label for="cust-phone" data-i18n="modal_phone">Phone Number</label>
-                <div class="phone-input-wrapper">
-                    <input type="text" id="cust-phone" placeholder="e.g. 0123456789">
-                    <button type="button" class="btn-autofill-phone" onclick="autofillPhoneNumber()">
-                        <i class="fas fa-phone-alt"></i> Use My Number
-                    </button>
-                </div>
+                <input type="text" id="cust-phone" placeholder="e.g. 0123456789">
             </div>
             <div class="form-group">
                 <label for="cust-address" data-i18n="modal_address">Delivery Address</label>
@@ -757,10 +752,10 @@
 
             const message = `✨ *NEW ORDER REQUEST* ✨\n\n` +
                             `📦 *Product:* ${productName}\n` +
-                            `🍫 *Flavors:*\n${flavorText}` +
                             `👤 *Name:* ${name}\n` +
                             `📞 *Phone:* ${phone}\n` +
                             `📍 *Address:* ${address}\n` +
+                            `🍫 *Flavors:*\n${flavorText}` +
                             `🔢 *Total Quantity:* ${totalQty}\n` +
                             `💰 *Total Price:* RM${total.toFixed(2)}\n\n` +
                             `⏳ Please confirm my order. Thank you!`;
@@ -774,21 +769,6 @@
             document.getElementById('cust-qty-original').value = '1';
             document.getElementById('cust-qty-chocolate').value = '0';
             updateTotalPrice();
-        }
-
-        // AUTO-FILL PHONE FUNCTION
-        function autofillPhoneNumber() {
-            if ('contacts' in navigator && 'select' in navigator.contacts) {
-                navigator.contacts.select(['tel'], { multiple: false })
-                .then(contacts => {
-                    if (contacts.length > 0) {
-                        document.getElementById('cust-phone').value = contacts[0].tel[0];
-                    }
-                })
-                .catch(err => console.log("User cancelled or error:", err));
-            } else {
-                alert("Your browser does not support auto-filling contacts. Please enter your phone number manually.");
-            }
         }
     </script>
 </body>
