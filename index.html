@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Number One</title>
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- RESET & BASICS --- */
         * {
             margin: 0;
             padding: 0;
@@ -17,11 +15,16 @@
         body, html {
             height: 100%;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            overflow: hidden; /* Prevents scrolling on the splash screen */
+            overflow: hidden;
             background-color: #000;
         }
 
-        /* --- SPLASH SCREEN CONTAINER --- */
+        .landing-shell {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+        }
+
         .splash-container {
             position: relative;
             width: 100%;
@@ -31,41 +34,31 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
+            background: #000;
         }
 
-        /* --- BACKGROUND VIDEO --- */
         .splash-video {
             position: absolute;
             top: 50%;
             left: 50%;
             min-width: 100%;
             min-height: 100%;
-            width: auto;
-            height: auto;
+            width: 100%;
+            height: 100%;
             transform: translateX(-50%) translateY(-50%);
             object-fit: cover;
-            z-index: 1;
-            /* Adds slight contrast to make text readable */
-            filter: brightness(0.6) contrast(1.1); 
+            z-index: 0;
+            filter: brightness(0.65) contrast(1.1);
+            display: block;
         }
 
-        /* --- OVERLAY GRADIENT --- */
-        .splash-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
-            z-index: 2;
-        }
-
-        /* --- CONTENT LAYER --- */
         .splash-content {
             position: relative;
             z-index: 3;
             padding: 20px;
             max-width: 800px;
             opacity: 0;
-            /* Fade-in animation for text */
-            animation: fadeInUp 1s ease-out forwards 0.5s; 
+            animation: fadeInUp 1s ease-out forwards 0.5s;
         }
 
         @keyframes fadeInUp {
@@ -79,7 +72,6 @@
             }
         }
 
-        /* --- TYPOGRAPHY --- */
         .splash-content h1 {
             font-size: 72px;
             font-weight: 900;
@@ -99,11 +91,10 @@
             letter-spacing: 2px;
         }
 
-        /* --- THE "GET TOUGH" BUTTON (WITH SWAY ANIMATION) --- */
         .cta-btn {
             display: inline-block;
             padding: 18px 45px;
-            background-color: #dc143c; /* High energy Crimson Red */
+            background-color: #dc143c;
             color: #fff;
             font-size: 20px;
             font-weight: 700;
@@ -113,22 +104,19 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 2px;
-            
-            /* Continuous Sway & Burn Animation */
             animation: pulseSway 2.5s infinite ease-in-out;
         }
 
         .cta-btn:hover {
             background-color: transparent;
             color: #dc143c;
-            animation-play-state: paused; /* Stops the sway when hovering */
+            animation-play-state: paused;
         }
 
         .cta-btn i {
             margin-right: 10px;
         }
 
-        /* --- ANIMATION KEYFRAMES --- */
         @keyframes pulseSway {
             0% {
                 transform: translateX(0px) scale(1);
@@ -152,7 +140,6 @@
             }
         }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .splash-content h1 {
                 font-size: 36px;
@@ -165,35 +152,32 @@
             .cta-btn {
                 padding: 14px 30px;
                 font-size: 16px;
-                animation-duration: 2s; /* Slightly faster animation on smaller screens */
+                animation-duration: 2s;
+            }
+            .splash-logo {
+                font-size: 32px;
+            }
+            .splash-timer {
+                font-size: 32px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="landing-shell">
+        <div class="splash-container">
+            <video autoplay muted loop playsinline class="splash-video">
+                <source src="intro-index.mp4" type="video/mp4">
+                <img src="poster.jpg?q=80&w=2070&auto=format&fit=crop" alt="Background">
+            </video>
 
-    <div class="splash-container">
-        
-        <!-- BACKGROUND VIDEO -->
-        <video autoplay muted loop playsinline class="splash-video">
-            <!-- Replace this src with your own video file like 'animation.mp4' -->
-            <source src="intro-index.mp4" type="video/mp4">
-            <!-- Fallback image if video fails to load -->
-            <img src="poster.jpg?q=80&w=2070&auto=format&fit=crop" alt="Background">
-        </video>
-
-        <!-- DARK OVERLAY -->
-        <div class="splash-overlay"></div>
-
-        <!-- TEXT CONTENT -->
-        <div class="splash-content">
-            <h1>Welcome</h1>
-            <p>Unleash Your Potential</p>
-            
-            <!-- ANIMATED BUTTON -->
-            <a href="https://natdey79.github.io/numberone-landing/product.html" class="cta-btn">
-                <i class="fas fa-bolt"></i> Get Tough
-            </a>
+            <div class="splash-content">
+                <h1>Welcome</h1>
+                <p>Unleash Your Potential</p>
+                <a href="product.html" class="cta-btn">
+                    <i class="fas fa-bolt"></i> Get Tough
+                </a>
+            </div>
         </div>
     </div>
 

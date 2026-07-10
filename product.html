@@ -147,7 +147,7 @@
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 30px;
         }
 
@@ -157,6 +157,13 @@
             border-radius: 8px;
             position: relative;
             border: 1px solid #eee;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
 
         .testimonial-card .quote-mark {
@@ -189,11 +196,26 @@
             font-size: 16px;
             line-height: 1.6;
             color: #444;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+            margin-top: 0;
+        }
+
+        .testimonial-body.expanded {
+            max-height: 220px;
+            opacity: 1;
+            margin-top: 10px;
         }
 
         .testimonial-body strong {
             color: #1a1a1a;
             font-weight: 700;
+        }
+
+        .testimonial-toggle {
+            display: none;
         }
 
         /* --- BUILT-IN SPLASH SCREEN STYLES --- */
@@ -484,7 +506,7 @@
         
         <div class="testimonials-grid">
             <!-- Testimonial 1 -->
-            <div class="testimonial-card">
+            <div class="testimonial-card" onclick="toggleTestimonial('testimonial-1')">
                 <div class="quote-mark">“</div>
                 <div class="testimonial-rating">
                     <i class="fas fa-star"></i>
@@ -494,13 +516,13 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <div class="testimonial-title">"Back to my 20s!"</div>
-                <div class="testimonial-body">
+                <div class="testimonial-body" id="testimonial-1">
                     "I was feeling sluggish and my drive was at an all-time low. After taking <strong>Otoko Ichiban</strong>, the difference is night and day. The <strong>natural ingredients</strong> give me clean energy without any jitters or crashes. What surprised me most is how fast it works—I believe the <strong>ultra-thin, quick-dissolve coating</strong> (0.01mm) makes it absorb immediately. My stamina and performance have never been better. My partner has definitely noticed the change!"
                 </div>
             </div>
 
             <!-- Testimonial 2 -->
-            <div class="testimonial-card">
+            <div class="testimonial-card" onclick="toggleTestimonial('testimonial-2')">
                 <div class="quote-mark">“</div>
                 <div class="testimonial-rating">
                     <i class="fas fa-star"></i>
@@ -510,13 +532,13 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <div class="testimonial-title">"Saved my relationship confidence."</div>
-                <div class="testimonial-body">
+                <div class="testimonial-body" id="testimonial-2">
                     "I was hesitant to try pills, but <strong>Otoko Ichiban</strong> is entirely <strong>natural material</strong>, so I felt safe giving it a shot. It doesn't just boost physical desire; it completely restores your mental confidence. The rapid-release design means I feel the effects within minutes, and it lasts all night. If you want to feel like the 'Number One Man' again, this is it."
                 </div>
             </div>
 
             <!-- Testimonial 3 -->
-            <div class="testimonial-card">
+            <div class="testimonial-card" onclick="toggleTestimonial('testimonial-3')">
                 <div class="quote-mark">“</div>
                 <div class="testimonial-rating">
                     <i class="fas fa-star"></i>
@@ -526,13 +548,13 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <div class="testimonial-title">"Unbelievable absorption speed."</div>
-                <div class="testimonial-body">
+                <div class="testimonial-body" id="testimonial-3">
                     "I've tried other herbal supplements that take hours to kick in—or never do. <strong>Otoko Ichiban</strong> is different. The <strong>0.01mm ultra-thin coating</strong> dissolves the second it touches my tongue, delivering the natural herbal extract straight into my system. My sexual desire skyrockets within 20 minutes. It's potent, reliable, and 100% natural. Highly recommended for men over 40."
                 </div>
             </div>
 
             <!-- Testimonial 4 -->
-            <div class="testimonial-card">
+            <div class="testimonial-card" onclick="toggleTestimonial('testimonial-4')">
                 <div class="quote-mark">“</div>
                 <div class="testimonial-rating">
                     <i class="fas fa-star"></i>
@@ -542,7 +564,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <div class="testimonial-title">"This stuff actually works."</div>
-                <div class="testimonial-body">
+                <div class="testimonial-body" id="testimonial-4">
                     "Finally, a male enhancement pill that delivers. Pure <strong>natural materials</strong>, zero chemical aftertaste, and the <strong>ultra-thin coating</strong> means it works faster than any capsule I've ever taken. My drive is through the roof, and the results speak for themselves. <strong>Otoko Ichiban</strong> is the real deal."
                 </div>
             </div>
@@ -551,6 +573,14 @@
 
     <!-- --- JAVASCRIPT --- -->
     <script>
+        function toggleTestimonial(id) {
+            const element = document.getElementById(id);
+            if (!element) return;
+
+            const isExpanded = element.classList.contains('expanded');
+            element.classList.toggle('expanded', !isExpanded);
+        }
+
         // --- BUILT-IN SPLASH SCREEN LOGIC (PLAYS EVERY TIME) ---
         document.addEventListener('DOMContentLoaded', function() {
             let countdown = 3;
