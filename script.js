@@ -267,52 +267,32 @@
             document.getElementById('cust-qty-chocolate').value = '0';
             updateTotalPrice();
         }
-        // MOBILE MENU FUNCTIONS
-        const hamburgerToggle = document.getElementById('hamburgerToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const menuCloseBtn = document.getElementById('menuCloseBtn');
+/* --- MOBILE HAMBURGER MENU FUNCTIONS --- */
+const hamburgerToggle = document.getElementById('hamburgerToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+const menuCloseBtn = document.getElementById('menuCloseBtn');
 
-        function openMobileMenu() {
-            mobileMenu.classList.add('open');
-            menuOverlay.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
+function openMobileMenu() {
+    mobileMenu.classList.add('open');
+    menuOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
 
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('open');
-            menuOverlay.classList.remove('open');
-            document.body.style.overflow = 'auto';
-        }
+function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    menuOverlay.classList.remove('open');
+    document.body.style.overflow = 'auto';
+}
 
-        if (hamburgerToggle) {
-            hamburgerToggle.addEventListener('click', openMobileMenu);
-        }
-        if (menuCloseBtn) {
-            menuCloseBtn.addEventListener('click', closeMobileMenu);
-        }
-        if (menuOverlay) {
-            menuOverlay.addEventListener('click', closeMobileMenu);
-        }
+hamburgerToggle.addEventListener('click', openMobileMenu);
+menuCloseBtn.addEventListener('click', closeMobileMenu);
+menuOverlay.addEventListener('click', closeMobileMenu);
 
-        const mobileNavDropdown = document.querySelector('.mobile-nav-dropdown > a');
-        if (mobileNavDropdown) {
-            mobileNavDropdown.addEventListener('click', function(event) {
-                event.preventDefault();
-                const parent = event.target.closest('.mobile-nav-dropdown');
-                if (parent) {
-                    parent.classList.toggle('open');
-                }
-            });
-        }
-
-        document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const langCode = this.dataset.lang;
-                if (langCode) {
-                    document.querySelectorAll('.mobile-lang-btn').forEach(button => button.classList.remove('active-lang'));
-                    this.classList.add('active-lang');
-                    setLanguage(langCode, { preventDefault: () => {} , target: this });
-                }
-            });
-        });
+// Handle the Contact dropdown inside mobile menu
+document.querySelectorAll('.mobile-nav-dropdown > a').forEach(item => {
+    item.addEventListener('click', function(e) {
+        e.preventDefault();
+        this.parentElement.classList.toggle('open');
+    });
+});

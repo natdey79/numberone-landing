@@ -840,6 +840,34 @@ header {
 
 /* 1. SETTINGS FOR COMPUTERS / TABLETS (Screens wider than 768px) */
 @media (min-width: 769px) {
+    /* --- FIX HEADER ALIGNMENT --- */
+    header {
+        display: flex;
+        justify-content: space-between !important; /* Pushes left group to left, Japanese to right */
+        align-items: center;
+        padding: 18px 20px;
+    }
+
+    /* Ensure the left group sticks to the left */
+    .header-left-group {
+        display: flex !important;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: nowrap;
+        margin-right: auto; /* Keeps it on the left */
+    }
+
+    /* Fix the Japanese text to sit strictly on the right */
+    .top-right-japanese {
+        display: block !important;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: #8b0000;
+        white-space: nowrap;
+    }
+
+    /* --- PRODUCT MAIN SECTION DESKTOP LAYOUT --- */
     .product-main-section {
         display: flex;
         flex-direction: row;

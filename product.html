@@ -16,10 +16,14 @@
         <div class="splash-timer" id="splashTimer">3</div>
     </div>
 
-    <!-- CLEAN HEADER -->
+    <!-- CLEAN HEADER WITH HAMBURGER MENU -->
     <header>
-        <div class="hamburger-menu" id="hamburgerToggle"><i class="fas fa-bars"></i></div>
-        <div class="header-center-logo"></div>
+        <!-- LEFT SIDE: Hamburger Menu Icon (Only shows on mobile) -->
+        <div class="hamburger-menu" id="hamburgerToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <!-- LEFT SIDE: Desktop Navigation -->
         <div class="header-left-group">
             <!-- Language Switcher -->
             <div class="lang-switcher">
@@ -34,6 +38,7 @@
             <!-- Menu Links beside Language -->
             <ul class="nav-links-left">
                 <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                
                 <li class="nav-item-dropdown">
                     <a href="javascript:void(0);" data-i18n="nav_contact">Contact <i class="fas fa-chevron-down"></i></a>
                     <ul class="contact-dropdown-menu">
@@ -45,7 +50,42 @@
                 </li>
             </ul>
         </div>
+
+        <!-- RIGHT SIDE: Japanese Text -->
         <div class="top-right-japanese">男一番</div>
+
+        <!-- MOBILE OVERLAY DROPDOWN MENU (Hidden by default) -->
+        <nav class="mobile-dropdown-menu" id="mobileMenu">
+            <!-- Close Button (X) -->
+            <div class="menu-close-btn" id="menuCloseBtn">
+                <i class="fas fa-times"></i>
+            </div>
+
+            <ul class="mobile-menu-links">
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                
+                <li class="mobile-nav-dropdown">
+                    <a href="javascript:void(0);" data-i18n="nav_contact">Contact <i class="fas fa-chevron-down"></i></a>
+                    <ul class="mobile-contact-dropdown">
+                        <li><a href="https://www.facebook.com/share/1RnE86tJaX/" target="_blank"><i class="fab fa-facebook-f" style="color: #1877F2;"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/numberone.my" target="_blank"><i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@numberone.my" target="_blank"><i class="fab fa-tiktok" style="color: #000;"></i> TikTok</a></li>
+                        <li><a href="https://wa.me/601137424783" target="_blank"><i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp</a></li>
+                    </ul>
+                </li>
+
+                <!-- Language inside menu -->
+                <li class="mobile-lang-divider">Language</li>
+                <li class="mobile-lang-links">
+                    <a href="#" class="mobile-lang-btn active-lang" onclick="setLanguage('en', event); closeMobileMenu();">English (EN)</a>
+                    <a href="#" class="mobile-lang-btn" onclick="setLanguage('zh', event); closeMobileMenu();">中文 (ZH)</a>
+                    <a href="#" class="mobile-lang-btn" onclick="setLanguage('ms', event); closeMobileMenu();">Bahasa Melayu (MS)</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Dark Overlay Background for Mobile Menu -->
+        <div class="menu-overlay" id="menuOverlay"></div>
     </header>
 
     <div class="menu-overlay" id="menuOverlay"></div>
