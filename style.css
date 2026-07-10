@@ -601,20 +601,19 @@ header {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- RESPONSIVE (FIXED: EXACTLY 2 IMAGE COLUMNS ON MOBILE) --- */
-/* --- RESPONSIVE (FIXED: 2 COLUMN IMAGES + NO HUGE GAPS) --- */
+/* --- RESPONSIVE (MOBILE ONLY: 3 COLUMNS GRID) --- */
 @media (max-width: 768px) {
     
     /* --- FIX THE HUGE POSTER GAP --- */
     .product-poster {
-        min-height: unset !important; /* Removes the massive invisible space */
+        min-height: unset !important;
         height: auto !important;
         padding: 0 !important;
         margin-bottom: 0 !important;
         background-color: #111;
     }
     .product-poster img {
-        max-height: 350px !important; /* Limits height on phone screens */
+        max-height: 350px !important;
         width: 100% !important;
         object-fit: cover !important;
         display: block !important;
@@ -626,30 +625,28 @@ header {
         margin: 0 !important;
     }
     .page-subtitle {
-        margin: 0 0 15px 0 !important; /* Small gap between text and images */
+        margin: 0 0 15px 0 !important;
         padding: 0 15px !important;
     }
     .product-main-section {
-        margin: 0 auto 20px auto !important; /* Removes the massive top margin */
+        margin: 0 auto 20px auto !important;
         padding: 0 10px !important;
         gap: 20px !important;
         width: 100%;
     }
 
-    /* --- 2-COLUMN GALLERY FIX --- */
+    /* --- 3-COLUMN GRID (UNBREAKABLE) --- */
     .product-image-gallery {
         width: 100%;
         min-width: unset;
-        display: flex !important;
-        flex-wrap: wrap !important;
-        flex-direction: row !important;
-        gap: 10px;
-        justify-content: space-between;
+        display: grid !important;       /* Switch to CSS Grid */
+        grid-template-columns: repeat(3, 1fr) !important; /* 3 equal columns */
+        gap: 10px !important;
         margin: 0 auto;
     }
 
     .gallery-column {
-        width: calc(50% - 5px) !important;
+        width: 100% !important;
         min-width: unset;
         flex: unset !important;
         display: flex;
@@ -667,6 +664,7 @@ header {
         border-radius: 6px;
     }
 
+    /* --- PRODUCT SIDEBAR ON MOBILE --- */
     .product-info-sidebar {
         width: 100%;
         min-width: unset;
@@ -676,7 +674,7 @@ header {
     .features-icons { flex-wrap: wrap; gap: 20px; }
     .feature-item { width: 45%; }
 
-    /* Mobile Side Panel */
+    /* --- MOBILE SIDE PANEL --- */
     .side-panel {
         width: 50px;
     }
@@ -697,6 +695,7 @@ header {
         margin-left: 50px;
     }
 
+    /* --- MOBILE LIGHTBOX --- */
     .lightbox-close {
         top: 15px;
         right: 20px;
