@@ -601,31 +601,34 @@ header {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- RESPONSIVE (FIXED MOBILE IMAGES TO 2 COLUMNS) --- */
 /* --- RESPONSIVE (FIXED: EXACTLY 2 IMAGE COLUMNS ON MOBILE) --- */
+/* --- RESPONSIVE (FIXED: 2 COLUMN IMAGES + NO HUGE GAPS) --- */
 @media (max-width: 768px) {
+    /* --- CLOSE THE GAP ON MOBILE --- */
+    .page-subtitle {
+        margin-bottom: 15px !important; /* Reduce the large gap below text */
+    }
     .product-main-section {
-        flex-direction: column;
-        margin: 20px auto;
-        padding: 0 15px;
-        gap: 30px;
+        margin: 10px auto !important; /* Reduce the massive top margin */
+        padding: 0 10px !important;
+        gap: 20px !important;
         width: 100%;
     }
-    
-    /* --- 2-COLUMN GALLERY FIX START --- */
+
+    /* --- 2-COLUMN GALLERY FIX --- */
     .product-image-gallery {
         width: 100%;
         min-width: unset;
         display: flex !important;
-        flex-wrap: wrap !important;      /* Force wrapping into rows */
-        flex-direction: row !important;  /* Force horizontal flow */
+        flex-wrap: wrap !important;
+        flex-direction: row !important;
         gap: 10px;
         justify-content: space-between;
         margin: 0 auto;
     }
 
     .gallery-column {
-        width: calc(50% - 5px) !important; /* Force exactly half width */
+        width: calc(50% - 5px) !important;
         min-width: unset;
         flex: unset !important;
         display: flex;
@@ -636,13 +639,12 @@ header {
     }
 
     .gallery-column img {
-        width: 100% !important;      /* Fill the column perfectly */
+        width: 100% !important;
         height: auto !important;
         display: block;
         object-fit: cover;
         border-radius: 6px;
     }
-    /* --- 2-COLUMN GALLERY FIX END --- */
 
     .product-info-sidebar {
         width: 100%;
