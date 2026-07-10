@@ -31,11 +31,15 @@ header {
     border-bottom: 1px solid #232323;
 }
 
+/* CHANGED: Gold text with Red shadow */
 .top-right-japanese {
     font-size: 24px;
     font-weight: 700;
     letter-spacing: 2px;
-    color: #f4f4f4;
+    color: #FFD700; /* Gold */
+    text-shadow: 0 0 10px rgba(220, 20, 60, 0.8), 
+                 0 0 20px rgba(220, 20, 60, 0.6), 
+                 0 0 30px rgba(220, 20, 60, 0.4); /* Red Glow */
 }
 
 /* ============================================================== */
@@ -53,6 +57,7 @@ header {
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+    padding-bottom: 20px;
     z-index: 10000;
     gap: 6px;
 }
@@ -72,6 +77,7 @@ header {
     min-height: 55px;
     text-align: center;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .side-icon:hover {
@@ -98,9 +104,9 @@ header {
     display: flex;
     justify-content: center;
     width: 100%;
+    flex-shrink: 0;
 }
 
-/* --- DROPDOWN CONTENT --- */
 .side-dropdown-content {
     display: none;
     position: absolute;
@@ -153,7 +159,6 @@ header {
     transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
 }
 
-/* Shift main content */
 .main-content-area {
     margin-left: 60px;
 }
@@ -174,7 +179,6 @@ header {
     margin-bottom: 40px;
 }
 
-/* --- PRODUCT POSTER --- */
 .product-poster {
     width: 100%;
     height: auto;
@@ -601,8 +605,10 @@ header {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- RESPONSIVE (MOBILE ONLY: 3 COLUMNS GRID) --- */
-@media (max-width: 768px) {
+/* ============================================================== */
+/* --- MOBILE & LANDSCAPE FIXES --- */
+/* ============================================================== */
+@media (max-width: 1100px) {
     
     /* --- FIX THE HUGE POSTER GAP --- */
     .product-poster {
@@ -628,21 +634,42 @@ header {
         margin: 0 0 15px 0 !important;
         padding: 0 15px !important;
     }
+    
+    /* --- FORCE CORRECT ORDER ON MOBILE --- */
     .product-main-section {
+        display: flex !important;
+        flex-direction: column !important;
         margin: 0 auto 20px auto !important;
         padding: 0 10px !important;
         gap: 20px !important;
         width: 100%;
     }
 
-    /* --- 3-COLUMN GRID (UNBREAKABLE) --- */
+    /* 1. Put Title at the top */
+    .product-title {
+        order: 1 !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* 2. Put Sidebar (Price, WhatsApp, Text) in the middle */
+    .product-info-sidebar {
+        order: 2 !important;
+        width: 100% !important;
+        min-width: unset !important;
+        padding: 0 5px !important;
+    }
+
+    /* 3. Put Images at the bottom */
     .product-image-gallery {
-        width: 100%;
-        min-width: unset;
-        display: grid !important;       /* Switch to CSS Grid */
-        grid-template-columns: repeat(3, 1fr) !important; /* 3 equal columns */
+        order: 3 !important;
+        width: 100% !important;
+        min-width: unset !important;
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
         gap: 10px !important;
-        margin: 0 auto;
+        margin: 0 auto !important;
     }
 
     .gallery-column {
@@ -663,42 +690,44 @@ header {
         object-fit: cover;
         border-radius: 6px;
     }
-
-    /* --- PRODUCT SIDEBAR ON MOBILE --- */
-    .product-info-sidebar {
-        width: 100%;
-        min-width: unset;
-        padding: 0 5px;
+    
+    .product-price {
+        text-align: center !important;
     }
-    .product-title { font-size: 24px; }
-    .features-icons { flex-wrap: wrap; gap: 20px; }
-    .feature-item { width: 45%; }
+    .wa-button-container {
+        text-align: center !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .description-block h3 {
+        font-size: 18px !important;
+        text-align: center !important;
+    }
 
     /* --- MOBILE SIDE PANEL --- */
     .side-panel {
-        width: 50px;
+        width: 50px !important;
     }
     .side-icon {
-        width: 46px;
-        min-height: 46px;
-        font-size: 18px;
-        padding: 4px 6px;
+        width: 46px !important;
+        min-height: 46px !important;
+        font-size: 18px !important;
+        padding: 4px 6px !important;
     }
     .side-label {
-        font-size: 7px;
+        font-size: 7px !important;
     }
     .side-dropdown-content {
-        left: 56px;
-        min-width: 130px;
+        left: 56px !important;
+        min-width: 130px !important;
     }
     .main-content-area {
-        margin-left: 50px;
+        margin-left: 50px !important;
     }
 
-    /* --- MOBILE LIGHTBOX --- */
     .lightbox-close {
-        top: 15px;
-        right: 20px;
-        font-size: 32px;
+        top: 15px !important;
+        right: 20px !important;
+        font-size: 32px !important;
     }
 }
