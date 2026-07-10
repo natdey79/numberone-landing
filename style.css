@@ -604,12 +604,33 @@ header {
 /* --- RESPONSIVE (FIXED: EXACTLY 2 IMAGE COLUMNS ON MOBILE) --- */
 /* --- RESPONSIVE (FIXED: 2 COLUMN IMAGES + NO HUGE GAPS) --- */
 @media (max-width: 768px) {
-    /* --- CLOSE THE GAP ON MOBILE --- */
+    
+    /* --- FIX THE HUGE POSTER GAP --- */
+    .product-poster {
+        min-height: unset !important; /* Removes the massive invisible space */
+        height: auto !important;
+        padding: 0 !important;
+        margin-bottom: 0 !important;
+        background-color: #111;
+    }
+    .product-poster img {
+        max-height: 350px !important; /* Limits height on phone screens */
+        width: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+    }
+
+    /* --- FIX TEXT GAPS --- */
+    .page-title {
+        padding: 15px 15px 5px 15px !important;
+        margin: 0 !important;
+    }
     .page-subtitle {
-        margin-bottom: 15px !important; /* Reduce the large gap below text */
+        margin: 0 0 15px 0 !important; /* Small gap between text and images */
+        padding: 0 15px !important;
     }
     .product-main-section {
-        margin: 10px auto !important; /* Reduce the massive top margin */
+        margin: 0 auto 20px auto !important; /* Removes the massive top margin */
         padding: 0 10px !important;
         gap: 20px !important;
         width: 100%;
