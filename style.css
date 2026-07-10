@@ -602,6 +602,7 @@ header {
 }
 
 /* --- RESPONSIVE (FIXED MOBILE IMAGES TO 2 COLUMNS) --- */
+/* --- RESPONSIVE (FIXED: EXACTLY 2 IMAGE COLUMNS ON MOBILE) --- */
 @media (max-width: 768px) {
     .product-main-section {
         flex-direction: column;
@@ -611,26 +612,37 @@ header {
         width: 100%;
     }
     
-    /* Fix: Force product images into exactly 2 columns on mobile */
+    /* --- 2-COLUMN GALLERY FIX START --- */
     .product-image-gallery {
         width: 100%;
         min-width: unset;
-        flex-direction: row;
-        flex-wrap: wrap;
+        display: flex !important;
+        flex-wrap: wrap !important;      /* Force wrapping into rows */
+        flex-direction: row !important;  /* Force horizontal flow */
         gap: 10px;
         justify-content: space-between;
+        margin: 0 auto;
     }
-    
+
     .gallery-column {
-        width: calc(50% - 5px); /* Exactly 2 columns */
+        width: calc(50% - 5px) !important; /* Force exactly half width */
+        min-width: unset;
+        flex: unset !important;
+        display: flex;
         flex-direction: column;
         gap: 10px;
-        margin: 0;
+        margin: 0 !important;
+        padding: 0 !important;
     }
-    
+
     .gallery-column img {
-        width: 100%;
+        width: 100% !important;      /* Fill the column perfectly */
+        height: auto !important;
+        display: block;
+        object-fit: cover;
+        border-radius: 6px;
     }
+    /* --- 2-COLUMN GALLERY FIX END --- */
 
     .product-info-sidebar {
         width: 100%;
