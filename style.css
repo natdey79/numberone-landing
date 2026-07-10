@@ -71,7 +71,7 @@ header {
     width: 55px;
     min-height: 55px;
     text-align: center;
-    cursor: pointer; /* Ensure pointer cursor */
+    cursor: pointer;
 }
 
 .side-icon:hover {
@@ -100,7 +100,7 @@ header {
     width: 100%;
 }
 
-/* --- DROPDOWN CONTENT (CLICK TO OPEN, NOT HOVER) --- */
+/* --- DROPDOWN CONTENT --- */
 .side-dropdown-content {
     display: none;
     position: absolute;
@@ -116,12 +116,10 @@ header {
     flex-direction: column;
 }
 
-/* OPEN STATE - controlled by JS adding 'open' class */
 .side-dropdown-wrapper.open .side-dropdown-content {
     display: flex;
 }
 
-/* --- DROPDOWN ITEMS (FIXED: CLICKABLE) --- */
 .side-dropdown-content a,
 .side-dropdown-content .lang-option {
     color: #e8e8e8;
@@ -132,10 +130,10 @@ header {
     align-items: center;
     gap: 10px;
     transition: background 0.2s;
-    cursor: pointer; /* CRITICAL: Force pointer cursor */
-    pointer-events: auto; /* CRITICAL: Force clickability over wrapper */
+    cursor: pointer;
+    pointer-events: auto;
     position: relative;
-    z-index: 10002; /* CRITICAL: Ensure text is above wrapper */
+    z-index: 10002;
 }
 
 .side-dropdown-content a:hover,
@@ -144,7 +142,6 @@ header {
     color: #fff;
 }
 
-/* --- OPEN STATE VISUAL INDICATOR --- */
 .side-dropdown-wrapper.open .side-icon {
     background-color: #25D366;
     color: #fff;
@@ -604,7 +601,7 @@ header {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVE (FIXED MOBILE IMAGES TO 2 COLUMNS) --- */
 @media (max-width: 768px) {
     .product-main-section {
         flex-direction: column;
@@ -613,20 +610,28 @@ header {
         gap: 30px;
         width: 100%;
     }
+    
+    /* Fix: Force product images into exactly 2 columns on mobile */
     .product-image-gallery {
         width: 100%;
         min-width: unset;
-        flex-direction: column;
-        gap: 10px;
-    }
-    .gallery-column {
-        width: 100%;
         flex-direction: row;
         flex-wrap: wrap;
+        gap: 10px;
+        justify-content: space-between;
     }
+    
+    .gallery-column {
+        width: calc(50% - 5px); /* Exactly 2 columns */
+        flex-direction: column;
+        gap: 10px;
+        margin: 0;
+    }
+    
     .gallery-column img {
-        width: 48%;
+        width: 100%;
     }
+
     .product-info-sidebar {
         width: 100%;
         min-width: unset;
