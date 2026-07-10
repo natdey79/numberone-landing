@@ -18,9 +18,9 @@
 
     <!-- CLEAN HEADER -->
     <header>
-        <!-- LEFT SIDE: Language + Home + Contact Dropdown -->
+        <div class="hamburger-menu" id="hamburgerToggle"><i class="fas fa-bars"></i></div>
+        <div class="header-center-logo"></div>
         <div class="header-left-group">
-            
             <!-- Language Switcher -->
             <div class="lang-switcher">
                 <button class="lang-btn" onclick="toggleLangMenu()"><i class="fas fa-globe"></i> <span id="current-lang-label">EN</span></button>
@@ -34,7 +34,6 @@
             <!-- Menu Links beside Language -->
             <ul class="nav-links-left">
                 <li><a href="index.html" data-i18n="nav_home">Home</a></li>
-                
                 <li class="nav-item-dropdown">
                     <a href="javascript:void(0);" data-i18n="nav_contact">Contact <i class="fas fa-chevron-down"></i></a>
                     <ul class="contact-dropdown-menu">
@@ -46,10 +45,31 @@
                 </li>
             </ul>
         </div>
-
-        <!-- RIGHT SIDE: Japanese Text -->
         <div class="top-right-japanese">男一番</div>
     </header>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <nav class="mobile-dropdown-menu" id="mobileMenu">
+        <div class="menu-close-btn" id="menuCloseBtn"><i class="fas fa-times"></i></div>
+        <ul class="mobile-menu-links">
+            <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+            <li class="mobile-nav-dropdown">
+                <a href="javascript:void(0);" data-i18n="nav_contact">Contact <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-contact-dropdown">
+                    <li><a href="https://www.facebook.com/share/1RnE86tJaX/" target="_blank"><i class="fab fa-facebook-f" style="color: #1877F2;"></i> Facebook</a></li>
+                    <li><a href="https://www.instagram.com/numberone.my" target="_blank"><i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram</a></li>
+                    <li><a href="https://www.tiktok.com/@numberone.my" target="_blank"><i class="fab fa-tiktok" style="color: #000;"></i> TikTok</a></li>
+                    <li><a href="https://wa.me/601137424783" target="_blank"><i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="mobile-lang-divider" data-i18n="nav_language">Language</div>
+        <div class="mobile-lang-links">
+            <button class="mobile-lang-btn active-lang" data-lang="en">English (EN)</button>
+            <button class="mobile-lang-btn" data-lang="zh">中文 (ZH)</button>
+            <button class="mobile-lang-btn" data-lang="ms">Bahasa Melayu (MS)</button>
+        </div>
+    </nav>
 
     <!-- LARGE POSTER HERO IMAGE -->
     <section class="product-poster">
