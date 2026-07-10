@@ -780,7 +780,6 @@ header {
         }
 
         
-
         /* --- TESTIMONIALS STYLES --- */
         .testimonials-section {
             max-width: 1200px;
@@ -931,70 +930,141 @@ header {
             }
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+/* --- RESPONSIVE SETTINGS --- */
 
-        @media (max-width: 768px) {
-            header {
-                height: 60px;
-                padding: 10px 15px;
-                flex-wrap: wrap;
-                height: auto;
-                gap: 10px;
-            }
-            .header-left-group {
-                gap: 15px;
-                flex-wrap: wrap;
-            }
-            .top-right-japanese {
-                font-size: 16px;
-            }
-            .product-intro-container ul {
-                flex-direction: row;
-                gap: 15px;
-            }
-            .product-intro-container ul li {
-                width: 80px;
-            }
-            .product-main-section {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .product-image-gallery {
-                flex-direction: column;
-            }
-            .gallery-column {
-                width: 100%;
-                gap: 12px;
-            }
-            .product-info-sidebar {
-                width: 100%;
-                min-width: auto;
-            }
-            .wa-btn {
-                width: 100%;
-                justify-content: center;
-            }
-            .description-block h3 {
-                font-size: 18px;
-            }
-            .product-title {
-                font-size: 24px;
-            }
-            .product-price {
-                font-size: 16px;
-            }
-            .splash-logo {
-                font-size: 32px;
-            }
-            .splash-timer {
-                font-size: 32px;
-            }
-            .testimonials-section h2 {
-                font-size: 26px;
-            }
-        }
+/* 1. SETTINGS FOR COMPUTERS / TABLETS (Screens wider than 768px) */
+/* These are your default styles that already exist, but I'm ensuring they are locked in */
+@media (min-width: 769px) {
+    .product-main-section {
+        display: flex;
+        flex-direction: row;      /* Side-by-side layout for desktop */
+        gap: 60px;
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0 20px;
+    }
+    
+    .product-image-gallery {
+        flex: 1;
+        min-width: 300px;
+        display: flex;
+        gap: 15px;
+    }
+
+    .gallery-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;   /* Images stacked vertically on desktop */
+        gap: 15px;
+    }
+
+    .product-info-sidebar {
+        flex: 1;
+        min-width: 350px;         /* This is safe on desktop because there's enough space */
+    }
+
+    .features-icons {
+        flex-wrap: nowrap;        /* Force icons to stay in one row on desktop */
+        overflow-x: auto;
+    }
+}
+
+/* 2. SETTINGS FOR PHONES (Screens smaller than 768px) */
+/* This is the fix from my previous message - it ONLY activates on phones */
+@media (max-width: 768px) {
+    header {
+        height: auto;
+        padding: 10px 15px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .header-left-group {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .top-right-japanese {
+        font-size: 16px;
+    }
+
+    /* --- PHONE LAYOUT FIX FOR PRODUCT SECTION --- */
+    .product-main-section {
+        flex-direction: column;   /* Stack images on top of text */
+        margin: 20px auto;
+        padding: 0 15px;          /* Add safe padding so text doesn't hit edge */
+        gap: 30px;
+        width: 100%;
+    }
+
+    .product-image-gallery {
+        width: 100%;
+        min-width: unset;         /* Remove desktop restriction */
+        display: flex;
+        flex-direction: column;   /* Stack gallery columns */
+        gap: 10px;
+    }
+
+    .gallery-column {
+        flex: unset;
+        width: 100%;
+        flex-direction: row;      /* Turn images inside a column to be side-by-side */
+        flex-wrap: wrap;
+    }
+
+    .gallery-column img {
+        width: 48%;               /* Make images sit 2-across */
+        height: auto;
+        object-fit: cover;
+    }
+
+    .product-info-sidebar {
+        width: 100%;
+        min-width: unset;         /* CRITICAL: Remove the 350px width on mobile */
+        padding: 0 5px;
+    }
+
+    .product-title {
+        font-size: 24px;
+        margin-top: 10px;
+        color: #1a1a1a;
+    }
+
+    .product-price {
+        font-size: 18px;
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    /* --- PHONE LAYOUT FIX FOR FEATURES ICONS --- */
+    .features-icons {
+        flex-wrap: wrap;          /* Allow icons to drop to a second row */
+        justify-content: center;
+        gap: 20px;
+    }
+    .feature-item {
+        width: 45%;               /* Make each icon box take half the screen */
+    }
+
+    /* --- PHONE LAYOUT FIX FOR TESTIMONIALS --- */
+    .testimonials-section h2 {
+        font-size: 26px;
+    }
+    
+    .product-intro-container ul {
+        flex-direction: row;
+        gap: 15px;
+    }
+    
+    .product-intro-container ul li {
+        width: 80px;
+    }
+    
+    /* --- PHONE SPLASH SCREEN --- */
+    .splash-logo {
+        font-size: 32px;
+    }
+    .splash-timer {
+        font-size: 32px;
+    }
+}
