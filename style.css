@@ -41,7 +41,17 @@ header {
     padding: 18px 20px;
     background-color: #fff;
     border-bottom: 1px solid #e5e5e5;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    min-width: 0;
+    gap: 20px;
+}
+
+.header-left-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+    min-width: 0;
 }
 
 .nav-left {
@@ -64,6 +74,8 @@ header {
     font-size: 14px;
     color: #555;
     align-items: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -158,8 +170,11 @@ header {
 /* --- LANGUAGE SWITCHER STYLES --- */
 .lang-switcher {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
     font-size: 14px;
+    flex-shrink: 0;
 }
 
 .lang-btn {
@@ -619,3 +634,336 @@ header {
         text-align: center;
     }
 }
+        /* 2. NAVIGATION LINKS (Beside Language) */
+        .nav-links-left {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #555;
+            list-style: none;
+            align-items: center;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+        .nav-links-left a {
+            text-decoration: none;
+            color: #555;
+            transition: color 0.2s;
+        }
+        .nav-links-left a:hover {
+            color: #000;
+        }
+
+        /* 3. FIXED LANGUAGE SWITCHER POSITIONING */
+        .lang-switcher {
+            position: relative !important;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            margin: 0 !important;
+            flex-shrink: 0;
+        }
+        
+        .lang-dropdown {
+            margin-top: 10px;
+            left: 0 !important;
+            right: auto !important;
+        }
+
+        /* 4. TOP RIGHT JAPANESE TEXT */
+        .top-right-japanese {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #8b0000;
+        }
+
+        /* --- POSTER & INTRODUCTION STYLES --- */
+        .product-poster {
+            width: 100%;
+            height: auto;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a1a1a;
+        }
+        
+        .product-poster img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-intro-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .product-intro-container h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+        }
+
+        .product-intro-container ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+
+        .product-intro-container ul li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 120px;
+        }
+
+        .product-intro-container ul li img {
+            width: 100%;
+            height: auto;
+            max-width: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .product-intro-container ul li span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        /* --- FEATURES ICON ROW --- */
+        .features-icons {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 18px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+
+        .feature-item {
+            width: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .feature-item img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .feature-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        
+
+        /* --- TESTIMONIALS STYLES --- */
+        .testimonials-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 60px 20px;
+        }
+
+        .testimonials-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: #fbf9f5;
+            padding: 25px 30px;
+            border-radius: 8px;
+            position: relative;
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .testimonial-card .quote-mark {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 48px;
+            font-family: 'Times New Roman', serif;
+            color: #d49b3d;
+            opacity: 0.5;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .testimonial-rating {
+            color: #ffb400;
+            font-size: 18px;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+
+        .testimonial-body {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #444;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+            margin-top: 0;
+        }
+
+        .testimonial-body.expanded {
+            max-height: 220px;
+            opacity: 1;
+            margin-top: 10px;
+        }
+
+        .testimonial-body strong {
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .testimonial-toggle {
+            display: none;
+        }
+
+        /* --- BUILT-IN SPLASH SCREEN STYLES --- */
+        .product-splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #0a0a0a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        .product-splash-screen.hide-splash {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-logo {
+            font-size: 64px;
+            font-weight: 900;
+            color: #8b0000;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+            opacity: 0;
+            animation: splashFadeIn 1s ease-out forwards 0.3s;
+        }
+
+        .splash-subtitle {
+            font-size: 22px;
+            color: #888;
+            font-weight: 300;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: splashFadeIn 1s ease-out forwards 0.8s;
+        }
+
+        .splash-timer {
+            margin-top: 40px;
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            opacity: 0;
+            animation: splashFadeIn 1s ease-out forwards 1.3s;
+        }
+
+        @keyframes splashFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                height: 60px;
+                padding: 10px 15px;
+                flex-wrap: wrap;
+                height: auto;
+                gap: 10px;
+            }
+            .header-left-group {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+            .top-right-japanese {
+                font-size: 16px;
+            }
+            .product-intro-container ul {
+                flex-direction: row;
+                gap: 15px;
+            }
+            .product-intro-container ul li {
+                width: 80px;
+            }
+            .splash-logo {
+                font-size: 32px;
+            }
+            .splash-timer {
+                font-size: 32px;
+            }
+            .testimonials-section h2 {
+                font-size: 26px;
+            }
+        }
