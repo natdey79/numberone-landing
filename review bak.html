@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews | Number One</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- SIDE PANEL -->
+    <div class="side-panel">
+        <a href="home.html" class="side-icon" title="Home"><i class="fas fa-home"></i></a>
+        <a href="product.html" class="side-icon" title="Product"><i class="fas fa-box"></i></a>
+        <a href="review.html" class="side-icon" title="Review"><i class="fas fa-star"></i></a>
+        
+        <div class="side-dropdown-wrapper">
+            <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="Contact"><i class="fas fa-envelope"></i></a>
+            <div class="side-dropdown-content">
+                <a href="https://www.facebook.com/share/1RnE86tJaX/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.instagram.com/numberone.my" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.tiktok.com/@numberone.my" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a href="https://wa.me/601137424783" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+
+        <a href="#about-section" class="side-icon" title="About Us"><i class="fas fa-info-circle"></i></a>
+        
+        <!-- UPDATED LANGUAGE DROPDOWN WITH onclick -->
+        <div class="side-dropdown-wrapper">
+            <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="Language"><i class="fas fa-globe"></i></a>
+            <div class="side-dropdown-content" id="langMenuReview">
+                <a href="#" onclick="setLanguage('en', event)">🇬🇧 English (EN)</a>
+                <a href="#" onclick="setLanguage('zh', event)">🇨🇳 中文 (ZH)</a>
+                <a href="#" onclick="setLanguage('ms', event)">🇲🇾 Bahasa Melayu (MS)</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content-area">
+        <header>
+            <div class="header-center-logo"></div>
+            <div class="top-right-japanese">男一番</div>
+        </header>
+
+        <h1 class="page-title">What Our Customers Say</h1>
+
+        <section class="testimonials-section">
+            <div class="testimonials-grid">
+
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card" onclick="toggleTestimonial('testimonial-1')">
+                    <div class="quote-mark">“</div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-title" data-i18n="test_title_1">"Back to my 20s!"</div>
+                    <div class="testimonial-body" id="testimonial-1" data-i18n="test_body_1"></div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card" onclick="toggleTestimonial('testimonial-2')">
+                    <div class="quote-mark">“</div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-title" data-i18n="test_title_2">"Saved my relationship confidence."</div>
+                    <div class="testimonial-body" id="testimonial-2" data-i18n="test_body_2"></div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card" onclick="toggleTestimonial('testimonial-3')">
+                    <div class="quote-mark">“</div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-title" data-i18n="test_title_3">"Unbelievable absorption speed."</div>
+                    <div class="testimonial-body" id="testimonial-3" data-i18n="test_body_3"></div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card" onclick="toggleTestimonial('testimonial-4')">
+                    <div class="quote-mark">“</div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-title" data-i18n="test_title_4">"This stuff actually works."</div>
+                    <div class="testimonial-body" id="testimonial-4" data-i18n="test_body_4"></div>
+                </div>
+                
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

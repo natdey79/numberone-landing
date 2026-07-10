@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Number One</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- SPLASH SCREEN -->
+    <div id="productSplash" class="product-splash-screen">
+        <div class="splash-logo">男一番</div>
+        <div class="splash-subtitle">Number One / Otoko Ichiban</div>
+        <div class="splash-timer" id="splashTimer">3</div>
+    </div>
+
+    <!-- SIDE PANEL -->
+    <div class="side-panel">
+        <a href="javascript:void(0);" onclick="showSection('section-home')" class="side-icon" title="Home">
+            <i class="fas fa-home"></i>
+            <span class="side-label" data-i18n="nav_home">Home</span>
+        </a>
+        <a href="javascript:void(0);" onclick="showSection('section-product')" class="side-icon" title="Product">
+            <i class="fas fa-box"></i>
+            <span class="side-label" data-i18n="nav_product">Product</span>
+        </a>
+        <a href="javascript:void(0);" onclick="showSection('section-review')" class="side-icon" title="Reviews">
+            <i class="fas fa-star"></i>
+            <span class="side-label" data-i18n="nav_review">Reviews</span>
+        </a>
+        
+        <!-- CONTACT DROPDOWN (WHATSAPP ONLY) -->
+        <div class="side-dropdown-wrapper">
+            <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="Contact">
+                <i class="fas fa-envelope"></i>
+                <span class="side-label" data-i18n="nav_contact">Contact</span>
+            </a>
+            <div class="side-dropdown-content">
+                <a href="https://wa.me/601137424783" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+
+        <!-- ABOUT US DROPDOWN (SOCIALS) -->
+        <div class="side-dropdown-wrapper">
+            <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="About Us">
+                <i class="fas fa-info-circle"></i>
+                <span class="side-label" data-i18n="nav_about">About Us</span>
+            </a>
+            <div class="side-dropdown-content">
+                <a href="https://www.facebook.com/share/1RnE86tJaX/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.instagram.com/numberone.my" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.tiktok.com/@numberone.my" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+            </div>
+        </div>
+        
+        <!-- LANGUAGE DROPDOWN -->
+        <div class="side-dropdown-wrapper">
+            <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="Language">
+                <i class="fas fa-globe"></i>
+                <span class="side-label" data-i18n="nav_language">Language</span>
+            </a>
+            <div class="side-dropdown-content" id="langMenuHome">
+                <span class="lang-option" data-lang="en">🇬🇧 <span data-i18n="lang_en">English (EN)</span></span>
+                <span class="lang-option" data-lang="zh">🇨🇳 <span data-i18n="lang_zh">中文 (ZH)</span></span>
+                <span class="lang-option" data-lang="ms">🇲🇾 <span data-i18n="lang_ms">Bahasa Melayu (MS)</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-content-area">
+        <header>
+            <div class="header-center-logo"></div>
+            <div class="top-right-japanese">男一番</div>
+        </header>
+
+        <!-- SECTION: HOME -->
+        <div id="section-home" class="page-section">
+            <section class="product-poster">
+                <img src="poster.jpg" alt="Product Poster">
+            </section>
+
+            <h1 class="page-title" data-i18n="intro_headline">Built for Endurance. Zero Excuses.</h1>
+            <p class="page-subtitle" data-i18n="intro_subtitle">Discover the formula crafted for stamina and confidence.</p>
+
+            <section class="product-main-section">
+                <div class="product-image-gallery">
+                    <div class="gallery-column">
+                        <img src="no1-black.png" alt="Product Shot 1" onclick="openLightbox(this)">
+                        <img src="no1-coklat.png" alt="Product Shot 2" onclick="openLightbox(this)">
+                    </div>
+                    <div class="gallery-column">
+                        <img src="promo-1.jpg" alt="Product Shot 3" onclick="openLightbox(this)">
+                        <img src="pill-2.jpg" alt="Product Shot 4" onclick="openLightbox(this)">
+                    </div>
+                    <div class="gallery-column">
+                        <img src="promo-2.jpg" alt="Product Shot 5" onclick="openLightbox(this)">
+                        <img src="banana-1.png" alt="Product Shot 6" onclick="openLightbox(this)">
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECTION: PRODUCT -->
+        <div id="section-product" class="page-section" style="display:none;">
+            <h1 class="page-title" data-i18n="prod_title">Number One / Otoko Ichiban</h1>
+            
+            <section class="product-main-section">
+                <div class="product-image-gallery">
+                    <div class="gallery-column">
+                        <img src="no1-black.png" alt="Product Shot 1" onclick="openLightbox(this)">
+                        <img src="no1-coklat.png" alt="Product Shot 2" onclick="openLightbox(this)">
+                    </div>
+                    <div class="gallery-column">
+                        <img src="promo-1.jpg" alt="Product Shot 3" onclick="openLightbox(this)">
+                        <img src="pill-2.jpg" alt="Product Shot 4" onclick="openLightbox(this)">
+                    </div>
+                    <div class="gallery-column">
+                        <img src="promo-2.jpg" alt="Product Shot 5" onclick="openLightbox(this)">
+                        <img src="banana-1.png" alt="Product Shot 6" onclick="openLightbox(this)">
+                    </div>
+                </div>
+
+                <div class="product-info-sidebar">
+                    <span class="product-price">RM168.00 MYR</span>
+                    
+                    <div class="wa-button-container">
+                        <button class="wa-btn" onclick="openOrderModal()">
+                            <i class="fab fa-whatsapp"></i> <span data-i18n="wa_btn_text">Inquire on WhatsApp</span>
+                        </button>
+                    </div>
+
+                    <hr class="divider">
+
+                    <div class="description-block">
+                        <h3 data-i18n="prod_quote">"Man's pride, life's quality!<br>Otoko Ichiban – Let every man be more confident and stronger!"</h3>
+                        
+                        <div class="info-title" data-i18n="prod_info_title">Product Information</div>
+                        <ul class="info-list">
+                            <li><strong data-i18n="prod_name_label">Product Name:</strong> <span data-i18n="prod_name_val">男一番 (OTOKO ICHIBAN)</span></li>
+                            <li><strong data-i18n="prod_type_label">Type:</strong> <span data-i18n="prod_type_val">Men's Oral Dissolving Film</span></li>
+                            <li><strong data-i18n="prod_qty_label">Quantity:</strong> <span data-i18n="prod_qty_val">3 sheets per box (10 pills per sheet)</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECTION: REVIEW -->
+        <div id="section-review" class="page-section" style="display:none;">
+            <h1 class="page-title">What Our Customers Say</h1>
+            <section class="testimonials-section">
+                <div class="testimonials-grid">
+                    <div class="testimonial-card" onclick="toggleTestimonial('testimonial-1')">
+                        <div class="quote-mark">“</div>
+                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <div class="testimonial-title" data-i18n="test_title_1">"Back to my 20s!"</div>
+                        <div class="testimonial-body" id="testimonial-1" data-i18n="test_body_1"></div>
+                    </div>
+                    <div class="testimonial-card" onclick="toggleTestimonial('testimonial-2')">
+                        <div class="quote-mark">“</div>
+                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <div class="testimonial-title" data-i18n="test_title_2">"Saved my relationship confidence."</div>
+                        <div class="testimonial-body" id="testimonial-2" data-i18n="test_body_2"></div>
+                    </div>
+                    <div class="testimonial-card" onclick="toggleTestimonial('testimonial-3')">
+                        <div class="quote-mark">“</div>
+                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <div class="testimonial-title" data-i18n="test_title_3">"Unbelievable absorption speed."</div>
+                        <div class="testimonial-body" id="testimonial-3" data-i18n="test_body_3"></div>
+                    </div>
+                    <div class="testimonial-card" onclick="toggleTestimonial('testimonial-4')">
+                        <div class="quote-mark">“</div>
+                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <div class="testimonial-title" data-i18n="test_title_4">"This stuff actually works."</div>
+                        <div class="testimonial-body" id="testimonial-4" data-i18n="test_body_4"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div> <!-- End main-content-area -->
+
+    <!-- LIGHTBOX OVERLAY -->
+    <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-image" src="">
+    </div>
+
+    <!-- WHATSAPP ORDER MODAL -->
+    <div id="order-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 data-i18n="modal_title">Order Information</h2>
+            <div class="form-group">
+                <label for="cust-name" data-i18n="modal_name">Name</label>
+                <input type="text" id="cust-name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="cust-phone" data-i18n="modal_phone">Phone Number</label>
+                <input type="text" id="cust-phone" placeholder="e.g. 0123456789">
+            </div>
+            <div class="form-group">
+                <label for="cust-address" data-i18n="modal_address">Delivery Address</label>
+                <textarea id="cust-address" placeholder="Enter your full delivery address"></textarea>
+            </div>
+            <label style="display:block; font-weight:600; font-size:14px; margin-bottom:5px; color:#e8e8e8;" data-i18n="modal_flavor">Select Flavors & Quantities</label>
+            <div class="flavor-group">
+                <div class="form-group">
+                    <label style="font-weight:400; font-size:13px; color:#d2d2d2;">Original</label>
+                    <select id="cust-qty-original" onchange="updateTotalPrice()">
+                        <option value="0">0</option><option value="1" selected>1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label style="font-weight:400; font-size:13px; color:#d2d2d2;">Chocolate</label>
+                    <select id="cust-qty-chocolate" onchange="updateTotalPrice()">
+                        <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+                    </select>
+                </div>
+            </div>
+            <div class="total-qty-display"><span data-i18n="modal_qty">Total Quantity:</span> <span id="total-qty">1</span></div>
+            <div class="total-price-display"><span data-i18n="modal_total">Total:</span> RM<span id="total-price">168.00</span></div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeOrderModal()" data-i18n="modal_cancel">Cancel</button>
+                <button class="btn-submit" onclick="submitOrderToWhatsApp()" data-i18n="modal_submit">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

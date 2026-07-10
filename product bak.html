@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product | Number One</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- SIDE PANEL -->
+    <div class="side-panel">
+        <a href="home.html" class="side-icon" title="Home"><i class="fas fa-home"></i></a>
+        <a href="product.html" class="side-icon" title="Product"><i class="fas fa-box"></i></a>
+        <a href="review.html" class="side-icon" title="Review"><i class="fas fa-star"></i></a>
+        
+        <div class="side-dropdown-wrapper">
+            <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="Contact"><i class="fas fa-envelope"></i></a>
+            <div class="side-dropdown-content">
+                <a href="https://www.facebook.com/share/1RnE86tJaX/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.instagram.com/numberone.my" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.tiktok.com/@numberone.my" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a href="https://wa.me/601137424783" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+
+        <a href="#about-section" class="side-icon" title="About Us"><i class="fas fa-info-circle"></i></a>
+        
+        <!-- UPDATED LANGUAGE DROPDOWN WITH onclick -->
+        <div class="side-dropdown-wrapper">
+            <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="Language"><i class="fas fa-globe"></i></a>
+            <div class="side-dropdown-content" id="langMenuProduct">
+                <a href="#" onclick="setLanguage('en', event)">🇬🇧 English (EN)</a>
+                <a href="#" onclick="setLanguage('zh', event)">🇨🇳 中文 (ZH)</a>
+                <a href="#" onclick="setLanguage('ms', event)">🇲🇾 Bahasa Melayu (MS)</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content-area">
+        <header>
+            <div class="top-right-japanese">男一番</div>
+        </header>
+
+        <section class="product-main-section">
+            <div class="product-image-gallery">
+                <div class="gallery-column">
+                    <img src="no1-black.png" alt="Product Shot 1" onclick="openLightbox(this)">
+                    <img src="no1-coklat.png" alt="Product Shot 2" onclick="openLightbox(this)">
+                </div>
+                <div class="gallery-column">
+                    <img src="promo-1.jpg" alt="Product Shot 3" onclick="openLightbox(this)">
+                    <img src="pill-2.jpg" alt="Product Shot 4" onclick="openLightbox(this)">
+                </div>
+                <div class="gallery-column">
+                    <img src="promo-2.jpg" alt="Product Shot 5" onclick="openLightbox(this)">
+                    <img src="banana-1.png" alt="Product Shot 6" onclick="openLightbox(this)">
+                </div>
+            </div>
+
+            <div class="product-info-sidebar">
+                <h1 class="product-title" data-i18n="prod_title">Number One / Otoko Ichiban</h1>
+                <span class="product-price">RM168.00 MYR</span>
+                
+                <div class="wa-button-container">
+                    <button class="wa-btn" onclick="openOrderModal()">
+                        <i class="fab fa-whatsapp"></i> <span data-i18n="wa_btn_text">Inquire on WhatsApp</span>
+                    </button>
+                </div>
+
+                <hr class="divider">
+
+                <div class="description-block">
+                    <h3 data-i18n="prod_quote">"Man's pride, life's quality!<br>Otoko Ichiban – Let every man be more confident and stronger!"</h3>
+                    
+                    <div class="info-title" data-i18n="prod_info_title">Product Information</div>
+                    <ul class="info-list">
+                        <li><strong data-i18n="prod_name_label">Product Name:</strong> <span data-i18n="prod_name_val">男一番 (OTOKO ICHIBAN)</span></li>
+                        <li><strong data-i18n="prod_type_label">Type:</strong> <span data-i18n="prod_type_val">Men's Oral Dissolving Film</span></li>
+                        <li><strong data-i18n="prod_qty_label">Quantity:</strong> <span data-i18n="prod_qty_val">3 sheets per box (10 pills per sheet)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-section" style="max-width: 1200px; margin: 80px auto; padding: 0 20px; text-align: center; color: #e8e8e8;">
+            <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 30px; color: #f4f4f4;">About Us</h2>
+            <p style="font-size: 18px; line-height: 1.8; max-width: 800px; margin: 0 auto; color: #d2d2d2;">
+                At <strong>Number One / Otoko Ichiban</strong>, we are dedicated to empowering men to achieve their peak performance and confidence. 
+                Our advanced oral dissolving film utilizes premium natural ingredients and cutting-edge 0.01mm ultra-thin coating technology 
+                to deliver fast, reliable, and long-lasting results.
+            </p>
+        </section>
+    </div>
+
+    <!-- LIGHTBOX & ORDER MODAL -->
+    <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-image" src="">
+    </div>
+
+    <div id="order-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 data-i18n="modal_title">Order Information</h2>
+            <div class="form-group">
+                <label for="cust-name" data-i18n="modal_name">Name</label>
+                <input type="text" id="cust-name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="cust-phone" data-i18n="modal_phone">Phone Number</label>
+                <input type="text" id="cust-phone" placeholder="e.g. 0123456789">
+            </div>
+            <div class="form-group">
+                <label for="cust-address" data-i18n="modal_address">Delivery Address</label>
+                <textarea id="cust-address" placeholder="Enter your full delivery address"></textarea>
+            </div>
+            <label style="display:block; font-weight:600; font-size:14px; margin-bottom:5px; color:#e8e8e8;" data-i18n="modal_flavor">Select Flavors & Quantities</label>
+            <div class="flavor-group">
+                <div class="form-group">
+                    <label style="font-weight:400; font-size:13px; color:#d2d2d2;">Original</label>
+                    <select id="cust-qty-original" onchange="updateTotalPrice()">
+                        <option value="0">0</option><option value="1" selected>1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label style="font-weight:400; font-size:13px; color:#d2d2d2;">Chocolate</label>
+                    <select id="cust-qty-chocolate" onchange="updateTotalPrice()">
+                        <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+                    </select>
+                </div>
+            </div>
+            <div class="total-qty-display"><span data-i18n="modal_qty">Total Quantity:</span> <span id="total-qty">1</span></div>
+            <div class="total-price-display"><span data-i18n="modal_total">Total:</span> RM<span id="total-price">168.00</span></div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeOrderModal()" data-i18n="modal_cancel">Cancel</button>
+                <button class="btn-submit" onclick="submitOrderToWhatsApp()" data-i18n="modal_submit">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
