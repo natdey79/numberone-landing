@@ -960,6 +960,34 @@ header {
             .product-intro-container ul li {
                 width: 80px;
             }
+            .product-main-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .product-image-gallery {
+                flex-direction: column;
+            }
+            .gallery-column {
+                width: 100%;
+                gap: 12px;
+            }
+            .product-info-sidebar {
+                width: 100%;
+                min-width: auto;
+            }
+            .wa-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .description-block h3 {
+                font-size: 18px;
+            }
+            .product-title {
+                font-size: 24px;
+            }
+            .product-price {
+                font-size: 16px;
+            }
             .splash-logo {
                 font-size: 32px;
             }
