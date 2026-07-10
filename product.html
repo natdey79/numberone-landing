@@ -130,6 +130,37 @@
             letter-spacing: 1px;
         }
 
+        /* --- FEATURES ICON ROW --- */
+        .features-icons {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            width: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .feature-item img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .feature-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
         /* --- TESTIMONIALS STYLES --- */
         .testimonials-section {
             max-width: 1200px;
@@ -442,12 +473,24 @@
                     <li><strong data-i18n="prod_type_label">Type:</strong> <span data-i18n="prod_type_val">Men's Oral Dissolving Film</span></li>
                     <li><strong data-i18n="prod_qty_label">Quantity:</strong> <span data-i18n="prod_qty_val">3 sheets per box (10 pills per sheet)</span></li>
                     <li><strong data-i18n="prod_features_label">Key Features:</strong>
-                        <ul>
-                            <li data-i18n="prod_feat_1">Quick Absorption</li>
-                            <li data-i18n="prod_feat_2">Herbal Formula</li>
-                            <li data-i18n="prod_feat_3">Long Lasting</li>
-                            <li data-i18n="prod_feat_4">Premium Quality</li>
-                        </ul>
+                        <div class="features-icons" aria-hidden="false">
+                            <div class="feature-item">
+                                <img src="icon-1.png" alt="Quality">
+                                <div class="feature-label">Quality</div>
+                            </div>
+                            <div class="feature-item">
+                                <img src="icon-2.png" alt="Herbal">
+                                <div class="feature-label">Herbal</div>
+                            </div>
+                            <div class="feature-item">
+                                <img src="icon-3.png" alt="Formula">
+                                <div class="feature-label">Formula</div>
+                            </div>
+                            <div class="feature-item">
+                                <img src="icon-4.png" alt="Endurance">
+                                <div class="feature-label">Endurance</div>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
