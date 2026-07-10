@@ -195,7 +195,8 @@ header {
 .lang-dropdown {
     display: none;
     position: absolute;
-    right: 0;
+    top: 100%;
+    left: 0;
     background-color: #fff;
     min-width: 130px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -665,9 +666,11 @@ header {
         }
         
         .lang-dropdown {
-            margin-top: 10px;
+            position: absolute !important;
+            top: 100% !important;
             left: 0 !important;
             right: auto !important;
+            margin-top: 8px;
         }
 
         /* 4. TOP RIGHT JAPANESE TEXT */
@@ -782,13 +785,13 @@ header {
         .testimonials-section {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px 60px 20px;
+            padding: 30px 18px 40px 18px;
         }
 
         .testimonials-section h2 {
             font-size: 32px;
             font-weight: 700;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             text-align: center;
             color: #1a1a1a;
         }
@@ -796,15 +799,15 @@ header {
         .testimonials-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 30px;
+            gap: 18px;
         }
 
         .testimonial-card {
-            background-color: #fbf9f5;
-            padding: 25px 30px;
-            border-radius: 8px;
+            background-color: #fff;
+            padding: 18px 20px;
+            border-radius: 12px;
             position: relative;
-            border: 1px solid #eee;
+            border: 1px solid rgba(204,204,204,0.7);
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
@@ -816,27 +819,27 @@ header {
 
         .testimonial-card .quote-mark {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 48px;
+            top: 16px;
+            right: 16px;
+            font-size: 34px;
             font-family: 'Times New Roman', serif;
-            color: #d49b3d;
-            opacity: 0.5;
+            color: rgba(212,155,61,0.45);
+            opacity: 0.8;
             line-height: 1;
             pointer-events: none;
         }
 
         .testimonial-rating {
             color: #ffb400;
-            font-size: 18px;
-            margin-bottom: 8px;
-            letter-spacing: 2px;
+            font-size: 16px;
+            margin-bottom: 6px;
+            letter-spacing: 1.5px;
         }
 
         .testimonial-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: #1a1a1a;
         }
 
