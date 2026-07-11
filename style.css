@@ -183,23 +183,14 @@ header {
     height: 450px;
     display: block;
     background-color: #0a0a0a;
-    
-    /* Load the DESKTOP image here */
     background-image: url('background-box.jpg');
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
     border-bottom: 1px solid #232323;
-    
-    /* Darkens it slightly so text looks better on top */
     box-shadow: inset 0 0 150px rgba(0,0,0,0.8);
 }
 
-.product-poster img {
-    display: none !important;
-}
-
-/* Hide the old img tag entirely so it doesn't interfere */
 .product-poster img {
     display: none !important;
 }
@@ -214,32 +205,27 @@ header {
     flex-wrap: wrap;
 }
 
+/* --- NEW FLAT IMAGE GRID --- */
 .product-image-gallery {
     flex: 1;
     min-width: 300px;
-    display: flex;
-    gap: 15px;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px !important;
 }
 
-.gallery-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.product-image-gallery img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 6px !important;
+    object-fit: cover !important;
+    cursor: pointer !important;
+    transition: opacity 0.2s ease !important;
 }
 
-.gallery-column img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 4px;
-    object-fit: cover;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-}
-
-.gallery-column img:hover {
-    opacity: 0.8;
+.product-image-gallery img:hover {
+    opacity: 0.8 !important;
 }
 
 .product-info-sidebar {
@@ -327,7 +313,7 @@ header {
 
 .testimonial-card {
     background-color: #131313;
-    padding: 18px 20px;
+    padding: 15px 20px 15px 20px;
     border-radius: 12px;
     position: relative;
     border: 1px solid rgba(255,255,255,0.08);
@@ -342,7 +328,7 @@ header {
 
 .testimonial-card .quote-mark {
     position: absolute;
-    top: 16px;
+    top: 12px;
     right: 16px;
     font-size: 34px;
     font-family: 'Times New Roman', serif;
@@ -355,14 +341,14 @@ header {
 .testimonial-rating {
     color: #ffb400;
     font-size: 16px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     letter-spacing: 1.5px;
 }
 
 .testimonial-title {
     font-size: 17px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     color: #f5f5f5;
 }
 
@@ -613,19 +599,26 @@ header {
 }
 
 /* ============================================================== */
+/* --- DESKTOP 4-COLUMN GRID (FLAT IMAGES WORK PERFECTLY!) --- */
+/* ============================================================== */
+@media (min-width: 1101px) {
+    .product-image-gallery {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+/* ============================================================== */
 /* --- MOBILE & LANDSCAPE FIXES --- */
 /* ============================================================== */
 @media (max-width: 1100px) {
     
     /* --- FIX BACKGROUND ON MOBILE --- */
     .product-poster {
-        height: 220px !important; /* Shorter for phones */
-        
-        /* Load the MOBILE image here */
+        height: 220px !important;
         background-image: url('background-box-mobile.jpg') !important;
-        
         background-size: cover !important;
-        background-position: center center !important; /* Focuses the image correctly */
+        background-position: center center !important;
         border-bottom: 1px solid #232323 !important;
         box-shadow: inset 0 0 80px rgba(0,0,0,0.8) !important;
     }
@@ -671,29 +664,13 @@ header {
         order: 3 !important;
         width: 100% !important;
         min-width: unset !important;
-        display: grid !important;
         grid-template-columns: repeat(3, 1fr) !important;
         gap: 10px !important;
         margin: 0 auto !important;
     }
 
-    .gallery-column {
-        width: 100% !important;
-        min-width: unset;
-        flex: unset !important;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .gallery-column img {
-        width: 100% !important;
-        height: auto !important;
-        display: block;
-        object-fit: cover;
-        border-radius: 6px;
+    .product-image-gallery img {
+        border-radius: 6px !important;
     }
     
     .product-price {
