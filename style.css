@@ -31,15 +31,14 @@ header {
     border-bottom: 1px solid #232323;
 }
 
-/* CHANGED: Gold text with Red shadow */
 .top-right-japanese {
     font-size: 24px;
     font-weight: 700;
     letter-spacing: 2px;
-    color: #FFD700; /* Gold */
+    color: #FFD700;
     text-shadow: 0 0 10px rgba(220, 20, 60, 0.8), 
                  0 0 20px rgba(220, 20, 60, 0.6), 
-                 0 0 30px rgba(220, 20, 60, 0.4); /* Red Glow */
+                 0 0 30px rgba(220, 20, 60, 0.4);
 }
 
 /* ============================================================== */
@@ -98,7 +97,6 @@ header {
     word-wrap: break-word;
 }
 
-/* --- DROPDOWN CONTAINER --- */
 .side-dropdown-wrapper {
     position: relative;
     display: flex;
@@ -179,22 +177,31 @@ header {
     margin-bottom: 40px;
 }
 
+/* --- DESKTOP PRODUCT POSTER (FULL-WIDTH HERO BACKGROUND) --- */
 .product-poster {
     width: 100%;
-    height: auto;
-    min-height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #111;
+    height: 450px;
+    display: block;
+    background-color: #0a0a0a;
+    
+    /* Load the DESKTOP image here */
+    background-image: url('background-box.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid #232323;
+    
+    /* Darkens it slightly so text looks better on top */
+    box-shadow: inset 0 0 150px rgba(0,0,0,0.8);
 }
 
 .product-poster img {
-    width: 100%;
-    height: auto;
-    max-height: 600px;
-    object-fit: cover;
-    display: block;
+    display: none !important;
+}
+
+/* Hide the old img tag entirely so it doesn't interfere */
+.product-poster img {
+    display: none !important;
 }
 
 /* --- PRODUCT MAIN SECTION --- */
@@ -610,19 +617,20 @@ header {
 /* ============================================================== */
 @media (max-width: 1100px) {
     
-    /* --- FIX THE HUGE POSTER GAP --- */
+    /* --- FIX BACKGROUND ON MOBILE --- */
     .product-poster {
-        min-height: unset !important;
-        height: auto !important;
-        padding: 0 !important;
-        margin-bottom: 0 !important;
-        background-color: #111;
+        height: 220px !important; /* Shorter for phones */
+        
+        /* Load the MOBILE image here */
+        background-image: url('background-box-mobile.jpg') !important;
+        
+        background-size: cover !important;
+        background-position: center center !important; /* Focuses the image correctly */
+        border-bottom: 1px solid #232323 !important;
+        box-shadow: inset 0 0 80px rgba(0,0,0,0.8) !important;
     }
     .product-poster img {
-        max-height: 350px !important;
-        width: 100% !important;
-        object-fit: cover !important;
-        display: block !important;
+        display: none !important;
     }
 
     /* --- FIX TEXT GAPS --- */
@@ -645,7 +653,6 @@ header {
         width: 100%;
     }
 
-    /* 1. Put Title at the top */
     .product-title {
         order: 1 !important;
         width: 100% !important;
@@ -653,7 +660,6 @@ header {
         margin-bottom: 10px !important;
     }
 
-    /* 2. Put Sidebar (Price, WhatsApp, Text) in the middle */
     .product-info-sidebar {
         order: 2 !important;
         width: 100% !important;
@@ -661,7 +667,6 @@ header {
         padding: 0 5px !important;
     }
 
-    /* 3. Put Images at the bottom */
     .product-image-gallery {
         order: 3 !important;
         width: 100% !important;
@@ -729,5 +734,63 @@ header {
         top: 15px !important;
         right: 20px !important;
         font-size: 32px !important;
+    }
+}
+
+/* ============================================================== */
+/* --- LANDSCAPE MODE (SHOW LABELS ON HOVER) --- */
+/* ============================================================== */
+@media (min-width: 500px) and (max-width: 1100px) and (orientation: landscape) {
+    
+    body {
+        overflow-x: visible !important;
+    }
+
+    .side-panel {
+        width: 60px !important;
+        height: 100vh !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        gap: 4px !important;
+        overflow-y: auto !important;
+    }
+
+    .side-icon {
+        width: 50px !important;
+        min-height: 50px !important;
+        font-size: 22px !important;
+        padding: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .side-label {
+        font-size: 8px !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        margin: 0 !important;
+        transition: opacity 0.2s ease, height 0.2s ease !important;
+        text-align: center !important;
+        width: 100% !important;
+        display: block !important;
+    }
+
+    .side-icon:hover .side-label,
+    .side-icon:active .side-label,
+    .side-dropdown-wrapper.open .side-label {
+        opacity: 1 !important;
+        height: 12px !important;
+        margin-top: 2px !important;
+    }
+
+    .main-content-area {
+        margin-left: 60px !important;
+    }
+
+    .side-dropdown-content {
+        left: 65px !important;
     }
 }

@@ -31,7 +31,6 @@
             <span class="side-label" data-i18n="nav_review">Reviews</span>
         </a>
         
-        <!-- CONTACT DROPDOWN (WHATSAPP ONLY) -->
         <div class="side-dropdown-wrapper">
             <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="Contact">
                 <i class="fas fa-envelope"></i>
@@ -42,7 +41,6 @@
             </div>
         </div>
 
-        <!-- ABOUT US DROPDOWN (SOCIALS) -->
         <div class="side-dropdown-wrapper">
             <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="About Us">
                 <i class="fas fa-info-circle"></i>
@@ -55,7 +53,6 @@
             </div>
         </div>
         
-        <!-- LANGUAGE DROPDOWN -->
         <div class="side-dropdown-wrapper">
             <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="Language">
                 <i class="fas fa-globe"></i>
@@ -79,7 +76,7 @@
         <!-- SECTION: HOME -->
         <div id="section-home" class="page-section">
             <section class="product-poster">
-                <img src="poster.jpg" alt="Product Poster">
+                <!-- Pure CSS Background -->
             </section>
 
             <h1 class="page-title" data-i18n="intro_headline">Built for Endurance. Zero Excuses.</h1>
@@ -103,30 +100,23 @@
             </section>
         </div>
 
-        <!-- SECTION: PRODUCT -->
+        <!-- SECTION: PRODUCT (IMAGES REMOVED) -->
         <div id="section-product" class="page-section" style="display:none;">
+            
+            <section class="product-poster">
+                <!-- Pure CSS Background -->
+            </section>
+
             <h1 class="page-title" data-i18n="prod_title">Number One / Otoko Ichiban</h1>
             
             <section class="product-main-section">
-                <div class="product-image-gallery">
-                    <div class="gallery-column">
-                        <img src="no1-black.png" alt="Product Shot 1" onclick="openLightbox(this)">
-                        <img src="no1-coklat.png" alt="Product Shot 2" onclick="openLightbox(this)">
-                    </div>
-                    <div class="gallery-column">
-                        <img src="promo-1.jpg" alt="Product Shot 3" onclick="openLightbox(this)">
-                        <img src="pill-2.jpg" alt="Product Shot 4" onclick="openLightbox(this)">
-                    </div>
-                    <div class="gallery-column">
-                        <img src="promo-2.jpg" alt="Product Shot 5" onclick="openLightbox(this)">
-                        <img src="banana-1.png" alt="Product Shot 6" onclick="openLightbox(this)">
-                    </div>
-                </div>
+                
+                <!-- REMOVED: The 6 images are gone from this section -->
 
-                <div class="product-info-sidebar">
-                    <span class="product-price">RM168.00 MYR</span>
+                <div class="product-info-sidebar" style="flex: 1; width: 100%; max-width: 800px; margin: 0 auto;">
+                    <span class="product-price" style="text-align: center; display: block;">RM168.00 MYR</span>
                     
-                    <div class="wa-button-container">
+                    <div class="wa-button-container" style="text-align: center;">
                         <button class="wa-btn" onclick="openOrderModal()">
                             <i class="fab fa-whatsapp"></i> <span data-i18n="wa_btn_text">Inquire on WhatsApp</span>
                         </button>
@@ -135,10 +125,10 @@
                     <hr class="divider">
 
                     <div class="description-block">
-                        <h3 data-i18n="prod_quote">"Man's pride, life's quality!<br>Otoko Ichiban – Let every man be more confident and stronger!"</h3>
+                        <h3 data-i18n="prod_quote" style="text-align: center;">"Man's pride, life's quality!<br>Otoko Ichiban – Let every man be more confident and stronger!"</h3>
                         
-                        <div class="info-title" data-i18n="prod_info_title">Product Information</div>
-                        <ul class="info-list">
+                        <div class="info-title" data-i18n="prod_info_title" style="text-align: center;">Product Information</div>
+                        <ul class="info-list" style="text-align: center; list-style: none; padding: 0;">
                             <li><strong data-i18n="prod_name_label">Product Name:</strong> <span data-i18n="prod_name_val">男一番 (OTOKO ICHIBAN)</span></li>
                             <li><strong data-i18n="prod_type_label">Type:</strong> <span data-i18n="prod_type_val">Men's Oral Dissolving Film</span></li>
                             <li><strong data-i18n="prod_qty_label">Quantity:</strong> <span data-i18n="prod_qty_val">3 sheets per box (10 pills per sheet)</span></li>
@@ -150,6 +140,11 @@
 
         <!-- SECTION: REVIEW -->
         <div id="section-review" class="page-section" style="display:none;">
+            
+            <section class="product-poster">
+                <!-- Pure CSS Background -->
+            </section>
+
             <h1 class="page-title">What Our Customers Say</h1>
             <section class="testimonials-section">
                 <div class="testimonials-grid">
