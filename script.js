@@ -1,10 +1,12 @@
 /* ============================================================== */
 /* --- SPLASH SCREEN --- */
 /* ============================================================== */
+// DISABLED - Splash screen removed from home.html
+/*
 document.addEventListener('DOMContentLoaded', function() {
     const splashElement = document.getElementById('productSplash');
     if (splashElement) {
-        let countdown = 0;
+        let countdown = 3;
         const timerElement = document.getElementById('splashTimer');
         const interval = setInterval(function() {
             countdown--;
@@ -18,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
 });
+*/
 
 /* ============================================================== */
 /* --- SINGLE PAGE NAVIGATION --- */
