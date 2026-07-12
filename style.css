@@ -42,13 +42,13 @@ header {
 }
 
 /* ============================================================== */
-/* --- DESKTOP SIDE PANEL (NOW WIDER) --- */
+/* --- DESKTOP SIDE PANEL --- */
 /* ============================================================== */
 .side-panel {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100px; /* INCREASED from 60px */
+    width: 100px;
     height: 100vh;
     background-color: #111;
     border-right: 1px solid #232323;
@@ -64,7 +64,7 @@ header {
 
 .side-icon {
     color: #888;
-    font-size: 28px; /* INCREASED from 22px */
+    font-size: 28px;
     text-decoration: none;
     padding: 10px 8px;
     border-radius: 8px;
@@ -73,8 +73,8 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 90px; /* INCREASED from 55px */
-    min-height: 65px; /* INCREASED from 55px */
+    width: 90px;
+    min-height: 65px;
     text-align: center;
     cursor: pointer;
     flex-shrink: 0;
@@ -86,7 +86,7 @@ header {
 }
 
 .side-label {
-    font-size: 11px; /* INCREASED from 8px */
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0px;
     margin-top: 4px;
@@ -110,7 +110,7 @@ header {
 .side-dropdown-content {
     display: none;
     position: absolute;
-    left: 110px; /* Moved from 70px to account for wider panel */
+    left: 110px;
     top: -10px;
     background-color: #181818;
     min-width: 180px;
@@ -159,9 +159,8 @@ header {
     transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
 }
 
-/* SHIFT MAIN CONTENT TO ACCOMMODATE WIDER MENU */
 .main-content-area {
-    margin-left: 100px; /* UPDATED from 60px */
+    margin-left: 100px;
 }
 
 /* --- MOBILE HAMBURGER BUTTON --- */
@@ -254,7 +253,7 @@ html[lang="ms"] .product-poster {
 }
 
 /* ============================================================== */
-/* --- PERFECT IMAGE GRID (NO WRAPPERS) --- */
+/* --- PERFECT IMAGE GRID --- */
 /* ============================================================== */
 .product-main-section {
     max-width: 1200px;
@@ -280,7 +279,7 @@ html[lang="ms"] .product-poster {
     cursor: pointer;
     transition: opacity 0.2s ease;
     object-fit: cover;
-    aspect-ratio: 1 / 1; /* Forces a perfect square */
+    aspect-ratio: 1 / 1;
 }
 
 .product-image-gallery img:hover {
@@ -365,7 +364,9 @@ html[lang="ms"] .product-poster {
     color: #f8f8f8;
 }
 
-/* --- TESTIMONIALS --- */
+/* ============================================================== */
+/* --- AUTO-PLAY REVIEW SLIDER --- */
+/* ============================================================== */
 .testimonials-section {
     max-width: 1200px;
     margin: 0 auto;
@@ -373,28 +374,39 @@ html[lang="ms"] .product-poster {
     color: #e8e8e8;
 }
 
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
+.testimonial-slider-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 200px;
 }
 
-.testimonial-card {
+.testimonial-slide {
     background-color: #131313;
-    padding: 15px 20px 15px 20px;
+    padding: 20px 25px 20px 25px;
     border-radius: 12px;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     border: 1px solid rgba(255,255,255,0.08);
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    z-index: 1;
 }
 
-.testimonial-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+.testimonial-slide.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    z-index: 2;
+    position: relative;
 }
 
-.testimonial-card .quote-mark {
+.testimonial-slide .quote-mark {
     position: absolute;
     top: 12px;
     right: 16px;
@@ -440,6 +452,29 @@ html[lang="ms"] .product-poster {
 .testimonial-body strong {
     color: #ffffff;
     font-weight: 700;
+}
+
+/* --- SLIDER DOTS --- */
+.slider-dots {
+    text-align: center;
+    padding-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: #333;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active, .dot:hover {
+    background-color: #FFD700;
 }
 
 /* --- LIGHTBOX --- */
@@ -722,7 +757,7 @@ html[lang="ms"] .product-poster {
 
     /* --- MOBILE HAMBURGER MENU --- */
     .side-panel {
-        width: 65vw !important; /* OVERRIDES WIDTH FOR MOBILE */
+        width: 65vw !important;
         transform: translateX(-100%) !important;
         align-items: flex-start !important;
         padding-top: 20px !important;
@@ -747,7 +782,6 @@ html[lang="ms"] .product-poster {
         display: block !important;
     }
 
-    /* --- MOBILE MENU ITEMS (OVERRIDE SIZES FOR MOBILE) --- */
     .side-icon {
         width: 100% !important;
         min-height: 45px !important;
@@ -770,12 +804,10 @@ html[lang="ms"] .product-poster {
         height: auto !important;
     }
 
-    /* --- PUSH THE FIRST MENU ITEM (HOME) DOWN --- */
     .side-panel > .side-icon:first-of-type {
         margin-top: 60px !important;
     }
 
-    /* --- FIX DROPDOWN ALIGNMENT --- */
     .side-dropdown-wrapper {
         width: 100% !important;
         flex-direction: column !important;

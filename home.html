@@ -16,7 +16,7 @@
         <div class="splash-timer" id="splashTimer">3</div>
     </div>
 
-    <!-- MOBILE HAMBURGER BUTTON (Sits above the menu, outside the sliding panel) -->
+    <!-- MOBILE HAMBURGER BUTTON -->
     <div id="mobile-menu-toggle" class="mobile-menu-toggle" onclick="toggleMobileMenu()">
         <i class="fas fa-bars"></i>
     </div>
@@ -83,7 +83,6 @@
 
         <!-- SECTION: HOME -->
         <div id="section-home" class="page-section">
-            <!-- Added data-bg and data-bg-mobile -->
             <section class="product-poster" data-bg="background-box" data-bg-mobile="background-box-mobile">
                 <!-- Pure CSS Background -->
             </section>
@@ -98,15 +97,13 @@
                     <img src="en_pic3.jpg" class="lang-img" data-base="pic3.jpg" onclick="openLightbox(this)">
                     <img src="en_pic5.jpg" class="lang-img" data-base="pic5.jpg" onclick="openLightbox(this)">
                     <img src="en_pic6.jpg" class="lang-img" data-base="pic6.jpg" onclick="openLightbox(this)">
-                    <img src="en_background-box-mobile.jpg" class="lang-img" data-base="pic4.jpg" onclick="openLightbox(this)">
+                    <img src="en_pic4.jpg" class="lang-img" data-base="pic4.jpg" onclick="openLightbox(this)">
                 </div>
             </section>
         </div>
 
         <!-- SECTION: PRODUCT (IMAGES REMOVED) -->
         <div id="section-product" class="page-section" style="display:none;">
-            
-            <!-- Added data-bg and data-bg-mobile -->
             <section class="product-poster" data-bg="background-box" data-bg-mobile="background-box-mobile">
                 <!-- Pure CSS Background -->
             </section>
@@ -114,7 +111,6 @@
             <h1 class="page-title" data-i18n="prod_title">Number One / Otoko Ichiban</h1>
             
             <section class="product-main-section">
-                
                 <div class="product-info-sidebar" style="flex: 1; width: 100%; max-width: 800px; margin: 0 auto;">
                     <span class="product-price" style="text-align: center; display: block;">RM168.00 MYR</span>
                     
@@ -140,41 +136,55 @@
             </section>
         </div>
 
-        <!-- SECTION: REVIEW -->
+        <!-- SECTION: REVIEW (NEW AUTO-PLAY SLIDER) -->
         <div id="section-review" class="page-section" style="display:none;">
-            
-            <!-- Added data-bg and data-bg-mobile -->
             <section class="product-poster" data-bg="background-box" data-bg-mobile="background-box-mobile">
                 <!-- Pure CSS Background -->
             </section>
 
             <h1 class="page-title">What Our Customers Say</h1>
+            
             <section class="testimonials-section">
-                <div class="testimonials-grid">
-                    <div class="testimonial-card" onclick="toggleTestimonial('testimonial-1')">
+                
+                <!-- NEW SLIDER WRAPPER -->
+                <div class="testimonial-slider-container">
+                    
+                    <div class="testimonial-slide active" onclick="toggleSliderTestimonial(this)">
                         <div class="quote-mark">“</div>
                         <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <div class="testimonial-title" data-i18n="test_title_1">"Back to my 20s!"</div>
-                        <div class="testimonial-body" id="testimonial-1" data-i18n="test_body_1"></div>
+                        <div class="testimonial-body" data-i18n="test_body_1"></div>
                     </div>
-                    <div class="testimonial-card" onclick="toggleTestimonial('testimonial-2')">
+
+                    <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
                         <div class="quote-mark">“</div>
                         <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <div class="testimonial-title" data-i18n="test_title_2">"Saved my relationship confidence."</div>
-                        <div class="testimonial-body" id="testimonial-2" data-i18n="test_body_2"></div>
+                        <div class="testimonial-body" data-i18n="test_body_2"></div>
                     </div>
-                    <div class="testimonial-card" onclick="toggleTestimonial('testimonial-3')">
+
+                    <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
                         <div class="quote-mark">“</div>
                         <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <div class="testimonial-title" data-i18n="test_title_3">"Unbelievable absorption speed."</div>
-                        <div class="testimonial-body" id="testimonial-3" data-i18n="test_body_3"></div>
+                        <div class="testimonial-body" data-i18n="test_body_3"></div>
                     </div>
-                    <div class="testimonial-card" onclick="toggleTestimonial('testimonial-4')">
+
+                    <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
                         <div class="quote-mark">“</div>
                         <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <div class="testimonial-title" data-i18n="test_title_4">"This stuff actually works."</div>
-                        <div class="testimonial-body" id="testimonial-4" data-i18n="test_body_4"></div>
+                        <div class="testimonial-body" data-i18n="test_body_4"></div>
                     </div>
+
+                    <!-- NAVIGATION DOTS -->
+                    <div class="slider-dots">
+                        <span class="dot active" onclick="goToSlide(0)"></span>
+                        <span class="dot" onclick="goToSlide(1)"></span>
+                        <span class="dot" onclick="goToSlide(2)"></span>
+                        <span class="dot" onclick="goToSlide(3)"></span>
+                    </div>
+
                 </div>
             </section>
         </div>

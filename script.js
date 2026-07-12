@@ -82,13 +82,12 @@ const translations = {
 };
 
 /* ============================================================== */
-/* --- LANGUAGE FUNCTION (DESTROY & REBUILD METHOD) --- */
+/* --- LANGUAGE FUNCTION --- */
 /* ============================================================== */
 function setLanguage(langCode) {
     const dict = translations[langCode];
     if (!dict) return;
 
-    // 1. Update Text
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict[key] !== undefined) {
@@ -100,28 +99,19 @@ function setLanguage(langCode) {
         }
     });
 
-    // 2. Update the HTML lang attribute (triggers background swap in CSS)
     document.documentElement.setAttribute('lang', langCode);
 
-    // 3. Destroy and Rebuild the Image Gallery
     document.querySelectorAll('.lang-img').forEach(img => {
         let currentSrc = img.getAttribute('src');
-        
-        // Get the base name (remove the en_/zh_/ms_ prefix)
         let baseName = currentSrc.replace(/^(en|zh|ms)_/, '').replace(/\?v=.*/, '');
         let newSrc = langCode + '_' + baseName + '?v=' + Date.now();
-        
-        // Get the onclick event
         let clickAttr = img.getAttribute('onclick');
         let classAttr = img.getAttribute('class');
         
-        // Create a completely new image element
         let newImg = document.createElement('img');
         newImg.setAttribute('src', newSrc);
         newImg.setAttribute('class', classAttr);
         newImg.setAttribute('onclick', clickAttr);
-        
-        // Replace the old image with the new one
         img.parentNode.replaceChild(newImg, img);
     });
 
@@ -134,7 +124,6 @@ function setLanguage(langCode) {
 function toggleMobileMenu() {
     const panel = document.getElementById('sidePanel');
     const overlay = document.getElementById('mobile-overlay');
-    
     if (panel) {
         panel.classList.toggle('open');
     }
@@ -144,28 +133,78 @@ function toggleMobileMenu() {
 }
 
 /* ============================================================== */
+/* --- AUTO-PLAY SLIDER LOGIC --- */
+/* ============================================================== */
+let slideInterval;
+let currentSlide = 0;
+const slides = document.querySelectorAll('.testimonial-slide');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+    currentSlide = index;
+}
+
+function nextSlide() {
+    let next = currentSlide + 1;
+    if (next >= slides.length) {
+        next = 0;
+    }
+    showSlide(next);
+}
+
+function startAutoPlay() {
+    if (slides.length > 0) {
+        showSlide(0);
+        slideInterval = setInterval(nextSlide, 5000); // 5 seconds per slide
+    }
+}
+
+function stopAutoPlay() {
+    clearInterval(slideInterval);
+}
+
+// Go to a specific slide when a dot is clicked
+function goToSlide(index) {
+    stopAutoPlay();
+    showSlide(index);
+    startAutoPlay();
+}
+
+// Click on a review to expand/collapse it
+function toggleSliderTestimonial(element) {
+    const body = element.querySelector('.testimonial-body');
+    if (body) {
+        body.classList.toggle('expanded');
+    }
+}
+
+/* ============================================================== */
 /* --- EVENT LISTENERS --- */
 /* ============================================================== */
 document.addEventListener('DOMContentLoaded', function() {
-    // Language selection (click on span)
     document.querySelectorAll('.lang-option').forEach(option => {
         option.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent closing the menu prematurely
+            e.stopPropagation();
             const lang = this.getAttribute('data-lang');
             if (lang) {
                 setLanguage(lang);
-                // Close the dropdown
                 const wrapper = this.closest('.side-dropdown-wrapper');
                 if (wrapper) wrapper.classList.remove('open');
             }
         });
     });
 
-    // Load saved language
     const savedLang = localStorage.getItem('preferredLanguage') || 'en';
     setTimeout(function() {
         setLanguage(savedLang);
     }, 300);
+
+    // Start the auto-play slider
+    startAutoPlay();
 });
 
 /* ============================================================== */
@@ -267,7 +306,7 @@ function submitOrderToWhatsApp() {
 }
 
 /* ============================================================== */
-/* --- TESTIMONIAL TOGGLE --- */
+/* --- TESTIMONIAL TOGGLE (Old method still works for safety) --- */
 /* ============================================================== */
 function toggleTestimonial(id) {
     const element = document.getElementById(id);
