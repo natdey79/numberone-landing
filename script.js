@@ -82,12 +82,13 @@ const translations = {
 };
 
 /* ============================================================== */
-/* --- LANGUAGE FUNCTION --- */
+/* --- LANGUAGE FUNCTION (DESTROY & REBUILD METHOD) --- */
 /* ============================================================== */
 function setLanguage(langCode) {
     const dict = translations[langCode];
     if (!dict) return;
 
+    // 1. Update Text
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict[key] !== undefined) {
@@ -99,7 +100,47 @@ function setLanguage(langCode) {
         }
     });
 
+    // 2. Update the HTML lang attribute (triggers background swap in CSS)
+    document.documentElement.setAttribute('lang', langCode);
+
+    // 3. Destroy and Rebuild the Image Gallery
+    document.querySelectorAll('.lang-img').forEach(img => {
+        let currentSrc = img.getAttribute('src');
+        
+        // Get the base name (remove the en_/zh_/ms_ prefix)
+        let baseName = currentSrc.replace(/^(en|zh|ms)_/, '').replace(/\?v=.*/, '');
+        let newSrc = langCode + '_' + baseName + '?v=' + Date.now();
+        
+        // Get the onclick event
+        let clickAttr = img.getAttribute('onclick');
+        let classAttr = img.getAttribute('class');
+        
+        // Create a completely new image element
+        let newImg = document.createElement('img');
+        newImg.setAttribute('src', newSrc);
+        newImg.setAttribute('class', classAttr);
+        newImg.setAttribute('onclick', clickAttr);
+        
+        // Replace the old image with the new one
+        img.parentNode.replaceChild(newImg, img);
+    });
+
     localStorage.setItem('preferredLanguage', langCode);
+}
+
+/* ============================================================== */
+/* --- MOBILE MENU TOGGLE --- */
+/* ============================================================== */
+function toggleMobileMenu() {
+    const panel = document.getElementById('sidePanel');
+    const overlay = document.getElementById('mobile-overlay');
+    
+    if (panel) {
+        panel.classList.toggle('open');
+    }
+    if (overlay) {
+        overlay.classList.toggle('open');
+    }
 }
 
 /* ============================================================== */

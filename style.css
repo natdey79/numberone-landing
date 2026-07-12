@@ -42,13 +42,13 @@ header {
 }
 
 /* ============================================================== */
-/* --- SIDE PANEL --- */
+/* --- DESKTOP SIDE PANEL (NOW WIDER) --- */
 /* ============================================================== */
 .side-panel {
     position: fixed;
     top: 0;
     left: 0;
-    width: 60px;
+    width: 100px; /* INCREASED from 60px */
     height: 100vh;
     background-color: #111;
     border-right: 1px solid #232323;
@@ -59,21 +59,22 @@ header {
     padding-bottom: 20px;
     z-index: 10000;
     gap: 6px;
+    transition: transform 0.3s ease, width 0.3s ease;
 }
 
 .side-icon {
     color: #888;
-    font-size: 22px;
+    font-size: 28px; /* INCREASED from 22px */
     text-decoration: none;
-    padding: 8px 6px;
+    padding: 10px 8px;
     border-radius: 8px;
     transition: all 0.2s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 55px;
-    min-height: 55px;
+    width: 90px; /* INCREASED from 55px */
+    min-height: 65px; /* INCREASED from 55px */
     text-align: center;
     cursor: pointer;
     flex-shrink: 0;
@@ -85,16 +86,16 @@ header {
 }
 
 .side-label {
-    font-size: 8px; /* Reduced from 9px to fit "Language" */
+    font-size: 11px; /* INCREASED from 8px */
     font-weight: 600;
     letter-spacing: 0px;
-    margin-top: 2px;
+    margin-top: 4px;
     color: inherit;
     line-height: 1.2;
     display: block;
     width: 100%;
     text-align: center;
-    white-space: nowrap; /* Forces it to stay on ONE line */
+    white-space: nowrap;
     overflow: visible;
 }
 
@@ -109,10 +110,10 @@ header {
 .side-dropdown-content {
     display: none;
     position: absolute;
-    left: 70px;
+    left: 110px; /* Moved from 70px to account for wider panel */
     top: -10px;
     background-color: #181818;
-    min-width: 160px;
+    min-width: 180px;
     padding: 10px 0;
     border-radius: 8px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.6);
@@ -158,8 +159,48 @@ header {
     transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
 }
 
+/* SHIFT MAIN CONTENT TO ACCOMMODATE WIDER MENU */
 .main-content-area {
-    margin-left: 60px;
+    margin-left: 100px; /* UPDATED from 60px */
+}
+
+/* --- MOBILE HAMBURGER BUTTON --- */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10001;
+    background-color: #111;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 24px;
+    border: 1px solid #232323;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu-toggle:hover,
+.mobile-menu-toggle:active {
+    background-color: #25D366;
+    border-color: #25D366;
+}
+
+/* --- MOBILE OVERLAY --- */
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 9998;
+}
+
+.mobile-overlay.open {
+    display: block;
 }
 
 /* --- COMMON PAGE STYLES --- */
@@ -182,21 +223,8 @@ header {
 }
 
 /* ============================================================== */
-/* --- DESKTOP BACKGROUND IMAGES --- */
+/* --- DESKTOP BACKGROUNDS --- */
 /* ============================================================== */
-
-/* 1. Home Section: Uses home-poster.jpg */
-#section-home .product-poster {
-    background-image: url('background-box.jpg') !important;
-}
-
-/* 2. Product & Review Sections: Use background-box.jpg */
-#section-product .product-poster,
-#section-review .product-poster {
-    background-image: url('background-box.jpg') !important;
-}
-
-/* 3. Default Poster Settings (Applied to all) */
 .product-poster {
     width: 100%;
     height: 450px;
@@ -213,42 +241,57 @@ header {
     display: none !important;
 }
 
-/* --- PRODUCT MAIN SECTION --- */
+/* DEFAULT FALLBACK (if JS hasn't loaded) */
+html:not([lang="en"]):not([lang="zh"]):not([lang="ms"]) .product-poster,
+html[lang="en"] .product-poster {
+    background-image: url('en_background-box.jpg') !important;
+}
+html[lang="zh"] .product-poster {
+    background-image: url('zh_background-box.jpg') !important;
+}
+html[lang="ms"] .product-poster {
+    background-image: url('ms_background-box.jpg') !important;
+}
+
+/* ============================================================== */
+/* --- PERFECT IMAGE GRID (NO WRAPPERS) --- */
+/* ============================================================== */
 .product-main-section {
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
     display: flex;
+    flex-direction: column;
     gap: 60px;
-    flex-wrap: wrap;
 }
 
-/* --- NEW FLAT IMAGE GRID --- */
 .product-image-gallery {
-    flex: 1;
-    min-width: 300px;
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 15px !important;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
 .product-image-gallery img {
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-    border-radius: 6px !important;
-    object-fit: cover !important;
-    cursor: pointer !important;
-    transition: opacity 0.2s ease !important;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    object-fit: cover;
+    aspect-ratio: 1 / 1; /* Forces a perfect square */
 }
 
 .product-image-gallery img:hover {
-    opacity: 0.8 !important;
+    opacity: 0.8;
 }
 
 .product-info-sidebar {
-    flex: 1;
-    min-width: 350px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 5px;
 }
 
 .product-title {
@@ -256,6 +299,7 @@ header {
     font-weight: 700;
     margin-bottom: 8px;
     color: hwb(0 100% 0%);
+    text-align: center;
 }
 
 .product-price {
@@ -263,6 +307,7 @@ header {
     color: lab(100% 0.01 -0.01);
     margin-bottom: 15px;
     display: block;
+    text-align: center;
 }
 
 .divider {
@@ -296,6 +341,7 @@ header {
     font-size: 20px;
     margin-bottom: 20px;
     line-height: 1.4;
+    text-align: center;
 }
 
 .info-title {
@@ -303,12 +349,16 @@ header {
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .info-list {
     color: #d7d7d7;
     font-size: 14px;
     line-height: 1.8;
+    text-align: center;
+    list-style: none;
+    padding: 0;
 }
 
 .info-list strong {
@@ -617,39 +667,23 @@ header {
 }
 
 /* ============================================================== */
-/* --- DESKTOP 4-COLUMN GRID --- */
-/* ============================================================== */
-@media (min-width: 1101px) {
-    .product-image-gallery {
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 20px !important;
-    }
-}
-
-/* ============================================================== */
 /* --- MOBILE & LANDSCAPE FIXES --- */
 /* ============================================================== */
 @media (max-width: 1100px) {
     
-    /* --- MOBILE HOME BACKGROUND --- */
-    #section-home .product-poster {
+    /* --- MOBILE BACKGROUNDS --- */
+    .product-poster {
         height: 220px !important;
-        background-image: url('home-poster-mobile.jpg') !important;
-        background-size: cover !important;
-        background-position: center center !important;
-        border-bottom: 1px solid #232323 !important;
-        box-shadow: inset 0 0 80px rgba(0,0,0,0.8) !important;
     }
-    
-    /* --- MOBILE PRODUCT & REVIEW BACKGROUND (UNCHANGED) --- */
-    #section-product .product-poster,
-    #section-review .product-poster {
-        height: 220px !important;
-        background-image: url('background-box-mobile.jpg') !important;
-        background-size: cover !important;
-        background-position: center center !important;
-        border-bottom: 1px solid #232323 !important;
-        box-shadow: inset 0 0 80px rgba(0,0,0,0.8) !important;
+    html:not([lang="en"]):not([lang="zh"]):not([lang="ms"]) .product-poster,
+    html[lang="en"] .product-poster {
+        background-image: url('en_background-box-mobile.jpg') !important;
+    }
+    html[lang="zh"] .product-poster {
+        background-image: url('zh_background-box-mobile.jpg') !important;
+    }
+    html[lang="ms"] .product-poster {
+        background-image: url('ms_background-box-mobile.jpg') !important;
     }
     
     .product-poster img {
@@ -666,82 +700,108 @@ header {
         padding: 0 15px !important;
     }
     
-    /* --- FORCE CORRECT ORDER ON MOBILE --- */
+    /* --- 3-COLUMN GRID FOR MOBILE --- */
     .product-main-section {
-        display: flex !important;
-        flex-direction: column !important;
         margin: 0 auto 20px auto !important;
         padding: 0 10px !important;
         gap: 20px !important;
-        width: 100%;
-    }
-
-    .product-title {
-        order: 1 !important;
-        width: 100% !important;
-        text-align: center !important;
-        margin-bottom: 10px !important;
-    }
-
-    .product-info-sidebar {
-        order: 2 !important;
-        width: 100% !important;
-        min-width: unset !important;
-        padding: 0 5px !important;
     }
 
     .product-image-gallery {
-        order: 3 !important;
-        width: 100% !important;
-        min-width: unset !important;
         grid-template-columns: repeat(3, 1fr) !important;
         gap: 10px !important;
-        margin: 0 auto !important;
     }
 
     .product-image-gallery img {
         border-radius: 6px !important;
     }
-    
-    .product-price {
-        text-align: center !important;
-    }
+
     .wa-button-container {
-        text-align: center !important;
         margin-bottom: 20px !important;
     }
-    
-    .description-block h3 {
-        font-size: 18px !important;
-        text-align: center !important;
+
+    /* --- MOBILE HAMBURGER MENU --- */
+    .side-panel {
+        width: 65vw !important; /* OVERRIDES WIDTH FOR MOBILE */
+        transform: translateX(-100%) !important;
+        align-items: flex-start !important;
+        padding-top: 20px !important;
+        border-right: 2px solid #232323 !important;
     }
 
-    /* --- MOBILE SIDE PANEL --- */
-    .side-panel {
-        width: 50px !important;
+    .side-panel.open {
+        transform: translateX(0) !important;
     }
+
+    .mobile-menu-toggle {
+        display: block !important;
+    }
+
+    .side-panel.open ~ .mobile-menu-toggle {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    .mobile-overlay.open {
+        display: block !important;
+    }
+
+    /* --- MOBILE MENU ITEMS (OVERRIDE SIZES FOR MOBILE) --- */
     .side-icon {
-        width: 46px !important;
-        min-height: 46px !important;
-        font-size: 18px !important;
-        padding: 4px 6px !important;
-    }
-    .side-label {
-        /* font-size: 7px !important; */
-        font-size: 6px !important;
-        letter-spacing: 0 !important;
-        margin-top: 1px !important;
-        text-align: center !important;
         width: 100% !important;
-        white-space: nowrap !important; /* Forces it to stay on 1 line */
-        overflow: visible !important;
+        min-height: 45px !important;
+        font-size: 18px !important;
+        padding: 10px 20px !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        gap: 15px !important;
+        border-radius: 0 !important;
+        text-align: left !important;
+        border-bottom: 1px solid #1a1a1a !important;
     }
+    
+    .side-label {
+        font-size: 14px !important;
+        margin-top: 0 !important;
+        text-align: left !important;
+        width: auto !important;
+        opacity: 1 !important;
+        height: auto !important;
+    }
+
+    /* --- PUSH THE FIRST MENU ITEM (HOME) DOWN --- */
+    .side-panel > .side-icon:first-of-type {
+        margin-top: 60px !important;
+    }
+
+    /* --- FIX DROPDOWN ALIGNMENT --- */
+    .side-dropdown-wrapper {
+        width: 100% !important;
+        flex-direction: column !important;
+        position: relative !important;
+    }
+
     .side-dropdown-content {
-        left: 56px !important;
-        min-width: 130px !important;
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+        background-color: #0a0a0a !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
     }
+
+    .side-dropdown-content a,
+    .side-dropdown-content .lang-option {
+        padding-left: 35px !important;
+        border-bottom: 1px solid #1a1a1a !important;
+    }
+
     .main-content-area {
-        margin-left: 50px !important;
+        margin-left: 0 !important;
     }
 
     .lightbox-close {

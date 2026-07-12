@@ -16,8 +16,16 @@
         <div class="splash-timer" id="splashTimer">3</div>
     </div>
 
+    <!-- MOBILE HAMBURGER BUTTON (Sits above the menu, outside the sliding panel) -->
+    <div id="mobile-menu-toggle" class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- MOBILE OVERLAY -->
+    <div id="mobile-overlay" class="mobile-overlay" onclick="toggleMobileMenu()"></div>
+
     <!-- SIDE PANEL -->
-    <div class="side-panel">
+    <div class="side-panel" id="sidePanel">
         <a href="javascript:void(0);" onclick="showSection('section-home')" class="side-icon" title="Home">
             <i class="fas fa-home"></i>
             <span class="side-label" data-i18n="nav_home">Home</span>
@@ -75,7 +83,8 @@
 
         <!-- SECTION: HOME -->
         <div id="section-home" class="page-section">
-            <section class="product-poster">
+            <!-- Added data-bg and data-bg-mobile -->
+            <section class="product-poster" data-bg="background-box" data-bg-mobile="background-box-mobile">
                 <!-- Pure CSS Background -->
             </section>
 
@@ -83,21 +92,22 @@
             <p class="page-subtitle" data-i18n="intro_subtitle">Discover the formula crafted for stamina and confidence.</p>
 
             <section class="product-main-section">
-    <div class="product-image-gallery">
-        <img src="pic1.png" onclick="openLightbox(this)">
-        <img src="pic2.jpg" onclick="openLightbox(this)">
-        <img src="pic3.jpg" onclick="openLightbox(this)">
-        <img src="pic5.png" onclick="openLightbox(this)">
-        <img src="home-poster-mobile.jpg" onclick="openLightbox(this)">
-        <img src="banana-1.png" onclick="openLightbox(this)">
-    </div>
-</section>
+                <div class="product-image-gallery">
+                    <img src="en_pic1.jpg" class="lang-img" data-base="pic1.jpg" onclick="openLightbox(this)">
+                    <img src="en_pic2.jpg" class="lang-img" data-base="pic2.jpg" onclick="openLightbox(this)">
+                    <img src="en_pic3.jpg" class="lang-img" data-base="pic3.jpg" onclick="openLightbox(this)">
+                    <img src="en_pic5.jpg" class="lang-img" data-base="pic5.jpg" onclick="openLightbox(this)">
+                    <img src="en_pic6.jpg" class="lang-img" data-base="pic6.jpg" onclick="openLightbox(this)">
+                    <img src="en_background-box-mobile.jpg" class="lang-img" data-base="pic4.jpg" onclick="openLightbox(this)">
+                </div>
+            </section>
         </div>
 
         <!-- SECTION: PRODUCT (IMAGES REMOVED) -->
         <div id="section-product" class="page-section" style="display:none;">
             
-            <section class="product-poster">
+            <!-- Added data-bg and data-bg-mobile -->
+            <section class="product-poster" data-bg="background-box" data-bg-mobile="background-box-mobile">
                 <!-- Pure CSS Background -->
             </section>
 
@@ -105,8 +115,6 @@
             
             <section class="product-main-section">
                 
-                <!-- REMOVED: The 6 images are gone from this section -->
-
                 <div class="product-info-sidebar" style="flex: 1; width: 100%; max-width: 800px; margin: 0 auto;">
                     <span class="product-price" style="text-align: center; display: block;">RM168.00 MYR</span>
                     
@@ -135,7 +143,8 @@
         <!-- SECTION: REVIEW -->
         <div id="section-review" class="page-section" style="display:none;">
             
-            <section class="product-poster">
+            <!-- Added data-bg and data-bg-mobile -->
+            <section class="product-poster" data-bg="background-box" data-bg-mobile="background-box-mobile">
                 <!-- Pure CSS Background -->
             </section>
 
