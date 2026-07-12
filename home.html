@@ -11,9 +11,8 @@
 
     <!-- SPLASH SCREEN -->
     <div id="productSplash" class="product-splash-screen">
-        <div class="splash-logo">男一番</div>
-        <div class="splash-subtitle">Number One / Otoko Ichiban</div>
-        <div class="splash-timer" id="splashTimer">3</div>
+        <img src="logo.png" alt="Number One Logo" class="splash-logo-img">
+        <div class="splash-timer" id="splashTimer"></div>
     </div>
 
     <!-- MOBILE HAMBURGER BUTTON -->
@@ -78,7 +77,8 @@
     <div class="main-content-area">
         <header>
             <div class="header-center-logo"></div>
-            <div class="top-right-japanese">男一番</div>
+            <!-- <div class="top-right-japanese">男一番</div> -->
+            <img src="logo.png" alt="Number One Logo" class="top-right-logo">
         </header>
 
         <!-- SECTION: HOME -->
@@ -87,97 +87,112 @@
                 <!-- Pure CSS Background -->
             </section>
 
-            <h1 class="page-title" data-i18n="intro_headline">Built for Endurance. Zero Excuses.</h1>
-            <p class="page-subtitle" data-i18n="intro_subtitle">Discover the formula crafted for stamina and confidence.</p>
+            <!-- <h1 class="page-title" data-i18n="intro_headline">Built for Endurance. Zero Excuses.</h1> -->
+            <!-- <p class="page-subtitle" data-i18n="intro_subtitle">Discover the formula crafted for stamina and confidence.</p> -->
 
             <section class="product-main-section">
                 <div class="product-image-gallery">
-                    <img src="en_pic1.jpg" class="lang-img" data-base="pic1.jpg" onclick="openLightbox(this)">
-                    <img src="en_pic2.jpg" class="lang-img" data-base="pic2.jpg" onclick="openLightbox(this)">
-                    <img src="en_pic3.jpg" class="lang-img" data-base="pic3.jpg" onclick="openLightbox(this)">
-                    <img src="en_pic5.jpg" class="lang-img" data-base="pic5.jpg" onclick="openLightbox(this)">
-                    <img src="en_pic6.jpg" class="lang-img" data-base="pic6.jpg" onclick="openLightbox(this)">
-                    <img src="en_background-box-mobile.jpg" class="lang-img" data-base="pic4.jpg" onclick="openLightbox(this)">
+                    <img src="en_pic1.jpg" class="lang-img fiery-border" data-base="pic1.jpg">
+                    <img src="en_pic2.jpg" class="lang-img fiery-border" data-base="pic2.jpg">
+                    <img src="en_pic3.jpg" class="lang-img fiery-border" data-base="pic3.jpg">
+                </div>
+
+                <!-- PRODUCT PRICE & ORDER BUTTON -->
+                <div class="product-order-section">
+                    <div class="product-price-wrapper">
+                        <span class="product-price-label" data-i18n="prod_price_label">Price:</span>
+                        <span class="product-price">RM168.00</span>
+                        <span class="product-price-per" data-i18n="prod_price_per">/ box</span>
+                    </div>
+                    <button class="order-now-btn" onclick="openOrderModal()">
+                        <i class="fas fa-shopping-cart"></i> <span data-i18n="order_now_btn">Order Now</span>
+                    </button>
                 </div>
             </section>
         </div>
 
-        <!-- SECTION: PRODUCT (IMAGES REMOVED) -->
+        <!-- SECTION: PRODUCT -->
         <div id="section-product" class="page-section" style="display:none;">
             <section class="product-poster" data-bg="background-box" data-bg-mobile="background-box-mobile">
                 <!-- Pure CSS Background -->
             </section>
 
-            <h1 class="page-title" data-i18n="prod_title">Number One / Otoko Ichiban</h1>
+            <!--  <h1 class="page-title" data-i18n="prod_title">Number One / Otoko Ichiban</h1> -->
             
             <section class="product-main-section">
                 <div class="product-info-sidebar" style="flex: 1; width: 100%; max-width: 800px; margin: 0 auto;">
-                    <span class="product-price" style="text-align: center; display: block;">RM168.00 MYR</span>
                     
-                    <div class="wa-button-container" style="text-align: center;">
-                        <button class="wa-btn" onclick="openOrderModal()">
-                            <i class="fab fa-whatsapp"></i> <span data-i18n="wa_btn_text">Inquire on WhatsApp</span>
-                        </button>
+                    <div class="ingredient-image-container">
+                        <img src="en_ingredient.jpg" class="lang-ingredient-img fiery-border" data-base="ingredient.jpg" alt="Product Ingredients">
                     </div>
 
-                    <hr class="divider">
-
-                    <div class="description-block">
-                        <h3 data-i18n="prod_quote" style="text-align: center;">"Man's pride, life's quality!<br>Otoko Ichiban – Let every man be more confident and stronger!"</h3>
-                        
-                        <div class="info-title" data-i18n="prod_info_title" style="text-align: center;">Product Information</div>
-                        <ul class="info-list" style="text-align: center; list-style: none; padding: 0;">
-                            <li><strong data-i18n="prod_name_label">Product Name:</strong> <span data-i18n="prod_name_val">男一番 (OTOKO ICHIBAN)</span></li>
-                            <li><strong data-i18n="prod_type_label">Type:</strong> <span data-i18n="prod_type_val">Men's Oral Dissolving Film</span></li>
-                            <li><strong data-i18n="prod_qty_label">Quantity:</strong> <span data-i18n="prod_qty_val">3 sheets per box (10 pills per sheet)</span></li>
-                        </ul>
+                    <div class="ingredient-image-container" style="margin-top: 25px;">
+                        <img src="en_ingredient-2.jpg" class="lang-ingredient-img fiery-border" data-base="ingredient-2.jpg" alt="Product Ingredients 2">
+                    </div>
+                    
+                    <!-- ORDER BUTTON IN PRODUCT PAGE -->
+                    <div class="product-order-section" style="margin-top: 30px;">
+                        <div class="product-price-wrapper">
+                            <span class="product-price-label" data-i18n="prod_price_label">Price:</span>
+                            <span class="product-price">RM168.00</span>
+                            <span class="product-price-per" data-i18n="prod_price_per">/ box</span>
+                        </div>
+                        <button class="order-now-btn" onclick="openOrderModal()">
+                            <i class="fas fa-shopping-cart"></i> <span data-i18n="order_now_btn">Order Now</span>
+                        </button>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- SECTION: REVIEW (NEW AUTO-PLAY SLIDER) -->
+        <!-- SECTION: REVIEW -->
         <div id="section-review" class="page-section" style="display:none;">
             <section class="product-poster" data-bg="background-box" data-bg-mobile="background-box-mobile">
                 <!-- Pure CSS Background -->
             </section>
 
-            <h1 class="page-title">What Our Customers Say</h1>
+            <!-- <h1 class="page-title">What Our Customers Say</h1> -->
             
             <section class="testimonials-section">
                 
-                <!-- NEW SLIDER WRAPPER -->
                 <div class="testimonial-slider-container">
                     
+                    <!-- TESTIMONIAL 1 -->
                     <div class="testimonial-slide active" onclick="toggleSliderTestimonial(this)">
                         <div class="quote-mark">“</div>
-                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="testimonial-title" data-i18n="test_title_1">"Back to my 20s!"</div>
+                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <div class="testimonial-title" data-i18n="test_title_1">"I Feel Like I'm 25 Again!"</div>
                         <div class="testimonial-body" data-i18n="test_body_1"></div>
+                        <div class="testimonial-user">- Mike*******</div>
                     </div>
 
+                    <!-- TESTIMONIAL 2 -->
                     <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
                         <div class="quote-mark">“</div>
                         <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="testimonial-title" data-i18n="test_title_2">"Saved my relationship confidence."</div>
+                        <div class="testimonial-title" data-i18n="test_title_2">"The Best Night of Our Marriage—Hands Down!"</div>
                         <div class="testimonial-body" data-i18n="test_body_2"></div>
+                        <div class="testimonial-user">- DavidR****</div>
                     </div>
 
+                    <!-- TESTIMONIAL 3 -->
                     <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
                         <div class="quote-mark">“</div>
-                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="testimonial-title" data-i18n="test_title_3">"Unbelievable absorption speed."</div>
+                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <div class="testimonial-title" data-i18n="test_title_3">"Zero Stress, 100% Pure Fun!"</div>
                         <div class="testimonial-body" data-i18n="test_body_3"></div>
+                        <div class="testimonial-user">- TonyK***</div>
                     </div>
 
+                    <!-- TESTIMONIAL 4 -->
                     <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
                         <div class="quote-mark">“</div>
                         <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="testimonial-title" data-i18n="test_title_4">"This stuff actually works."</div>
+                        <div class="testimonial-title" data-i18n="test_title_4">"I Finally Feel Like a Superhero!"</div>
                         <div class="testimonial-body" data-i18n="test_body_4"></div>
+                        <div class="testimonial-user">- JamesB*****</div>
                     </div>
 
-                    <!-- NAVIGATION DOTS -->
                     <div class="slider-dots">
                         <span class="dot active" onclick="goToSlide(0)"></span>
                         <span class="dot" onclick="goToSlide(1)"></span>
@@ -236,6 +251,11 @@
             </div>
         </div>
     </div>
+
+    <!-- FLOATING CART BUTTON -->
+    <a href="javascript:void(0);" onclick="openOrderModal()" class="floating-cart-btn" id="floatingCartBtn">
+        <i class="fas fa-shopping-cart"></i>
+    </a>
 
     <script src="script.js"></script>
 </body>

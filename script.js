@@ -4,7 +4,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const splashElement = document.getElementById('productSplash');
     if (splashElement) {
-        let countdown = 3;
+        let countdown = 0;
         const timerElement = document.getElementById('splashTimer');
         const interval = setInterval(function() {
             countdown--;
@@ -34,7 +34,7 @@ function showSection(sectionId) {
 }
 
 /* ============================================================== */
-/* --- TRANSLATION DICTIONARY --- */
+/* --- TRANSLATION DICTIONARY (BOLDED PRODUCT NAME) --- */
 /* ============================================================== */
 const translations = {
     'en': {
@@ -46,10 +46,22 @@ const translations = {
         'intro_headline': 'Built for Endurance. Zero Excuses.', 'intro_subtitle': 'Discover the formula crafted for stamina and confidence.',
         'wa_btn_text': 'Inquire on WhatsApp',
         'modal_title': 'Order Information', 'modal_name': 'Name', 'modal_phone': 'Phone Number', 'modal_address': 'Delivery Address', 'modal_flavor': 'Select Flavors & Quantities', 'modal_qty': 'Total Quantity:', 'modal_total': 'Total:', 'modal_cancel': 'Cancel', 'modal_submit': 'Submit',
-        'test_title_1': '"Back to my 20s!"', 'test_body_1': 'I was feeling sluggish and my drive was at an all-time low. After taking <strong>Otoko Ichiban</strong>, the difference is night and day. The <strong>natural ingredients</strong> give me clean energy without any jitters or crashes. What surprised me most is how fast it works—I believe the <strong>ultra-thin, quick-dissolve coating</strong> (0.01mm) makes it absorb immediately. My stamina and performance have never been better. My partner has definitely noticed the change!',
-        'test_title_2': '"Saved my relationship confidence."', 'test_body_2': 'I was hesitant to try pills, but <strong>Otoko Ichiban</strong> is entirely <strong>natural material</strong>, so I felt safe giving it a shot. It doesn\'t just boost physical desire; it completely restores your mental confidence. The rapid-release design means I feel the effects within minutes, and it lasts all night. If you want to feel like the \'Number One Man\' again, this is it.',
-        'test_title_3': '"Unbelievable absorption speed."', 'test_body_3': 'I\'ve tried other herbal supplements that take hours to kick in—or never do. <strong>Otoko Ichiban</strong> is different. The <strong>0.01mm ultra-thin coating</strong> dissolves the second it touches my tongue, delivering the natural herbal extract straight into my system. My sexual desire skyrockets within 20 minutes. It\'s potent, reliable, and 100% natural. Highly recommended for men over 40.',
-        'test_title_4': '"This stuff actually works."', 'test_body_4': 'Finally, a male enhancement pill that delivers. Pure <strong>natural materials</strong>, zero chemical aftertaste, and the <strong>ultra-thin coating</strong> means it works faster than any capsule I\'ve ever taken. My drive is through the roof, and the results speak for themselves. <strong>Otoko Ichiban</strong> is the real deal.'
+        'prod_price_label': 'Price:',
+        'prod_price_per': '/ box',
+        'order_now_btn': 'Order Now',
+
+        // NEW REVIEWS (ENGLISH)
+        'test_title_1': '"I Feel Like I\'m 25 Again!"',
+        'test_body_1': 'Are you kidding me?! I don\'t know what kind of wizardry is in <strong>Otoko Ichiban</strong>, but this stuff is absolutely ELECTRIC! I hadn\'t had a morning that good in over a decade, and suddenly I\'m waking up like a teenager again. My girlfriend actually laughed out loud with joy—and let\'s just say we didn\'t get out of bed until lunchtime. I feel like I\'ve been given a second youth, and I am riding that high all day long! Best purchase of my life!',
+        
+        'test_title_2': '"The Best Night of Our Marriage—Hands Down!"',
+        'test_body_2': 'I am literally smiling just writing this. My wife and I have been in a rut for years, but last night? Last night was FIREWORKS. <strong>Otoko Ichiban</strong> gave me the stamina and confidence to go above and beyond, and we were both giggling like newlyweds. She looked at me afterwards and whispered, \'Where has THAT been all my life?\' I feel like a rockstar, and our relationship has never felt more alive. This isn\'t just a pill; it\'s a PARTY! Thank you, thank you, thank you!',
+        
+        'test_title_3': '"Zero Stress, 100% Pure Fun!"',
+        'test_body_3': 'Forget everything you\'ve heard about anxiety—this stuff erased my nerves completely! I popped <strong>Otoko Ichiban</strong>, and within 40 minutes, I wasn\'t thinking about \'if\' I could perform; I was just excited to GET STARTED. The feeling was so strong and natural that I actually started laughing mid-moment because I couldn\'t believe how amazing it felt. My partner said she hasn\'t seen me this happy and playful in years. I\'m on cloud nine and never looking back!',
+        
+        'test_title_4': '"I Finally Feel Like a Superhero!"',
+        'test_body_4': 'Hallelujah! I genuinely did not think anything would work for me, but <strong>Otoko Ichiban</strong> knocked my socks off—literally! The energy, the firmness, the sheer endurance—it was like flipping a switch from \'meh\' to \'MEGAWATT.\' I felt so powerful and unstoppable that I actually high-fived myself in the mirror the next morning. My confidence is through the roof, and I can\'t wait for date night tonight. This product made me feel like a KING! Five stars isn\'t enough—I\'d give it ten!'
     },
     'zh': {
         'nav_home': '主页', 'nav_product': '产品', 'nav_review': '评价', 'nav_contact': '联系我们', 'nav_about': '关于我们', 'nav_language': '语言',
@@ -60,10 +72,22 @@ const translations = {
         'intro_headline': '为耐力而生。零借口。', 'intro_subtitle': '探索为耐力和自信而打造的配方。',
         'wa_btn_text': '通过 WhatsApp 咨询',
         'modal_title': '订单信息', 'modal_name': '姓名', 'modal_phone': '电话号码', 'modal_address': '送货地址', 'modal_flavor': '选择口味和数量', 'modal_qty': '总数量：', 'modal_total': '总计：', 'modal_cancel': '取消', 'modal_submit': '提交',
-        'test_title_1': '"重回20岁状态！"', 'test_body_1': '我一直感到疲惫，性欲处于低谷。服用 <strong>Otoko Ichiban</strong> 后，差别如白天与黑夜。<strong>天然成分</strong>让我获得清爽能量，没有任何紧张或疲劳感。最让我惊讶的是它的快速效果——我相信 <strong>超薄速溶包衣</strong>（0.01mm）让它瞬间吸收。我的耐力和表现从未如此出色。我的伴侣明显注意到了变化！',
-        'test_title_2': '"重拾我的关系信心。"', 'test_body_2': '我起初对服药很犹豫，但 <strong>Otoko Ichiban</strong> 完全由 <strong>天然材料</strong> 构成，所以我放心尝试。它不仅增强了身体欲望，还彻底恢复了我的心理自信。速释设计让我几分钟内就能感受到效果，而且它持续整晚。如果你想再次成为“第一男人”，这就是答案。',
-        'test_title_3': '"难以置信的吸收速度。"', 'test_body_3': '我尝试过其他草本补充剂，需要几个小时才能见效，甚至根本没有效果。<strong>Otoko Ichiban</strong> 不同。<strong>0.01mm 超薄包衣</strong>在接触舌头的瞬间溶解，将天然草本精华直接送入体内。我的性欲在20分钟内飙升。它强力、可靠，而且100%天然。强烈推荐给40岁以上的男性。',
-        'test_title_4': '"这东西真的有效。"', 'test_body_4': '终于有一种男性增强药丸真正有效。纯正 <strong>天然材料</strong>，没有化学余味，<strong>超薄包衣</strong>让它比任何胶囊都更快见效。我的欲望飞涨，效果毋庸置疑。<strong>Otoko Ichiban</strong> 是货真价实的选择。'
+        'prod_price_label': '价格：',
+        'prod_price_per': '/ 盒',
+        'order_now_btn': '立即订购',
+
+        // NEW REVIEWS (CHINESE)
+        'test_title_1': '"感觉自己又回到了25岁！"',
+        'test_body_1': '你在开玩笑吗？！我不知道<strong>Otoko Ichiban</strong>里面有什么魔法，但这个玩意儿简直太给力了！十多年来我都没有过这么美好的早晨，突然间我像青少年一样醒来。我的女朋友高兴得大笑起来——这么说吧，我们直到午饭时间才起床。我感觉自己重获了青春，一整天都沉浸在兴奋之中！这是我一生中买过的最好的东西！',
+
+        'test_title_2': '"我们婚姻中最美好的夜晚——毫无疑问！"',
+        'test_body_2': '我写这些的时候都在笑。我和妻子多年来一直处于平淡期，但昨晚？昨晚简直是烟花绽放。<strong>Otoko Ichiban</strong>给了我超常的耐力和自信，我们都像新婚夫妇一样咯咯笑。事后她看着我低声说：\'这东西怎么现在才出现在我的生活中？\' 我感觉自己像个摇滚明星，我们的关系从未如此充满活力。这不仅仅是一粒药丸，更是一场狂欢！谢谢，谢谢，再谢谢！',
+
+        'test_title_3': '"零压力，百分之百纯粹的快乐！"',
+        'test_body_3': '忘掉你听过的所有关于焦虑的说法——这个东西完全消除了我的紧张！我服用了<strong>Otoko Ichiban</strong>，不到40分钟，我根本没去想自己能不能行，我只是兴奋地想要开始！那种感觉如此强烈且自然，我甚至在过程中笑出声来，因为我不敢相信感觉竟如此美妙。我的伴侣说她多年没见我这么快乐和充满活力了。我飘飘欲仙，绝不回头！',
+
+        'test_title_4': '"我终于感觉自己像个超级英雄了！"',
+        'test_body_4': '哈利路亚！我真的以为对我没用，但<strong>Otoko Ichiban</strong>彻底让我惊叹——字面意义上的！那种能量、坚挺、惊人的持久力——简直就像是把开关从\'一般般\'拨到了\'超级强力\'。我感觉如此强大、不可阻挡，第二天早上我甚至对着镜子跟自己击掌庆祝。我的信心爆棚，迫不及待今晚的约会之夜。这个产品让我感觉像个国王！五星都不够——我要给它十星！'
     },
     'ms': {
         'nav_home': 'Laman Utama', 'nav_product': 'Produk', 'nav_review': 'Ulasan', 'nav_contact': 'Hubungi', 'nav_about': 'Tentang Kami', 'nav_language': 'Bahasa',
@@ -74,10 +98,22 @@ const translations = {
         'intro_headline': 'Dibina untuk Ketahanan. Tiada Alasan.', 'intro_subtitle': 'Temui formula yang direka untuk daya tahan dan keyakinan.',
         'wa_btn_text': 'Tanya di WhatsApp',
         'modal_title': 'Maklumat Pesanan', 'modal_name': 'Nama', 'modal_phone': 'Nombor Telefon', 'modal_address': 'Alamat Penghantaran', 'modal_flavor': 'Pilih Perisa & Kuantiti', 'modal_qty': 'Jumlah Kuantiti:', 'modal_total': 'Jumlah:', 'modal_cancel': 'Batal', 'modal_submit': 'Hantar',
-        'test_title_1': '"Kembali seperti usia 20-an saya!"', 'test_body_1': 'Saya berasa lesu dan dorongan saya berada di tahap terendah. Selepas mengambil <strong>Otoko Ichiban</strong>, perubahannya bagaikan siang dan malam. <strong>Bahan semula jadi</strong> memberikan tenaga bersih tanpa gementar atau keletihan. Apa yang paling mengejutkan adalah betapa cepatnya ia berfungsi—saya percaya <strong>salutan pantas larut ultra-nipis</strong> (0.01mm) membuatnya diserap serta-merta. Ketahanan dan prestasi saya tidak pernah sehebat ini. Pasangan saya pasti menyedari perubahannya!',
-        'test_title_2': '"Menyelamatkan keyakinan hubungan saya."', 'test_body_2': 'Saya ragu-ragu untuk mencuba pil pada mulanya, tetapi <strong>Otoko Ichiban</strong> sepenuhnya dibuat daripada <strong>bahan semula jadi</strong>, jadi saya berasa selamat mencubanya. Ia bukan sahaja meningkatkan nafsu fizikal, ia memulihkan keyakinan mental saya sepenuhnya. Reka bentuk pelepasan cepat bermakna saya merasakan kesannya dalam beberapa minit, dan ia bertahan sepanjang malam. Jika anda mahu berasa seperti “Lelaki Nombor Satu” lagi, ini dia.',
-        'test_title_3': '"Kelajuan penyerapan yang luar biasa."', 'test_body_3': 'Saya telah mencuba suplemen herba lain yang mengambil masa berjam-jam untuk berfungsi—atau langsung tidak. <strong>Otoko Ichiban</strong> berbeza. <strong>Salutan ultra-nipis 0.01mm</strong> larut sebaik ia menyentuh lidah saya, menghantar ekstrak herba semula jadi terus ke dalam sistem saya. Nafsu seks saya meroket dalam 20 minit. Ia kuat, boleh dipercayai, dan 100% semula jadi. Sangat disyorkan untuk lelaki berusia lebih 40 tahun.',
-        'test_title_4': '"Produk ini memang berkesan."', 'test_body_4': 'Akhirnya, pil peningkatan lelaki yang benar-benar memberi hasil. Bahan <strong>semula jadi</strong> tulen, tiada rasa selepas kimia, dan <strong>salutan ultra-nipis</strong> menjadikannya berfungsi lebih cepat daripada mana-mana kapsul yang pernah saya ambil. Dorongan saya meningkat, dan hasilnya jelas. <strong>Otoko Ichiban</strong> adalah pilihan sebenar.'
+        'prod_price_label': 'Harga:',
+        'prod_price_per': '/ kotak',
+        'order_now_btn': 'Tempah Sekarang',
+
+        // NEW REVIEWS (MALAY)
+        'test_title_1': '"Rasa Seperti Berusia 25 Tahun Semula!"',
+        'test_body_1': 'Awak bergurau ke?! Saya tidak tahu apa jenis sihir dalam <strong>Otoko Ichiban</strong>, tapi benda ni BETUL-BETUL ELEKTRIK! Dah lebih sedekad saya tak dapat pagi yang sebaik ni, dan tiba-tiba saya bangun macam remaja semula. Teman wanita saya benar-benar ketawa kegembiraan—dan kita boleh katakan kami tidak bangun dari katil sampai tengah hari. Saya rasa seperti diberi umur muda kedua, dan saya menikmati kegembiraan itu sepanjang hari! Pembelian terbaik dalam hidup saya!',
+
+        'test_title_2': '"Malam Terbaik dalam Perkahwinan Kami—Tanpa Ragu!"',
+        'test_body_2': 'Saya benar-benar tersenyum semasa menulis ini. Saya dan isteri sudah lama dalam kebosanan, tapi malam tadi? Malam tadi adalah BUNGA API! <strong>Otoko Ichiban</strong> memberi saya ketahanan dan keyakinan untuk melakukan lebih daripada biasa, dan kami berdua ketawa kecil seperti pengantin baru. Dia memandang saya selepas itu dan berbisik, \'Mana benda ni sepanjang hidup saya?\' Saya rasa seperti rockstar, dan hubungan kami tidak pernah terasa lebih hidup. Ini bukan sekadar pil; ini PARTI! Terima kasih, terima kasih, terima kasih!',
+
+        'test_title_3': '"Sifar Tekanan, 100% Keseronokan Tulen!"',
+        'test_body_3': 'Lupakan semua yang anda dengar tentang kebimbangan—benda ni menghapuskan gugup saya sepenuhnya! Saya makan <strong>Otoko Ichiban</strong>, dan dalam masa 40 minit, saya tidak fikir tentang \'kalau\' saya boleh beraksi; saya hanya teruja untuk MULA. Perasaannya begitu kuat dan semula jadi sehingga saya benar-benar mula ketawa di tengah-tengah kerana saya tidak percaya betapa hebatnya ia terasa. Pasangan saya kata dia tak pernah nampak saya gembira dan suka bermain seperti ini sejak bertahun-tahun. Saya berada di awan dan tidak akan menoleh ke belakang!',
+
+        'test_title_4': '"Akhirnya Rasa Macam Wira Super!"',
+        'test_body_4': 'Haleluya! Saya benar-benar tidak sangka apa-apa akan berkesan untuk saya, tapi <strong>Otoko Ichiban</strong> benar-benar mengagumkan saya! Tenaga, ketegasan, ketahanan yang luar biasa—ia seperti menukar suis dari \'biasa\' ke \'MEGAWATT.\' Saya rasa begitu kuat dan tidak dapat dihalang sehingga saya benar-benar menepuk tangan sendiri di cermin pada keesokan paginya. Keyakinan saya melonjak tinggi, dan saya tidak sabar untuk malam dating malam ini. Produk ini membuat saya rasa seperti RAJA! Lima bintang tidak cukup—saya akan beri sepuluh!'
     }
 };
 
@@ -113,6 +149,13 @@ function setLanguage(langCode) {
         newImg.setAttribute('class', classAttr);
         newImg.setAttribute('onclick', clickAttr);
         img.parentNode.replaceChild(newImg, img);
+    });
+
+    document.querySelectorAll('.lang-ingredient-img').forEach(img => {
+        let currentSrc = img.getAttribute('src');
+        let baseName = currentSrc.replace(/^(en|zh|ms)_/, '').replace(/\?v=.*/, '');
+        let newSrc = langCode + '_' + baseName + '?v=' + Date.now();
+        img.setAttribute('src', newSrc);
     });
 
     localStorage.setItem('preferredLanguage', langCode);
@@ -159,7 +202,7 @@ function nextSlide() {
 function startAutoPlay() {
     if (slides.length > 0) {
         showSlide(0);
-        slideInterval = setInterval(nextSlide, 5000); // 5 seconds per slide
+        slideInterval = setInterval(nextSlide, 5000);
     }
 }
 
@@ -167,14 +210,12 @@ function stopAutoPlay() {
     clearInterval(slideInterval);
 }
 
-// Go to a specific slide when a dot is clicked
 function goToSlide(index) {
     stopAutoPlay();
     showSlide(index);
     startAutoPlay();
 }
 
-// Click on a review to expand/collapse it
 function toggleSliderTestimonial(element) {
     const body = element.querySelector('.testimonial-body');
     if (body) {
@@ -203,7 +244,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setLanguage(savedLang);
     }, 300);
 
-    // Start the auto-play slider
     startAutoPlay();
 });
 
@@ -306,7 +346,7 @@ function submitOrderToWhatsApp() {
 }
 
 /* ============================================================== */
-/* --- TESTIMONIAL TOGGLE (Old method still works for safety) --- */
+/* --- TESTIMONIAL TOGGLE --- */
 /* ============================================================== */
 function toggleTestimonial(id) {
     const element = document.getElementById(id);

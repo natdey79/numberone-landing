@@ -22,6 +22,13 @@ ul {
 }
 
 /* --- HEADER --- */
+.top-right-logo {
+    height: 40px;
+    width: auto;
+    display: block;
+    border-radius: 4px;
+}
+
 header {
     display: flex;
     justify-content: flex-end;
@@ -228,9 +235,9 @@ header {
     width: 100%;
     height: 450px;
     display: block;
-    background-color: #0a0a0a;
+    background-color: transparent;
     background-position: center center;
-    background-size: cover;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     border-bottom: 1px solid #232323;
     box-shadow: inset 0 0 150px rgba(0,0,0,0.8);
@@ -244,16 +251,19 @@ header {
 html:not([lang="en"]):not([lang="zh"]):not([lang="ms"]) .product-poster,
 html[lang="en"] .product-poster {
     background-image: url('en_background-box.jpg') !important;
+    background-size: contain !important;
 }
 html[lang="zh"] .product-poster {
     background-image: url('zh_background-box.jpg') !important;
+    background-size: contain !important;
 }
 html[lang="ms"] .product-poster {
     background-image: url('ms_background-box.jpg') !important;
+    background-size: contain !important;
 }
 
 /* ============================================================== */
-/* --- PERFECT IMAGE GRID --- */
+/* --- 1-COLUMN FULL-WIDTH GALLERY (HOME & PRODUCT SHARE THIS) --- */
 /* ============================================================== */
 .product-main-section {
     max-width: 1200px;
@@ -267,23 +277,17 @@ html[lang="ms"] .product-poster {
 .product-image-gallery {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 30px;
 }
 
 .product-image-gallery img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
+    border-radius: 8px;
     object-fit: cover;
-    aspect-ratio: 1 / 1;
-}
-
-.product-image-gallery img:hover {
-    opacity: 0.8;
+    /* REMOVED cursor: pointer */
 }
 
 .product-info-sidebar {
@@ -301,72 +305,104 @@ html[lang="ms"] .product-poster {
     text-align: center;
 }
 
-.product-price {
-    font-size: 18px;
-    color: lab(100% 0.01 -0.01);
-    margin-bottom: 15px;
-    display: block;
+/* --- FIERY BORDER CLASS --- */
+.fiery-border {
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.6), 
+                0 0 30px rgba(255, 140, 0, 0.4), 
+                0 0 50px rgba(255, 215, 0, 0.2);
+    border: 2px solid rgba(255, 69, 0, 0.8);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.fiery-border:hover {
+    box-shadow: 0 0 25px rgba(255, 69, 0, 0.9), 
+                0 0 50px rgba(255, 140, 0, 0.7), 
+                0 0 80px rgba(255, 215, 0, 0.4);
+    border-color: #ff4500;
+}
+
+/* --- INGREDIENT IMAGE CONTAINER (FOR PRODUCT PAGE) --- */
+.ingredient-image-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     text-align: center;
 }
 
-.divider {
-    border: 0;
-    height: 1px;
-    background: #232323;
-    margin-bottom: 25px;
+.ingredient-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    /* REMOVED cursor: pointer */
 }
 
-.wa-btn {
+/* ============================================================== */
+/* --- PRODUCT ORDER SECTION --- */
+/* ============================================================== */
+.product-order-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-top: 1px solid #232323;
+    border-bottom: 1px solid #232323;
+    margin: 10px 0;
+}
+
+.product-price-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.product-price-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #e8e8e8;
+}
+
+.product-price {
+    font-size: 32px;
+    font-weight: 900;
+    color: #FFD700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.product-price-per {
+    font-size: 16px;
+    color: #aaa;
+}
+
+.order-now-btn {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    background-color: #25D366;
+    gap: 12px;
+    padding: 14px 40px;
+    background: linear-gradient(135deg, #dc143c, #ff4500);
     color: #fff;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.wa-btn:hover {
-    background-color: #20bd5a;
-}
-
-.description-block h3 {
-    color: #f1f1f1;
-    font-size: 20px;
-    margin-bottom: 20px;
-    line-height: 1.4;
-    text-align: center;
-}
-
-.info-title {
-    color: #f4f4f4;
     font-size: 18px;
     font-weight: 700;
-    margin-bottom: 15px;
-    text-align: center;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 25px rgba(220, 20, 60, 0.4);
+    letter-spacing: 1px;
 }
 
-.info-list {
-    color: #d7d7d7;
-    font-size: 14px;
-    line-height: 1.8;
-    text-align: center;
-    list-style: none;
-    padding: 0;
+.order-now-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 35px rgba(220, 20, 60, 0.6);
 }
 
-.info-list strong {
-    color: #f8f8f8;
+.order-now-btn i {
+    font-size: 20px;
 }
 
-/* ============================================================== */
-/* --- AUTO-PLAY REVIEW SLIDER --- */
-/* ============================================================== */
+/* --- TESTIMONIALS --- */
 .testimonials-section {
     max-width: 1200px;
     margin: 0 auto;
@@ -477,7 +513,33 @@ html[lang="ms"] .product-poster {
     background-color: #FFD700;
 }
 
-/* --- LIGHTBOX --- */
+/* --- FLOATING CART BUTTON --- */
+.floating-cart-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25D366;
+    color: #fff;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 9999;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-cart-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+}
+
+/* --- LIGHTBOX OVERLAY (kept for reference but images no longer trigger it) --- */
 .lightbox-overlay {
     display: none;
     position: fixed;
@@ -670,23 +732,13 @@ html[lang="ms"] .product-poster {
     visibility: hidden;
     pointer-events: none;
 }
-.splash-logo {
-    font-size: 64px;
-    font-weight: 900;
-    color: #8b0000;
-    letter-spacing: 4px;
-    margin-bottom: 10px;
-    text-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
-    opacity: 0;
-    animation: splashFadeIn 1s ease-out forwards 0.3s;
-}
-.splash-subtitle {
-    font-size: 22px;
-    color: #888;
-    font-weight: 300;
-    letter-spacing: 2px;
-    opacity: 0;
-    animation: splashFadeIn 1s ease-out forwards 0.8s;
+.splash-logo-img {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+    filter: drop-shadow(0 0 30px rgba(255, 69, 0, 0.3));
 }
 .splash-timer {
     margin-top: 40px;
@@ -735,7 +787,7 @@ html[lang="ms"] .product-poster {
         padding: 0 15px !important;
     }
     
-    /* --- 3-COLUMN GRID FOR MOBILE --- */
+    /* --- 1-COLUMN GRID FOR MOBILE --- */
     .product-main-section {
         margin: 0 auto 20px auto !important;
         padding: 0 10px !important;
@@ -743,16 +795,15 @@ html[lang="ms"] .product-poster {
     }
 
     .product-image-gallery {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 10px !important;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
     }
 
     .product-image-gallery img {
-        border-radius: 6px !important;
-    }
-
-    .wa-button-container {
-        margin-bottom: 20px !important;
+        border-radius: 8px !important;
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
     }
 
     /* --- MOBILE HAMBURGER MENU --- */
@@ -840,6 +891,33 @@ html[lang="ms"] .product-poster {
         top: 15px !important;
         right: 20px !important;
         font-size: 32px !important;
+    }
+
+    /* --- MOBILE FLOATING CART BUTTON --- */
+    .floating-cart-btn {
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 48px !important;
+        height: 48px !important;
+        font-size: 22px !important;
+    }
+
+    /* --- MOBILE ORDER SECTION --- */
+    .product-order-section {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 0;
+    }
+    
+    .product-price {
+        font-size: 28px;
+    }
+    
+    .order-now-btn {
+        padding: 12px 30px;
+        font-size: 16px;
+        width: 100%;
+        justify-content: center;
     }
 }
 

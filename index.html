@@ -31,7 +31,7 @@
             height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Pushes text to the TOP */
+            align-items: flex-start;
             overflow: hidden;
             background: #000;
         }
@@ -51,11 +51,11 @@
             display: block;
         }
 
-        /* --- TOP TEXT --- */
+        /* --- TOP IMAGE --- */
         .splash-content {
             position: relative;
             z-index: 3;
-            padding-top: 80px;
+            padding-top: 20px;
             max-width: 800px;
             width: 100%;
             text-align: center;
@@ -68,40 +68,51 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- FIERY WELCOME TEXT --- */
-        .splash-content h1 {
-            font-size: 72px;
-            font-weight: 900;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            text-transform: none;
-            
-            /* --- FIRE GRADIENT & GLOW --- */
-            background: linear-gradient(to right, #ff4500, #ff8c00, #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            
-            /* Outer glowing fire effect */
-            text-shadow: 0 0 20px rgba(255, 69, 0, 0.8), 
-                         0 0 40px rgba(255, 140, 0, 0.6),
-                         0 0 60px rgba(255, 215, 0, 0.4);
-            
-            /* Fallback for older browsers */
-            color: #ff4500;
+        .splash-logo-title {
+            max-width: 80%;
+            width: 600px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.15));
+            animation: 
+                logoFloat 3s ease-in-out infinite,
+                logoPulse 3s ease-in-out infinite;
+            transition: filter 0.3s ease;
         }
 
-        .splash-content p {
-            font-size: 22px;
-            font-weight: 300;
-            color: #ddd;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-            letter-spacing: 2px;
+        /* Desktop image - default */
+        .splash-logo-title.desktop-logo {
+            display: block;
+        }
+        .splash-logo-title.mobile-logo {
+            display: none;
+        }
+
+        /* --- ANIMATION 1: FLOATING UP & DOWN - MORE MOVEMENT FOR DESKTOP --- */
+        @keyframes logoFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-40px); }  /* INCREASED from -20px to -40px */
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- ANIMATION 2: PULSING GLOW --- */
+        @keyframes logoPulse {
+            0% { filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.15)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.05)); }
+            50% { filter: drop-shadow(0 0 70px rgba(255, 215, 0, 0.4)) drop-shadow(0 0 120px rgba(255, 215, 0, 0.2)); }
+            100% { filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.15)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.05)); }
+        }
+
+        .splash-logo-title:hover {
+            filter: drop-shadow(0 0 80px rgba(255, 215, 0, 0.5)) drop-shadow(0 0 150px rgba(255, 215, 0, 0.25));
+            transform: scale(1.04);
+            transition: all 0.4s ease;
         }
 
         /* --- BUTTON (Locked at Bottom) --- */
         .cta-wrapper {
             position: absolute;
-            bottom: 100px; /* Locks it exactly 30px from the bottom */
+            bottom: 100px;
             left: 0;
             right: 0;
             z-index: 3;
@@ -111,45 +122,47 @@
             animation: fadeInUp 1s ease-out forwards 1s;
         }
 
-        /* On mobile, push it up a bit more to avoid the browser bar */
         @media (max-width: 768px) {
             .cta-wrapper {
-                bottom: 100px !important; 
+                bottom: 80px !important;
             }
         }
 
         .cta-btn {
             display: inline-block;
-            padding: 18px 45px;
+            padding: 24px 60px;
             background-color: #dc143c;
             color: #fff;
-            font-size: 20px;
+            font-size: 26px;
             font-weight: 700;
-            border: 2px solid #dc143c;
+            border: 3px solid #dc143c;
             border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             animation: pulseSway 2.5s infinite ease-in-out;
+            box-shadow: 0 0 30px rgba(220, 20, 60, 0.4);
         }
 
         .cta-btn:hover {
             background-color: transparent;
             color: #dc143c;
             animation-play-state: paused;
+            box-shadow: 0 0 50px rgba(220, 20, 60, 0.6);
         }
 
         .cta-btn i {
-            margin-right: 10px;
+            margin-right: 12px;
+            font-size: 28px;
         }
 
         @keyframes pulseSway {
-            0% { transform: translateX(0px) scale(1); box-shadow: 0 0 20px rgba(220, 20, 60, 0.3); }
-            25% { transform: translateX(-5px) scale(1.02); box-shadow: 0 0 35px rgba(220, 20, 60, 0.6); }
-            50% { transform: translateX(5px) scale(1); box-shadow: 0 0 20px rgba(220, 20, 60, 0.3); }
-            75% { transform: translateX(-5px) scale(1.02); box-shadow: 0 0 35px rgba(220, 20, 60, 0.6); }
-            100% { transform: translateX(0px) scale(1); box-shadow: 0 0 20px rgba(220, 20, 60, 0.3); }
+            0% { transform: translateX(0px) scale(1); box-shadow: 0 0 30px rgba(220, 20, 60, 0.4); }
+            25% { transform: translateX(-6px) scale(1.03); box-shadow: 0 0 50px rgba(220, 20, 60, 0.7); }
+            50% { transform: translateX(6px) scale(1); box-shadow: 0 0 30px rgba(220, 20, 60, 0.4); }
+            75% { transform: translateX(-6px) scale(1.03); box-shadow: 0 0 50px rgba(220, 20, 60, 0.7); }
+            100% { transform: translateX(0px) scale(1); box-shadow: 0 0 30px rgba(220, 20, 60, 0.4); }
         }
 
         /* --- DESKTOP VIDEO --- */
@@ -161,24 +174,58 @@
             .splash-content {
                 padding-top: 40px;
             }
-            .splash-content h1 {
-                font-size: 36px;
-                letter-spacing: 2px;
+            
+            /* Switch to mobile logo */
+            .splash-logo-title.desktop-logo {
+                display: none;
             }
-            .splash-content p {
-                font-size: 16px;
+            .splash-logo-title.mobile-logo {
+                display: block;
+                max-width: 85%;
+                width: 300px;
             }
+            
+            /* Mobile gets less float movement */
+            @keyframes logoFloat {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-15px); }  /* Less movement on mobile */
+                100% { transform: translateY(0px); }
+            }
+            
             .cta-btn {
-                padding: 14px 30px;
-                font-size: 16px;
+                padding: 18px 40px;
+                font-size: 20px;
+                letter-spacing: 2px;
+                border-width: 2px;
                 animation-duration: 2s;
             }
-            .splash-logo { font-size: 32px; }
-            .splash-timer { font-size: 32px; }
+            .cta-btn i {
+                font-size: 22px;
+            }
 
             /* Switch videos */
             .splash-video.desktop-video { display: none; }
             .splash-video.mobile-video { display: block; }
+        }
+
+        /* --- SMALL PHONES --- */
+        @media (max-width: 480px) {
+            .splash-logo-title.mobile-logo {
+                max-width: 90%;
+                width: 220px;
+            }
+            @keyframes logoFloat {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }  /* Even less on small phones */
+                100% { transform: translateY(0px); }
+            }
+            .cta-btn {
+                padding: 14px 30px;
+                font-size: 17px;
+            }
+            .cta-btn i {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
@@ -194,14 +241,16 @@
 
             <!-- MOBILE VIDEO -->
             <video autoplay muted loop playsinline class="splash-video mobile-video">
-                <source src="intro-index-mobile.mp4" type="video/mp4">
+                <source src="intro-index.mp4" type="video/mp4">
                 <img src="poster.jpg?q=80&w=2070&auto=format&fit=crop" alt="Mobile Fallback">
             </video>
 
-            <!-- TOP TEXT -->
+            <!-- TOP IMAGES - Desktop & Mobile versions with animations -->
             <div class="splash-content">
-                <h1>Welcome</h1>
-                <p>Unleash Your Potential</p>
+                <!-- Desktop Image - moves up more -->
+                <img src="unleash-desktop.png" alt="" class="splash-logo-title desktop-logo">
+                <!-- Mobile Image - moves up less -->
+                <img src="unleash.png" alt="" class="splash-logo-title mobile-logo">
             </div>
 
             <!-- ABSOLUTE BOTTOM BUTTON -->
