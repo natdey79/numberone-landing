@@ -53,18 +53,39 @@ const translations = {
         'prod_price_per': '/ box',
         'order_now_btn': 'Order Now',
 
-        // NEW REVIEWS (ENGLISH)
+        // REVIEWS (ENGLISH)
         'test_title_1': '"I Feel Like I\'m 25 Again!"',
         'test_body_1': 'Are you kidding me?! I don\'t know what kind of wizardry is in <strong>Otoko Ichiban</strong>, but this stuff is absolutely ELECTRIC! I hadn\'t had a morning that good in over a decade, and suddenly I\'m waking up like a teenager again. My girlfriend actually laughed out loud with joy—and let\'s just say we didn\'t get out of bed until lunchtime. I feel like I\'ve been given a second youth, and I am riding that high all day long! Best purchase of my life!',
+        'test_user_1': '- Mike*******',
         
         'test_title_2': '"The Best Night of Our Marriage—Hands Down!"',
         'test_body_2': 'I am literally smiling just writing this. My wife and I have been in a rut for years, but last night? Last night was FIREWORKS. <strong>Otoko Ichiban</strong> gave me the stamina and confidence to go above and beyond, and we were both giggling like newlyweds. She looked at me afterwards and whispered, \'Where has THAT been all my life?\' I feel like a rockstar, and our relationship has never felt more alive. This isn\'t just a pill; it\'s a PARTY! Thank you, thank you, thank you!',
+        'test_user_2': '- DavidR****',
         
         'test_title_3': '"Zero Stress, 100% Pure Fun!"',
         'test_body_3': 'Forget everything you\'ve heard about anxiety—this stuff erased my nerves completely! I popped <strong>Otoko Ichiban</strong>, and within 40 minutes, I wasn\'t thinking about \'if\' I could perform; I was just excited to GET STARTED. The feeling was so strong and natural that I actually started laughing mid-moment because I couldn\'t believe how amazing it felt. My partner said she hasn\'t seen me this happy and playful in years. I\'m on cloud nine and never looking back!',
+        'test_user_3': '- TonyK***',
         
         'test_title_4': '"I Finally Feel Like a Superhero!"',
-        'test_body_4': 'Hallelujah! I genuinely did not think anything would work for me, but <strong>Otoko Ichiban</strong> knocked my socks off—literally! The energy, the firmness, the sheer endurance—it was like flipping a switch from \'meh\' to \'MEGAWATT.\' I felt so powerful and unstoppable that I actually high-fived myself in the mirror the next morning. My confidence is through the roof, and I can\'t wait for date night tonight. This product made me feel like a KING! Five stars isn\'t enough—I\'d give it ten!'
+        'test_body_4': 'Hallelujah! I genuinely did not think anything would work for me, but <strong>Otoko Ichiban</strong> knocked my socks off—literally! The energy, the firmness, the sheer endurance—it was like flipping a switch from \'meh\' to \'MEGAWATT.\' I felt so powerful and unstoppable that I actually high-fived myself in the mirror the next morning. My confidence is through the roof, and I can\'t wait for date night tonight. This product made me feel like a KING! Five stars isn\'t enough—I\'d give it ten!',
+        'test_user_4': '- JamesB*****',
+
+        // NEW REVIEWS (ENGLISH)
+        'test_title_5': '"The Only Brand That Delivers"',
+        'test_body_5': 'I\'ve wasted money on cheap imitations and pharmacy names that left me feeling like a furnace. But <strong>Otoko Ichiban</strong>? This is the real deal. No heat, no redness, just pure, reliable performance that lasted through the night and into the morning. I finally found the one.',
+        'test_user_5': '- Aaron*****',
+
+        'test_title_6': '"My Secret Weapon"',
+        'test_body_6': 'My buddies joke that I\'ve got a second wind. They don\'t know it\'s <strong>Otoko Ichiban</strong> in my drawer. It doesn\'t announce itself—it just works when I need it, for as long as I need it. Smooth onset, zero side effects, and an exit that feels natural. This is my forever brand.',
+        'test_user_6': '- Marcus*****',
+
+        'test_title_7': '"Better Than My 20s"',
+        'test_body_7': 'I\'m 58 and thought those days were behind me. Then I tried <strong>Otoko Ichiban</strong> on a whim. Forty-five minutes later, I was a believer. Two hours later, I was a legend. It doesn\'t overpromise—it overdelivers. If you\'re on the fence, get off it and get this.',
+        'test_user_7': '- Victor*****',
+
+        'test_title_8': '"Finally, Peace of Mind"',
+        'test_body_8': 'The anxiety before intimacy used to kill the mood before it even started. <strong>Otoko Ichiban</strong> took that anxiety and crushed it. I don\'t think about timing, dosing, or side effects anymore. I just enjoy the moment—and so does she. That peace of mind is priceless.',
+        'test_user_8': '- Derek*****'
     },
     'zh': {
         'nav_home': '主页', 'nav_product': '产品', 'nav_review': '评价', 'nav_contact': '联系我们', 'nav_about': '关于我们', 'nav_language': '语言',
@@ -79,18 +100,39 @@ const translations = {
         'prod_price_per': '/ 盒',
         'order_now_btn': '立即订购',
 
-        // NEW REVIEWS (CHINESE)
+        // REVIEWS (CHINESE)
         'test_title_1': '"感觉自己又回到了25岁！"',
         'test_body_1': '你在开玩笑吗？！我不知道<strong>Otoko Ichiban</strong>里面有什么魔法，但这个玩意儿简直太给力了！十多年来我都没有过这么美好的早晨，突然间我像青少年一样醒来。我的女朋友高兴得大笑起来——这么说吧，我们直到午饭时间才起床。我感觉自己重获了青春，一整天都沉浸在兴奋之中！这是我一生中买过的最好的东西！',
+        'test_user_1': '- Mike*******',
 
         'test_title_2': '"我们婚姻中最美好的夜晚——毫无疑问！"',
         'test_body_2': '我写这些的时候都在笑。我和妻子多年来一直处于平淡期，但昨晚？昨晚简直是烟花绽放。<strong>Otoko Ichiban</strong>给了我超常的耐力和自信，我们都像新婚夫妇一样咯咯笑。事后她看着我低声说：\'这东西怎么现在才出现在我的生活中？\' 我感觉自己像个摇滚明星，我们的关系从未如此充满活力。这不仅仅是一粒药丸，更是一场狂欢！谢谢，谢谢，再谢谢！',
+        'test_user_2': '- DavidR****',
 
         'test_title_3': '"零压力，百分之百纯粹的快乐！"',
         'test_body_3': '忘掉你听过的所有关于焦虑的说法——这个东西完全消除了我的紧张！我服用了<strong>Otoko Ichiban</strong>，不到40分钟，我根本没去想自己能不能行，我只是兴奋地想要开始！那种感觉如此强烈且自然，我甚至在过程中笑出声来，因为我不敢相信感觉竟如此美妙。我的伴侣说她多年没见我这么快乐和充满活力了。我飘飘欲仙，绝不回头！',
+        'test_user_3': '- TonyK***',
 
         'test_title_4': '"我终于感觉自己像个超级英雄了！"',
-        'test_body_4': '哈利路亚！我真的以为对我没用，但<strong>Otoko Ichiban</strong>彻底让我惊叹——字面意义上的！那种能量、坚挺、惊人的持久力——简直就像是把开关从\'一般般\'拨到了\'超级强力\'。我感觉如此强大、不可阻挡，第二天早上我甚至对着镜子跟自己击掌庆祝。我的信心爆棚，迫不及待今晚的约会之夜。这个产品让我感觉像个国王！五星都不够——我要给它十星！'
+        'test_body_4': '哈利路亚！我真的以为对我没用，但<strong>Otoko Ichiban</strong>彻底让我惊叹——字面意义上的！那种能量、坚挺、惊人的持久力——简直就像是把开关从\'一般般\'拨到了\'超级强力\'。我感觉如此强大、不可阻挡，第二天早上我甚至对着镜子跟自己击掌庆祝。我的信心爆棚，迫不及待今晚的约会之夜。这个产品让我感觉像个国王！五星都不够——我要给它十星！',
+        'test_user_4': '- JamesB*****',
+
+        // NEW REVIEWS (CHINESE)
+        'test_title_5': '"唯一真正有效的品牌"',
+        'test_body_5': '我浪费了很多钱在廉价的仿制品和药房品牌上，那些产品让我感觉像在发烧。但<strong>Otoko Ichiban</strong>？这才是真正有效的。没有发热，没有发红，只有纯粹可靠的性能，持续整夜直到清晨。我终于找到了真正有效的产品。',
+        'test_user_5': '- Aaron*****',
+
+        'test_title_6': '"我的秘密武器"',
+        'test_body_6': '我的哥们们开玩笑说我有了第二春。他们不知道我抽屉里藏着<strong>Otoko Ichiban</strong>。它不会自我宣传——只在我需要的时候发挥作用，想持续多久就持续多久。起效平顺，零副作用，消退也很自然。这是我永远的品牌。',
+        'test_user_6': '- Marcus*****',
+
+        'test_title_7': '"比20多岁时还好"',
+        'test_body_7': '我58岁了，以为那些日子已经过去了。然后我一时兴起尝试了<strong>Otoko Ichiban</strong>。45分钟后，我深信不疑。两小时后，我成了传奇。它不会过度承诺——只会超预期交付。如果你还在犹豫，别犹豫了，买它。',
+        'test_user_7': '- Victor*****',
+
+        'test_title_8': '"终于，安心了"',
+        'test_body_8': '亲密前的焦虑曾经在开始之前就毁了气氛。<strong>Otoko Ichiban</strong>消除了那种焦虑。我不再考虑时机、剂量或副作用。我只享受当下——她也一样。那种安心是无价的。',
+        'test_user_8': '- Derek*****'
     },
     'ms': {
         'nav_home': 'Laman Utama', 'nav_product': 'Produk', 'nav_review': 'Ulasan', 'nav_contact': 'Hubungi', 'nav_about': 'Tentang Kami', 'nav_language': 'Bahasa',
@@ -105,23 +147,44 @@ const translations = {
         'prod_price_per': '/ kotak',
         'order_now_btn': 'Tempah Sekarang',
 
-        // NEW REVIEWS (MALAY)
+        // REVIEWS (MALAY)
         'test_title_1': '"Rasa Seperti Berusia 25 Tahun Semula!"',
         'test_body_1': 'Awak bergurau ke?! Saya tidak tahu apa jenis sihir dalam <strong>Otoko Ichiban</strong>, tapi benda ni BETUL-BETUL ELEKTRIK! Dah lebih sedekad saya tak dapat pagi yang sebaik ni, dan tiba-tiba saya bangun macam remaja semula. Teman wanita saya benar-benar ketawa kegembiraan—dan kita boleh katakan kami tidak bangun dari katil sampai tengah hari. Saya rasa seperti diberi umur muda kedua, dan saya menikmati kegembiraan itu sepanjang hari! Pembelian terbaik dalam hidup saya!',
+        'test_user_1': '- Mike*******',
 
         'test_title_2': '"Malam Terbaik dalam Perkahwinan Kami—Tanpa Ragu!"',
         'test_body_2': 'Saya benar-benar tersenyum semasa menulis ini. Saya dan isteri sudah lama dalam kebosanan, tapi malam tadi? Malam tadi adalah BUNGA API! <strong>Otoko Ichiban</strong> memberi saya ketahanan dan keyakinan untuk melakukan lebih daripada biasa, dan kami berdua ketawa kecil seperti pengantin baru. Dia memandang saya selepas itu dan berbisik, \'Mana benda ni sepanjang hidup saya?\' Saya rasa seperti rockstar, dan hubungan kami tidak pernah terasa lebih hidup. Ini bukan sekadar pil; ini PARTI! Terima kasih, terima kasih, terima kasih!',
+        'test_user_2': '- DavidR****',
 
         'test_title_3': '"Sifar Tekanan, 100% Keseronokan Tulen!"',
         'test_body_3': 'Lupakan semua yang anda dengar tentang kebimbangan—benda ni menghapuskan gugup saya sepenuhnya! Saya makan <strong>Otoko Ichiban</strong>, dan dalam masa 40 minit, saya tidak fikir tentang \'kalau\' saya boleh beraksi; saya hanya teruja untuk MULA. Perasaannya begitu kuat dan semula jadi sehingga saya benar-benar mula ketawa di tengah-tengah kerana saya tidak percaya betapa hebatnya ia terasa. Pasangan saya kata dia tak pernah nampak saya gembira dan suka bermain seperti ini sejak bertahun-tahun. Saya berada di awan dan tidak akan menoleh ke belakang!',
+        'test_user_3': '- TonyK***',
 
         'test_title_4': '"Akhirnya Rasa Macam Wira Super!"',
-        'test_body_4': 'Haleluya! Saya benar-benar tidak sangka apa-apa akan berkesan untuk saya, tapi <strong>Otoko Ichiban</strong> benar-benar mengagumkan saya! Tenaga, ketegasan, ketahanan yang luar biasa—ia seperti menukar suis dari \'biasa\' ke \'MEGAWATT.\' Saya rasa begitu kuat dan tidak dapat dihalang sehingga saya benar-benar menepuk tangan sendiri di cermin pada keesokan paginya. Keyakinan saya melonjak tinggi, dan saya tidak sabar untuk malam dating malam ini. Produk ini membuat saya rasa seperti RAJA! Lima bintang tidak cukup—saya akan beri sepuluh!'
+        'test_body_4': 'Haleluya! Saya benar-benar tidak sangka apa-apa akan berkesan untuk saya, tapi <strong>Otoko Ichiban</strong> benar-benar mengagumkan saya! Tenaga, ketegasan, ketahanan yang luar biasa—ia seperti menukar suis dari \'biasa\' ke \'MEGAWATT.\' Saya rasa begitu kuat dan tidak dapat dihalang sehingga saya benar-benar menepuk tangan sendiri di cermin pada keesokan paginya. Keyakinan saya melonjak tinggi, dan saya tidak sabar untuk malam dating malam ini. Produk ini membuat saya rasa seperti RAJA! Lima bintang tidak cukup—saya akan beri sepuluh!',
+        'test_user_4': '- JamesB*****',
+
+        // NEW REVIEWS (MALAY)
+        'test_title_5': '"Satu-satunya Jenama Yang Berkesan"',
+        'test_body_5': 'Saya telah membazir wang pada tiruan murah dan nama farmasi yang membuat saya rasa seperti relau. Tetapi <strong>Otoko Ichiban</strong>? Ini adalah yang sebenar. Tiada rasa panas, tiada kemerahan, hanya prestasi tulen yang boleh dipercayai yang bertahan sepanjang malam hingga ke pagi. Akhirnya saya jumpa yang satu itu.',
+        'test_user_5': '- Aaron*****',
+
+        'test_title_6': '"Senjata Rahsia Saya"',
+        'test_body_6': 'Rakan-rakan saya bergurau bahawa saya ada angin kedua. Mereka tidak tahu ia <strong>Otoko Ichiban</strong> dalam laci saya. Ia tidak mengumumkan dirinya—ia hanya berfungsi apabila saya perlukannya, selama yang saya perlukan. Permulaan yang lancar, tiada kesan sampingan, dan penamatan yang terasa semula jadi. Ini jenama selama-lamanya saya.',
+        'test_user_6': '- Marcus*****',
+
+        'test_title_7': '"Lebih Baik Daripada Usia 20-an Saya"',
+        'test_body_7': 'Saya berusia 58 tahun dan fikir hari-hari itu sudah berlalu. Kemudian saya mencuba <strong>Otoko Ichiban</strong> secara spontan. Empat puluh lima minit kemudian, saya percaya. Dua jam kemudian, saya menjadi legenda. Ia tidak berjanji berlebihan—ia memberikan lebih. Jika anda masih ragu-ragu, jangan ragu lagi dan dapatkan ini.',
+        'test_user_7': '- Victor*****',
+
+        'test_title_8': '"Akhirnya, Ketenangan Fikiran"',
+        'test_body_8': 'Kebimbangan sebelum keintiman sering merosakkan suasana sebelum ia bermula. <strong>Otoko Ichiban</strong> mengambil kebimbangan itu dan menghancurkannya. Saya tidak lagi memikirkan masa, dos, atau kesan sampingan. Saya hanya menikmati detik itu—dan begitu juga dia. Ketenangan fikiran itu tidak ternilai.',
+        'test_user_8': '- Derek*****'
     }
 };
 
 /* ============================================================== */
-/* --- LANGUAGE FUNCTION --- */
+/* --- LANGUAGE FUNCTION - SEAMLESS IMAGE SWITCHING --- */
 /* ============================================================== */
 function setLanguage(langCode) {
     const dict = translations[langCode];
@@ -140,20 +203,15 @@ function setLanguage(langCode) {
 
     document.documentElement.setAttribute('lang', langCode);
 
+    // HOME PAGE IMAGES (.lang-img) - SEAMLESS, just update src
     document.querySelectorAll('.lang-img').forEach(img => {
         let currentSrc = img.getAttribute('src');
         let baseName = currentSrc.replace(/^(en|zh|ms)_/, '').replace(/\?v=.*/, '');
         let newSrc = langCode + '_' + baseName + '?v=' + Date.now();
-        let clickAttr = img.getAttribute('onclick');
-        let classAttr = img.getAttribute('class');
-        
-        let newImg = document.createElement('img');
-        newImg.setAttribute('src', newSrc);
-        newImg.setAttribute('class', classAttr);
-        newImg.setAttribute('onclick', clickAttr);
-        img.parentNode.replaceChild(newImg, img);
+        img.setAttribute('src', newSrc);
     });
 
+    // PRODUCT PAGE IMAGES (.lang-ingredient-img) - SEAMLESS, just update src
     document.querySelectorAll('.lang-ingredient-img').forEach(img => {
         let currentSrc = img.getAttribute('src');
         let baseName = currentSrc.replace(/^(en|zh|ms)_/, '').replace(/\?v=.*/, '');
@@ -189,8 +247,13 @@ const dots = document.querySelectorAll('.dot');
 function showSlide(index) {
     slides.forEach(slide => slide.classList.remove('active'));
     dots.forEach(dot => dot.classList.remove('active'));
-    slides[index].classList.add('active');
-    dots[index].classList.add('active');
+    
+    if (slides[index]) {
+        slides[index].classList.add('active');
+    }
+    if (dots[index]) {
+        dots[index].classList.add('active');
+    }
     currentSlide = index;
 }
 
@@ -204,13 +267,25 @@ function nextSlide() {
 
 function startAutoPlay() {
     if (slides.length > 0) {
-        showSlide(0);
-        slideInterval = setInterval(nextSlide, 5000);
+        let hasActive = false;
+        slides.forEach(slide => {
+            if (slide.classList.contains('active')) hasActive = true;
+        });
+        if (!hasActive) {
+            showSlide(0);
+        }
+        if (slideInterval) {
+            clearInterval(slideInterval);
+        }
+        slideInterval = setInterval(nextSlide, 8000);
     }
 }
 
 function stopAutoPlay() {
-    clearInterval(slideInterval);
+    if (slideInterval) {
+        clearInterval(slideInterval);
+        slideInterval = null;
+    }
 }
 
 function goToSlide(index) {
@@ -246,6 +321,31 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
         setLanguage(savedLang);
     }, 300);
+
+    // DOT CLICK HANDLING
+    document.querySelectorAll('.dot').forEach((dot) => {
+        dot.addEventListener('click', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            let index = parseInt(this.getAttribute('data-index'));
+            if (isNaN(index)) {
+                const dotsArray = document.querySelectorAll('.dot');
+                for (let i = 0; i < dotsArray.length; i++) {
+                    if (dotsArray[i] === this) {
+                        index = i;
+                        break;
+                    }
+                }
+            }
+            if (!isNaN(index)) {
+                goToSlide(index);
+            }
+        });
+    });
+
+    document.querySelectorAll('.dot[onclick]').forEach((dot) => {
+        dot.removeAttribute('onclick');
+    });
 
     startAutoPlay();
 });

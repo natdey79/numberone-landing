@@ -287,7 +287,6 @@ html[lang="ms"] .product-poster {
     display: block;
     border-radius: 8px;
     object-fit: cover;
-    /* REMOVED cursor: pointer */
 }
 
 .product-info-sidebar {
@@ -334,7 +333,6 @@ html[lang="ms"] .product-poster {
     height: auto;
     display: block;
     border-radius: 8px;
-    /* REMOVED cursor: pointer */
 }
 
 /* ============================================================== */
@@ -761,7 +759,9 @@ html[lang="ms"] .product-poster {
     /* --- MOBILE BACKGROUNDS --- */
     .product-poster {
         height: 220px !important;
+        margin-bottom: 20px !important;  /* ADDED - gap on mobile only */
     }
+    
     html:not([lang="en"]):not([lang="zh"]):not([lang="ms"]) .product-poster,
     html[lang="en"] .product-poster {
         background-image: url('en_background-box-mobile.jpg') !important;
