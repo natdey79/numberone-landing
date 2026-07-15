@@ -203,7 +203,7 @@ function setLanguage(langCode) {
 
     document.documentElement.setAttribute('lang', langCode);
 
-    // HOME PAGE IMAGES (.lang-img) - SEAMLESS, just update src
+    // HOME PAGE IMAGES (.lang-img)
     document.querySelectorAll('.lang-img').forEach(img => {
         let currentSrc = img.getAttribute('src');
         let baseName = currentSrc.replace(/^(en|zh|ms)_/, '').replace(/\?v=.*/, '');
@@ -211,13 +211,24 @@ function setLanguage(langCode) {
         img.setAttribute('src', newSrc);
     });
 
-    // PRODUCT PAGE IMAGES (.lang-ingredient-img) - SEAMLESS, just update src
+    // PRODUCT PAGE IMAGES (.lang-ingredient-img)
     document.querySelectorAll('.lang-ingredient-img').forEach(img => {
         let currentSrc = img.getAttribute('src');
         let baseName = currentSrc.replace(/^(en|zh|ms)_/, '').replace(/\?v=.*/, '');
         let newSrc = langCode + '_' + baseName + '?v=' + Date.now();
         img.setAttribute('src', newSrc);
     });
+
+    // SPLIT POSTER IMAGES (.lang-poster) - ADD THIS
+    document.querySelectorAll('.lang-poster').forEach(img => {
+        let currentSrc = img.getAttribute('src');
+        let baseName = currentSrc.replace(/^(en|zh|ms)_/, '').replace(/\?v=.*/, '');
+        let newSrc = langCode + '_' + baseName + '?v=' + Date.now();
+        img.setAttribute('src', newSrc);
+    });
+
+    // UPDATE TESTIMONIALS WHEN LANGUAGE CHANGES
+    refreshTestimonials();
 
     localStorage.setItem('preferredLanguage', langCode);
 }
@@ -458,6 +469,462 @@ function toggleTestimonial(id) {
 }
 
 /* ============================================================== */
+/* --- TESTIMONIALS FROM GOOGLE SHEETS (CHAT BOX STYLE) --- */
+/* ============================================================== */
+
+// CONFIGURATION - YOUR CORRECT SHEET.BEST API URL
+// API Endpoint: https://api.sheetbest.com/sheets/d2236291-b86c-4f0d-b6fc-96e0a58a95d3
+const SHEET_API_URL = 'https://api.sheetbest.com/sheets/d2236291-b86c-4f0d-b6fc-96e0a58a95d3?approved=TRUE';
+const SHEET_API_POST_URL = 'https://api.sheetbest.com/sheets/d2236291-b86c-4f0d-b6fc-96e0a58a95d3';
+
+let allTestimonials = [];
+let currentTestimonialIndex = 0;
+let testimonialInterval = null;
+let isTestimonialRunning = false;
+
+// Get current language
+function getCurrentLanguage() {
+    return document.documentElement.getAttribute('lang') || 'en';
+}
+
+// Get translated field based on current language - FIXED
+function getTranslatedField(testimonial, fieldName) {
+    const lang = getCurrentLanguage();
+    const suffixMap = {
+        'en': '_en',
+        'zh': '_zh',
+        'ms': '_ms'
+    };
+    const suffix = suffixMap[lang] || '_en';
+    const key = fieldName + suffix;
+    
+    // Try to get the translated field
+    if (testimonial[key] !== undefined && testimonial[key] !== '') {
+        return testimonial[key];
+    }
+    
+    // Fallback: try English
+    if (testimonial[fieldName + '_en'] !== undefined && testimonial[fieldName + '_en'] !== '') {
+        return testimonial[fieldName + '_en'];
+    }
+    
+    // If all else fails, return empty string
+    return '';
+}
+
+// Fetch testimonials from Google Sheets
+async function fetchTestimonials() {
+    try {
+        console.log('Fetching from:', SHEET_API_URL);
+        const response = await fetch(SHEET_API_URL);
+        if (!response.ok) {
+            console.error('Response not OK:', response.status, response.statusText);
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log('Data received:', data);
+        allTestimonials = data.filter(item => item.approved === 'TRUE' || item.approved === true);
+        return allTestimonials;
+    } catch (error) {
+        console.error('Error fetching testimonials:', error);
+        // Use fallback testimonials if API fails
+        allTestimonials = getFallbackTestimonials();
+        return allTestimonials;
+    }
+}
+
+// Fallback testimonials (in case API fails)
+function getFallbackTestimonials() {
+    return [
+        {
+            name: 'Mike*******',
+            title_en: 'I Feel Like I\'m 25 Again!',
+            title_zh: '感觉自己又回到了25岁！',
+            title_ms: 'Rasa Seperti Berusia 25 Tahun Semula!',
+            comment_en: 'I don\'t know what kind of wizardry is in Otoko Ichiban, but this stuff is absolutely ELECTRIC! Best purchase of my life!',
+            comment_zh: '我不知道Otoko Ichiban里面有什么魔法，但这个玩意儿简直太给力了！',
+            comment_ms: 'Saya tidak tahu apa jenis sihir dalam Otoko Ichiban, tapi benda ni BETUL-BETUL ELEKTRIK!',
+            rating: 5,
+            timestamp: new Date().toISOString()
+        },
+        {
+            name: 'DavidR****',
+            title_en: 'The Best Night of Our Marriage!',
+            title_zh: '我们婚姻中最美好的夜晚！',
+            title_ms: 'Malam Terbaik dalam Perkahwinan Kami!',
+            comment_en: 'Last night was FIREWORKS! Otoko Ichiban gave me the stamina and confidence to go above and beyond.',
+            comment_zh: '昨晚简直是烟花绽放！Otoko Ichiban给了我超常的耐力和自信。',
+            comment_ms: 'Malam tadi adalah BUNGA API! Otoko Ichiban memberi saya ketahanan dan keyakinan.',
+            rating: 5,
+            timestamp: new Date().toISOString()
+        },
+        {
+            name: 'Aaron*****',
+            title_en: 'The Only Brand That Delivers',
+            title_zh: '唯一真正有效的品牌',
+            title_ms: 'Satu-satunya Jenama Yang Berkesan',
+            comment_en: 'This is the real deal. No heat, no redness, just pure, reliable performance.',
+            comment_zh: '这才是真正有效的。没有发热，没有发红，只有纯粹可靠的性能。',
+            comment_ms: 'Ini adalah yang sebenar. Tiada rasa panas, tiada kemerahan, hanya prestasi tulen.',
+            rating: 5,
+            timestamp: new Date().toISOString()
+        },
+        {
+            name: 'Victor*****',
+            title_en: 'Better Than My 20s',
+            title_zh: '比20多岁时还好',
+            title_ms: 'Lebih Baik Daripada Usia 20-an Saya',
+            comment_en: 'I\'m 58 and thought those days were behind me. Two hours later, I was a legend.',
+            comment_zh: '我58岁了，以为那些日子已经过去了。两小时后，我成了传奇。',
+            comment_ms: 'Saya berusia 58 tahun dan fikir hari-hari itu sudah berlalu. Dua jam kemudian, saya menjadi legenda.',
+            rating: 5,
+            timestamp: new Date().toISOString()
+        }
+    ];
+}
+
+// Shuffle array
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+// Get time ago string
+function getTimeAgo(timestamp) {
+    if (!timestamp) return 'just now';
+    const date = new Date(timestamp);
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+    
+    const lang = getCurrentLanguage();
+    const timeStrings = {
+        'en': { just: 'just now', min: 'min ago', hour: 'hour', hours: 'hours', day: 'day', days: 'days' },
+        'zh': { just: '刚刚', min: '分钟前', hour: '小时前', hours: '小时前', day: '天前', days: '天前' },
+        'ms': { just: 'baru sahaja', min: 'minit lalu', hour: 'jam lalu', hours: 'jam lalu', day: 'hari lalu', days: 'hari lalu' }
+    };
+    const t = timeStrings[lang] || timeStrings['en'];
+    
+    if (diffMins < 1) return t.just;
+    if (diffMins < 60) return `${diffMins} ${t.min}`;
+    if (diffHours < 24) return `${diffHours} ${diffHours > 1 ? t.hours : t.hour}`;
+    return `${diffDays} ${diffDays > 1 ? t.days : t.day}`;
+}
+
+// Create testimonial bubble - FIXED
+function createTestimonialBubble(testimonial) {
+    console.log('Creating bubble for:', testimonial);
+    
+    const stars = '⭐'.repeat(parseInt(testimonial.rating) || 5);
+    const timeAgo = getTimeAgo(testimonial.timestamp);
+    const name = testimonial.name || 'Anonymous';
+    
+    // Get translated fields using the updated function
+    const title = getTranslatedField(testimonial, 'title');
+    const comment = getTranslatedField(testimonial, 'comment');
+    
+    console.log('Title:', title, 'Comment:', comment);
+    
+    return `
+        <div class="chat-message">
+            <div class="chat-header">
+                <span class="chat-rating">${stars}</span>
+                <span class="chat-title">"${title || 'Great Product!'}"</span>
+            </div>
+            <div class="chat-body">
+                <p>${comment || 'I love this product!'}</p>
+            </div>
+            <div class="chat-footer">
+                <span class="chat-user">─ ${name}</span>
+                <span class="chat-time">${timeAgo}</span>
+            </div>
+        </div>
+    `;
+}
+
+// Display next testimonial
+function displayNextTestimonial() {
+    const container = document.getElementById('testimonial-chat-container');
+    if (!container || allTestimonials.length === 0) {
+        if (container) {
+            container.innerHTML = '<div style="text-align:center; color:#666; padding:40px 0;">No testimonials yet. Be the first to share!</div>';
+        }
+        return;
+    }
+    
+    if (currentTestimonialIndex >= allTestimonials.length) {
+        allTestimonials = shuffleArray(allTestimonials);
+        currentTestimonialIndex = 0;
+    }
+    
+    const testimonial = allTestimonials[currentTestimonialIndex];
+    const bubble = createTestimonialBubble(testimonial);
+    
+    const messageWrapper = document.createElement('div');
+    messageWrapper.className = 'message-wrapper';
+    messageWrapper.innerHTML = bubble;
+    
+    // Remove loading message if exists
+    const loadingMsg = container.querySelector('.loading-message');
+    if (loadingMsg) loadingMsg.remove();
+    
+    container.appendChild(messageWrapper);
+    container.scrollTop = container.scrollHeight;
+    
+    currentTestimonialIndex++;
+    
+    // Update member count
+    const memberCount = document.getElementById('member-count');
+    if (memberCount) {
+        memberCount.textContent = `● ${allTestimonials.length} members`;
+    }
+}
+
+// Refresh testimonials when language changes
+function refreshTestimonials() {
+    const reviewSection = document.getElementById('section-review');
+    // Only refresh if reviews section is visible
+    if (reviewSection && reviewSection.style.display !== 'none') {
+        // Reset the chat
+        const container = document.getElementById('testimonial-chat-container');
+        if (container) {
+            // Clear existing messages
+            container.innerHTML = `
+                <div class="loading-message" style="text-align:center; color:#666; padding:40px 0;">
+                    <i class="fas fa-spinner fa-spin" style="font-size:24px;"></i>
+                    <p style="margin-top:10px;">Loading testimonials...</p>
+                </div>
+            `;
+        }
+        
+        // Reset state
+        currentTestimonialIndex = 0;
+        isTestimonialRunning = false;
+        
+        // Clear existing interval
+        if (testimonialInterval) {
+            clearTimeout(testimonialInterval);
+            testimonialInterval = null;
+        }
+        
+        // Restart the chat
+        startTestimonialChat();
+    }
+}
+
+// Start testimonial chat
+async function startTestimonialChat() {
+    if (isTestimonialRunning) return;
+    isTestimonialRunning = true;
+    
+    const container = document.getElementById('testimonial-chat-container');
+    if (!container) return;
+    
+    // Show loading
+    container.innerHTML = `
+        <div class="loading-message" style="text-align:center; color:#666; padding:40px 0;">
+            <i class="fas fa-spinner fa-spin" style="font-size:24px;"></i>
+            <p style="margin-top:10px;">Loading testimonials...</p>
+        </div>
+    `;
+    
+    await fetchTestimonials();
+    
+    // Clear container
+    container.innerHTML = '';
+    
+    if (allTestimonials.length === 0) {
+        container.innerHTML = '<div style="text-align:center; color:#666; padding:40px 0;">No testimonials yet. Be the first to share!</div>';
+        isTestimonialRunning = false;
+        return;
+    }
+    
+    allTestimonials = shuffleArray(allTestimonials);
+    currentTestimonialIndex = 0;
+    
+    // Display first testimonial
+    displayNextTestimonial();
+    
+    // Clear any existing interval
+    if (testimonialInterval) {
+        clearTimeout(testimonialInterval);
+    }
+    
+    // Schedule next testimonial
+    scheduleNextTestimonial();
+}
+
+// Schedule next testimonial with random delay
+function scheduleNextTestimonial() {
+    if (testimonialInterval) {
+        clearTimeout(testimonialInterval);
+    }
+    const delay = 8000 + Math.random() * 5000;
+    testimonialInterval = setTimeout(() => {
+        displayNextTestimonial();
+        scheduleNextTestimonial();
+    }, delay);
+}
+
+/* ============================================================== */
+/* --- AUTO-TRANSLATE FUNCTION --- */
+/* ============================================================== */
+function detectLanguage(text) {
+    // Check for Chinese characters
+    if (/[\u4e00-\u9fa5]/.test(text)) {
+        return 'zh';
+    }
+    // Check for Malay common words
+    const malayWords = ['saya', 'anda', 'kami', 'mereka', 'ini', 'itu', 'dan', 'atau', 'tetapi', 'kerana', 'sebab', 'jika', 'untuk', 'dengan', 'daripada', 'kepada', 'bahawa', 'sebagai', 'oleh', 'pada'];
+    const words = text.toLowerCase().split(/\s+/);
+    for (let word of words) {
+        if (malayWords.includes(word)) {
+            return 'ms';
+        }
+    }
+    // Default to English
+    return 'en';
+}
+
+// Google Translate API - Simple translation
+async function translateText(text, targetLang) {
+    // If target is same as source or text is empty, return original
+    if (!text || text.trim() === '') return text;
+    
+    try {
+        // Attempt Google Translate API (free, no key required for basic)
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
+        const response = await fetch(url);
+        if (response.ok) {
+            const data = await response.json();
+            if (data && data[0] && data[0][0] && data[0][0][0]) {
+                return data[0][0][0];
+            }
+        }
+    } catch (e) {
+        console.warn('Translation API failed, using fallback:', e);
+    }
+    
+    // Fallback: return original text
+    return text;
+}
+
+/* ============================================================== */
+/* --- SUBMIT TESTIMONIAL - WITH AUTO-TRANSLATE TO 3 LANGUAGES --- */
+/* ============================================================== */
+async function submitTestimonial(event) {
+    event.preventDefault();
+    
+    let name = document.getElementById('testimonial-name').value.trim();
+    const title = document.getElementById('testimonial-title').value.trim();
+    const comment = document.getElementById('testimonial-comment').value.trim();
+    const rating = document.getElementById('testimonial-rating').value;
+    const lang = getCurrentLanguage();
+    
+    if (!name || !title || !comment) {
+        alert('Please fill in all fields.');
+        return;
+    }
+    
+    // FORMAT NAME: Keep only first 5 letters, rest are asterisks
+    // Remove any existing asterisks first
+    name = name.replace(/\*+$/, '').trim();
+    
+    // Take only the first 5 characters (letters only)
+    let nameLetters = name.replace(/[^a-zA-Z]/g, ''); // Remove non-letters
+    let displayName = nameLetters.substring(0, 5); // Take only first 5 letters
+    
+    // If name is less than 5 letters, pad with the first letter repeated
+    while (displayName.length < 5) {
+        displayName += displayName.charAt(0) || 'X';
+    }
+    
+    // Add 5 asterisks to make it 10 characters total
+    displayName = displayName + '*****';
+    
+    // Detect the language of the input
+    const detectedLang = detectLanguage(comment + ' ' + title);
+    
+    // Show translating message
+    const submitBtn = document.querySelector('#testimonial-form .btn-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = '⏳ Translating...';
+    submitBtn.disabled = true;
+    
+    try {
+        // Translate title to all 3 languages
+        const titleEn = detectedLang === 'en' ? title : await translateText(title, 'en');
+        const titleZh = detectedLang === 'zh' ? title : await translateText(title, 'zh');
+        const titleMs = detectedLang === 'ms' ? title : await translateText(title, 'ms');
+        
+        // Translate comment to all 3 languages
+        const commentEn = detectedLang === 'en' ? comment : await translateText(comment, 'en');
+        const commentZh = detectedLang === 'zh' ? comment : await translateText(comment, 'zh');
+        const commentMs = detectedLang === 'ms' ? comment : await translateText(comment, 'ms');
+        
+        const data = {
+            timestamp: new Date().toISOString(),
+            name: displayName,
+            title_en: titleEn,
+            title_zh: titleZh,
+            title_ms: titleMs,
+            comment_en: commentEn,
+            comment_zh: commentZh,
+            comment_ms: commentMs,
+            rating: rating,
+            approved: 'FALSE'
+        };
+        
+        const response = await fetch(SHEET_API_POST_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        
+        if (response.ok) {
+            const successMessages = {
+                'en': '✅ Thank you! Your testimonial has been submitted for review.',
+                'zh': '✅ 谢谢！您的评价已提交审核。',
+                'ms': '✅ Terima kasih! Testimoni anda telah dihantar untuk semakan.'
+            };
+            alert(successMessages[lang] || successMessages['en']);
+            document.getElementById('testimonial-form').reset();
+            closeTestimonialForm();
+        } else {
+            const errorText = await response.text();
+            console.error('Error response:', errorText);
+            alert('Something went wrong. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Something went wrong. Please try again.');
+    } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
+}
+
+// Open testimonial form
+function openTestimonialForm() {
+    document.getElementById('testimonial-modal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close testimonial form
+function closeTestimonialForm() {
+    document.getElementById('testimonial-modal').classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+/* ============================================================== */
 /* --- SIDE PANEL TOGGLE --- */
 /* ============================================================== */
 document.addEventListener('DOMContentLoaded', function() {
@@ -478,4 +945,27 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.side-dropdown-wrapper.open').forEach(w => w.classList.remove('open'));
         }
     });
+
+    // Close testimonial modal on overlay click
+    const modal = document.getElementById('testimonial-modal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTestimonialForm();
+            }
+        });
+    }
+    
+    // Start testimonial chat when reviews section is shown
+    const observer = new MutationObserver(function() {
+        const reviewSection = document.getElementById('section-review');
+        if (reviewSection && reviewSection.style.display !== 'none') {
+            startTestimonialChat();
+        }
+    });
+    
+    const reviewSection = document.getElementById('section-review');
+    if (reviewSection) {
+        observer.observe(reviewSection, { attributes: true, attributeFilter: ['style'] });
+    }
 });

@@ -77,7 +77,8 @@
 
     <!-- MAIN CONTENT AREA -->
     <div class="main-content-area">
-        <header>
+        <!-- HEADER - HIDDEN ON DESKTOP, VISIBLE ON MOBILE -->
+        <header class="site-header">
             <div class="header-center-logo"></div>
             <!-- <div class="top-right-japanese">男一番</div> -->
             <img src="logo.png" alt="Number One Logo" class="top-right-logo">
@@ -85,18 +86,33 @@
 
         <!-- SECTION: HOME -->
         <div id="section-home" class="page-section">
-            <section class="product-poster" data-bg="background-box" data-bg-mobile="background-box-mobile">
-                <!-- Pure CSS Background -->
+            <!-- SPLIT POSTER - DESKTOP ONLY (1:5:1 RATIO) -->
+            <section class="product-poster-split">
+                <!-- Left Part (1 part) -->
+                <div class="poster-left">
+                    <img src="en_poster-logo.png" class="poster-img poster-left-img lang-poster" data-base="poster-logo.png" alt="Number One Logo">
+                </div>
+                <!-- Middle Part (5 parts) -->
+                <div class="poster-middle">
+                    <img src="en_background-box.jpg" class="poster-img poster-middle-img lang-poster" data-base="background-box.jpg" alt="Number One Background">
+                </div>
+                <!-- Right Part (1 part) -->
+                <div class="poster-right">
+                    <img src="en_poster-logo.png" class="poster-img poster-right-img lang-poster" data-base="poster-logo.png" alt="Number One Logo">
+                </div>
             </section>
 
-            <!-- <h1 class="page-title" data-i18n="intro_headline">Built for Endurance. Zero Excuses.</h1> -->
-            <!-- <p class="page-subtitle" data-i18n="intro_subtitle">Discover the formula crafted for stamina and confidence.</p> -->
+            <!-- ORIGINAL POSTER FOR MOBILE (hidden on desktop) -->
+            <section class="product-poster-mobile" data-bg="background-box" data-bg-mobile="background-box-mobile">
+                <!-- Pure CSS Background for mobile -->
+            </section>
 
             <section class="product-main-section">
                 <div class="product-image-gallery">
                     <img src="en_pic1.jpg" class="lang-img fiery-border" data-base="pic1.jpg">
                     <img src="en_pic2.jpg" class="lang-img fiery-border" data-base="pic2.jpg">
                     <img src="en_pic3.jpg" class="lang-img fiery-border" data-base="pic3.jpg">
+                    <img src="en_pic4.jpg" class="lang-img fiery-border" data-base="pic4.jpg">
                 </div>
 
                 <!-- PRODUCT PRICE & ORDER BUTTON -->
@@ -115,11 +131,26 @@
 
         <!-- SECTION: PRODUCT -->
         <div id="section-product" class="page-section" style="display:none;">
-            <section class="product-poster" data-bg="background-box" data-bg-mobile="background-box-mobile">
-                <!-- Pure CSS Background -->
+            <!-- SPLIT POSTER - DESKTOP ONLY (1:5:1 RATIO) -->
+            <section class="product-poster-split">
+                <!-- Left Part (1 part) -->
+                <div class="poster-left">
+                    <img src="en_poster-logo.png" class="poster-img poster-left-img lang-poster" data-base="poster-logo.png" alt="Number One Logo">
+                </div>
+                <!-- Middle Part (5 parts) -->
+                <div class="poster-middle">
+                    <img src="en_background-box.jpg" class="poster-img poster-middle-img lang-poster" data-base="background-box.jpg" alt="Number One Background">
+                </div>
+                <!-- Right Part (1 part) -->
+                <div class="poster-right">
+                    <img src="en_poster-logo.png" class="poster-img poster-right-img lang-poster" data-base="poster-logo.png" alt="Number One Logo">
+                </div>
             </section>
 
-            <!-- <h1 class="page-title" data-i18n="prod_title">Number One / Otoko Ichiban</h1>-->
+            <!-- ORIGINAL POSTER FOR MOBILE (hidden on desktop) -->
+            <section class="product-poster-mobile" data-bg="background-box" data-bg-mobile="background-box-mobile">
+                <!-- Pure CSS Background for mobile -->
+            </section>
             
             <section class="product-main-section">
                 <div class="product-info-sidebar" style="flex: 1; width: 100%; max-width: 800px; margin: 0 auto;">
@@ -149,100 +180,57 @@
 
         <!-- SECTION: REVIEW -->
         <div id="section-review" class="page-section" style="display:none;">
-            <section class="product-poster" data-bg="background-box" data-bg-mobile="background-box-mobile">
-                <!-- Pure CSS Background -->
+            <!-- SPLIT POSTER - DESKTOP ONLY (1:5:1 RATIO) -->
+            <section class="product-poster-split">
+                <!-- Left Part (1 part) -->
+                <div class="poster-left">
+                    <img src="en_poster-logo.png" class="poster-img poster-left-img lang-poster" data-base="poster-logo.png" alt="Number One Logo">
+                </div>
+                <!-- Middle Part (5 parts) -->
+                <div class="poster-middle">
+                    <img src="en_background-box.jpg" class="poster-img poster-middle-img lang-poster" data-base="background-box.jpg" alt="Number One Background">
+                </div>
+                <!-- Right Part (1 part) -->
+                <div class="poster-right">
+                    <img src="en_poster-logo.png" class="poster-img poster-right-img lang-poster" data-base="poster-logo.png" alt="Number One Logo">
+                </div>
             </section>
 
-            <!--<h1 class="page-title">What Our Customers Say</h1>-->
+            <!-- ORIGINAL POSTER FOR MOBILE (hidden on desktop) -->
+            <section class="product-poster-mobile" data-bg="background-box" data-bg-mobile="background-box-mobile">
+                <!-- Pure CSS Background for mobile -->
+            </section>
             
             <section class="testimonials-section">
                 
-                <div class="testimonial-slider-container">
+                <!-- CHAT BOX STYLE TESTIMONIALS -->
+                <div class="chat-container">
+                    <div class="chat-header-bar">
+                        <div class="chat-header-left">
+                            <span class="chat-dot online"></span>
+                            <span class="chat-header-title">Live Feed</span>
+                            <span class="chat-member-count" id="member-count">● 0 members</span>
+                        </div>
+                        <div class="chat-header-right">
+                            <span class="chat-status">🟢 Live</span>
+                        </div>
+                    </div>
                     
-                    <!-- TESTIMONIAL 1 -->
-                    <div class="testimonial-slide active" onclick="toggleSliderTestimonial(this)">
-                        <div class="quote-mark">“</div>
-                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="testimonial-title" data-i18n="test_title_1">"I Feel Like I'm 25 Again!"</div>
-                        <div class="testimonial-body" data-i18n="test_body_1"></div>
-                        <div class="testimonial-user" data-i18n="test_user_1">- Mike*******</div>
+                    <div class="chat-messages" id="testimonial-chat-container">
+                        <!-- Messages will be inserted here -->
+                        <div class="loading-message" style="text-align:center; color:#666; padding:40px 0;">
+                            <i class="fas fa-spinner fa-spin" style="font-size:24px;"></i>
+                            <p style="margin-top:10px;">Loading testimonials...</p>
+                        </div>
                     </div>
-
-                    <!-- TESTIMONIAL 2 -->
-                    <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
-                        <div class="quote-mark">“</div>
-                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="testimonial-title" data-i18n="test_title_2">"The Best Night of Our Marriage—Hands Down!"</div>
-                        <div class="testimonial-body" data-i18n="test_body_2"></div>
-                        <div class="testimonial-user" data-i18n="test_user_2">- DavidR****</div>
+                    
+                    <div class="chat-footer-bar">
+                        <button class="share-experience-btn" onclick="openTestimonialForm()">
+                            <i class="fas fa-pen"></i> Share Your Experience
+                        </button>
                     </div>
-
-                    <!-- TESTIMONIAL 3 -->
-                    <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
-                        <div class="quote-mark">“</div>
-                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="testimonial-title" data-i18n="test_title_3">"Zero Stress, 100% Pure Fun!"</div>
-                        <div class="testimonial-body" data-i18n="test_body_3"></div>
-                        <div class="testimonial-user" data-i18n="test_user_3">- TonyK***</div>
-                    </div>
-
-                    <!-- TESTIMONIAL 4 -->
-                    <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
-                        <div class="quote-mark">“</div>
-                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="testimonial-title" data-i18n="test_title_4">"I Finally Feel Like a Superhero!"</div>
-                        <div class="testimonial-body" data-i18n="test_body_4"></div>
-                        <div class="testimonial-user" data-i18n="test_user_4">- JamesB*****</div>
-                    </div>
-
-                    <!-- TESTIMONIAL 5 -->
-                    <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
-                        <div class="quote-mark">“</div>
-                        <div class="testimonial-rating"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="testimonial-title" data-i18n="test_title_5">"The Only Brand That Delivers"</div>
-                        <div class="testimonial-body" data-i18n="test_body_5"></div>
-                        <div class="testimonial-user" data-i18n="test_user_5">- Aaron*****</div>
-                    </div>
-
-                    <!-- TESTIMONIAL 6 -->
-                    <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
-                        <div class="quote-mark">“</div>
-                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="testimonial-title" data-i18n="test_title_6">"My Secret Weapon"</div>
-                        <div class="testimonial-body" data-i18n="test_body_6"></div>
-                        <div class="testimonial-user" data-i18n="test_user_6">- Marcus*****</div>
-                    </div>
-
-                    <!-- TESTIMONIAL 7 -->
-                    <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
-                        <div class="quote-mark">“</div>
-                        <div class="testimonial-rating"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="testimonial-title" data-i18n="test_title_7">"Better Than My 20s"</div>
-                        <div class="testimonial-body" data-i18n="test_body_7"></div>
-                        <div class="testimonial-user" data-i18n="test_user_7">- Victor*****</div>
-                    </div>
-
-                    <!-- TESTIMONIAL 8 -->
-                    <div class="testimonial-slide" onclick="toggleSliderTestimonial(this)">
-                        <div class="quote-mark">“</div>
-                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="testimonial-title" data-i18n="test_title_8">"Finally, Peace of Mind"</div>
-                        <div class="testimonial-body" data-i18n="test_body_8"></div>
-                        <div class="testimonial-user" data-i18n="test_user_8">- Derek*****</div>
-                    </div>
-
-                    <div class="slider-dots">
-                        <span class="dot active" data-index="0"></span>
-                        <span class="dot" data-index="1"></span>
-                        <span class="dot" data-index="2"></span>
-                        <span class="dot" data-index="3"></span>
-                        <span class="dot" data-index="4"></span>
-                        <span class="dot" data-index="5"></span>
-                        <span class="dot" data-index="6"></span>
-                        <span class="dot" data-index="7"></span>
-                    </div>
-
                 </div>
+                
             </section>
         </div>
 
@@ -291,6 +279,44 @@
                 <button class="btn-cancel" onclick="closeOrderModal()" data-i18n="modal_cancel">Cancel</button>
                 <button class="btn-submit" onclick="submitOrderToWhatsApp()" data-i18n="modal_submit">Submit</button>
             </div>
+        </div>
+    </div>
+
+    <!-- SUBMIT TESTIMONIAL MODAL -->
+    <div id="testimonial-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>📝 Share Your Experience</h2>
+            <p style="color: #aaa; font-size: 14px; text-align: center; margin-bottom: 20px;">
+                Your review will be reviewed before going live.
+            </p>
+            <form id="testimonial-form" onsubmit="submitTestimonial(event)">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="testimonial-name" placeholder="e.g., John D." required>
+                </div>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="testimonial-title" placeholder="e.g., Life-Changing!" required>
+                </div>
+                <div class="form-group">
+                    <label>Your Review</label>
+                    <textarea id="testimonial-comment" rows="4" placeholder="Share your experience..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <select id="testimonial-rating" required>
+                        <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                        <option value="4">⭐⭐⭐⭐ (4)</option>
+                        <option value="3">⭐⭐⭐ (3)</option>
+                        <option value="2">⭐⭐ (2)</option>
+                        <option value="1">⭐ (1)</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeTestimonialForm()">Cancel</button>
+                    <button type="submit" class="btn-submit">Submit Review</button>
+                </div>
+            </form>
         </div>
     </div>
 

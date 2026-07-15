@@ -70,7 +70,7 @@ header {
 }
 
 .side-icon {
-    color: #888;
+    color: #FFD700;
     font-size: 28px;
     text-decoration: none;
     padding: 10px 8px;
@@ -90,6 +90,7 @@ header {
 .side-icon:hover {
     color: #fff;
     background-color: #252525;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 }
 
 .side-label {
@@ -97,13 +98,17 @@ header {
     font-weight: 600;
     letter-spacing: 0px;
     margin-top: 4px;
-    color: inherit;
+    color: #FFD700;
     line-height: 1.2;
     display: block;
     width: 100%;
     text-align: center;
     white-space: nowrap;
     overflow: visible;
+}
+
+.side-icon:hover .side-label {
+    color: #fff;
 }
 
 .side-dropdown-wrapper {
@@ -152,7 +157,7 @@ header {
 .side-dropdown-content a:hover,
 .side-dropdown-content .lang-option:hover {
     background-color: #252525;
-    color: #fff;
+    color: #FFD700;
 }
 
 .side-dropdown-wrapper.open .side-icon {
@@ -178,19 +183,20 @@ header {
     left: 20px;
     z-index: 10001;
     background-color: #111;
-    color: #fff;
+    color: #FFD700;
     padding: 10px 14px;
     border-radius: 6px;
     cursor: pointer;
     font-size: 24px;
-    border: 1px solid #232323;
+    border: 1px solid #FFD700;
     transition: opacity 0.3s ease;
 }
 
 .mobile-menu-toggle:hover,
 .mobile-menu-toggle:active {
-    background-color: #25D366;
-    border-color: #25D366;
+    background-color: #FFD700;
+    color: #111;
+    border-color: #FFD700;
 }
 
 /* --- MOBILE OVERLAY --- */
@@ -229,37 +235,98 @@ header {
 }
 
 /* ============================================================== */
-/* --- DESKTOP BACKGROUNDS --- */
+/* --- SPLIT POSTER SECTION - DESKTOP (1:5:1 RATIO) --- */
 /* ============================================================== */
-.product-poster {
+.product-poster-split {
+    display: none;
     width: 100%;
     height: 450px;
-    display: block;
-    background-color: transparent;
-    background-position: center center;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    flex-direction: row;
+    gap: 0;
+    overflow: hidden;
     border-bottom: 1px solid #232323;
-    box-shadow: inset 0 0 150px rgba(0,0,0,0.8);
 }
 
-.product-poster img {
-    display: none !important;
+.poster-left {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+    background-color: #0a0a0a;
 }
 
-/* DEFAULT FALLBACK (if JS hasn't loaded) */
-html:not([lang="en"]):not([lang="zh"]):not([lang="ms"]) .product-poster,
-html[lang="en"] .product-poster {
-    background-image: url('en_background-box.jpg') !important;
-    background-size: contain !important;
+.poster-middle {
+    flex: 5;
+    height: 100%;
+    overflow: hidden;
+    background-color: #0a0a0a;
 }
-html[lang="zh"] .product-poster {
-    background-image: url('zh_background-box.jpg') !important;
-    background-size: contain !important;
+
+.poster-right {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+    background-color: #0a0a0a;
 }
-html[lang="ms"] .product-poster {
-    background-image: url('ms_background-box.jpg') !important;
-    background-size: contain !important;
+
+.poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background-color: #0a0a0a;
+}
+
+/* ============================================================== */
+/* --- DESKTOP SPLIT POSTER VISIBILITY --- */
+/* ============================================================== */
+
+/* Desktop: Show split poster, hide mobile poster */
+@media (min-width: 1101px) {
+    .product-poster-split {
+        display: flex !important;
+    }
+    .product-poster-mobile {
+        display: none !important;
+    }
+}
+
+/* Mobile: Hide split poster, show mobile poster */
+@media (max-width: 1100px) {
+    .product-poster-split {
+        display: none !important;
+    }
+    .product-poster-mobile {
+        display: block !important;
+        height: 220px !important;
+        margin-bottom: 20px !important;
+        background-size: contain !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+    }
+    
+    html:not([lang="en"]):not([lang="zh"]):not([lang="ms"]) .product-poster-mobile,
+    html[lang="en"] .product-poster-mobile {
+        background-image: url('en_background-box-mobile.jpg') !important;
+        background-size: contain !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+    }
+    html[lang="zh"] .product-poster-mobile {
+        background-image: url('zh_background-box-mobile.jpg') !important;
+        background-size: contain !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+    }
+    html[lang="ms"] .product-poster-mobile {
+        background-image: url('ms_background-box-mobile.jpg') !important;
+        background-size: contain !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+    }
+    
+    .product-poster-mobile img {
+        display: none !important;
+    }
 }
 
 /* ============================================================== */
@@ -400,7 +467,229 @@ html[lang="ms"] .product-poster {
     font-size: 20px;
 }
 
-/* --- TESTIMONIALS --- */
+/* ============================================================== */
+/* --- CHAT BOX TESTIMONIALS - WITH FIERY GLOW --- */
+/* ============================================================== */
+.chat-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #0d0d0d;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 69, 0, 0.6);
+    overflow: hidden;
+    box-shadow: 
+        0 0 20px rgba(255, 69, 0, 0.3),
+        0 0 40px rgba(255, 140, 0, 0.15),
+        0 0 60px rgba(255, 215, 0, 0.08),
+        inset 0 0 30px rgba(255, 69, 0, 0.05);
+    transition: all 0.4s ease;
+}
+
+.chat-container:hover {
+    border-color: rgba(255, 69, 0, 0.9);
+    box-shadow: 
+        0 0 30px rgba(255, 69, 0, 0.5),
+        0 0 60px rgba(255, 140, 0, 0.3),
+        0 0 100px rgba(255, 215, 0, 0.15),
+        inset 0 0 40px rgba(255, 69, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.chat-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #111;
+    border-bottom: 1px solid rgba(255, 69, 0, 0.2);
+}
+
+.chat-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.chat-dot.online {
+    background: #25D366;
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+    100% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+}
+
+.chat-header-title {
+    font-weight: 700;
+    color: #FFD700;
+    font-size: 16px;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.chat-member-count {
+    font-size: 12px;
+    color: #888;
+}
+
+.chat-status {
+    font-size: 12px;
+    color: #25D366;
+    background: rgba(37, 211, 102, 0.15);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.chat-messages {
+    padding: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #FFD700;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.message-wrapper {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-message {
+    background: #161616;
+    border-radius: 12px;
+    padding: 16px 20px;
+    border: 1px solid rgba(255, 69, 0, 0.3);
+    transition: all 0.4s ease;
+    box-shadow: 
+        0 0 10px rgba(255, 69, 0, 0.1),
+        inset 0 0 20px rgba(255, 69, 0, 0.03);
+}
+
+.chat-message:hover {
+    border-color: rgba(255, 69, 0, 0.7);
+    box-shadow: 
+        0 0 20px rgba(255, 69, 0, 0.2),
+        0 0 40px rgba(255, 140, 0, 0.1),
+        inset 0 0 30px rgba(255, 69, 0, 0.05);
+    transform: translateX(4px);
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.chat-rating {
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.chat-title {
+    font-weight: 700;
+    color: #FFD700;
+    font-size: 15px;
+    display: block;
+    width: 100%;
+    word-wrap: break-word;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+}
+
+.chat-body p {
+    color: #e8e8e8;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.chat-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 69, 0, 0.15);
+}
+
+.chat-user {
+    font-size: 13px;
+    color: #FFD700;
+    font-weight: 600;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+}
+
+.chat-time {
+    font-size: 12px;
+    color: #666;
+}
+
+.chat-footer-bar {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255, 69, 0, 0.2);
+    background: #111;
+}
+
+.share-experience-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #dc143c, #ff4500);
+    color: #fff;
+    border: 2px solid rgba(255, 69, 0, 0.3);
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 
+        0 0 20px rgba(220, 20, 60, 0.3),
+        0 0 40px rgba(255, 69, 0, 0.1);
+}
+
+.share-experience-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 
+        0 0 30px rgba(220, 20, 60, 0.5),
+        0 0 60px rgba(255, 69, 0, 0.3),
+        0 0 80px rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 69, 0, 0.6);
+}
+
+.share-experience-btn i {
+    font-size: 18px;
+}
+
+/* --- TESTIMONIALS SLIDER (OLD - KEPT FOR REFERENCE) --- */
 .testimonials-section {
     max-width: 1200px;
     margin: 0 auto;
@@ -537,7 +826,7 @@ html[lang="ms"] .product-poster {
     box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
 }
 
-/* --- LIGHTBOX OVERLAY (kept for reference but images no longer trigger it) --- */
+/* --- LIGHTBOX OVERLAY --- */
 .lightbox-overlay {
     display: none;
     position: fixed;
@@ -752,32 +1041,34 @@ html[lang="ms"] .product-poster {
 }
 
 /* ============================================================== */
+/* --- HIDE HEADER ON DESKTOP --- */
+/* ============================================================== */
+.site-header {
+    display: block;
+}
+
+@media (min-width: 1101px) {
+    .site-header {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1100px) {
+    .site-header {
+        display: flex !important;
+        justify-content: flex-end !important;
+        align-items: center !important;
+        padding: 18px 40px !important;
+        background-color: #111 !important;
+        border-bottom: 1px solid #232323 !important;
+    }
+}
+
+/* ============================================================== */
 /* --- MOBILE & LANDSCAPE FIXES --- */
 /* ============================================================== */
 @media (max-width: 1100px) {
     
-    /* --- MOBILE BACKGROUNDS --- */
-    .product-poster {
-        height: 220px !important;
-        margin-bottom: 20px !important;  /* ADDED - gap on mobile only */
-    }
-    
-    html:not([lang="en"]):not([lang="zh"]):not([lang="ms"]) .product-poster,
-    html[lang="en"] .product-poster {
-        background-image: url('en_background-box-mobile.jpg') !important;
-    }
-    html[lang="zh"] .product-poster {
-        background-image: url('zh_background-box-mobile.jpg') !important;
-    }
-    html[lang="ms"] .product-poster {
-        background-image: url('ms_background-box-mobile.jpg') !important;
-    }
-    
-    .product-poster img {
-        display: none !important;
-    }
-
-    /* --- FIX TEXT GAPS --- */
     .page-title {
         padding: 15px 15px 5px 15px !important;
         margin: 0 !important;
@@ -787,7 +1078,6 @@ html[lang="ms"] .product-poster {
         padding: 0 15px !important;
     }
     
-    /* --- 1-COLUMN GRID FOR MOBILE --- */
     .product-main-section {
         margin: 0 auto 20px auto !important;
         padding: 0 10px !important;
@@ -844,6 +1134,7 @@ html[lang="ms"] .product-poster {
         border-radius: 0 !important;
         text-align: left !important;
         border-bottom: 1px solid #1a1a1a !important;
+        color: #FFD700 !important;
     }
     
     .side-label {
@@ -853,6 +1144,7 @@ html[lang="ms"] .product-poster {
         width: auto !important;
         opacity: 1 !important;
         height: auto !important;
+        color: #FFD700 !important;
     }
 
     .side-panel > .side-icon:first-of-type {
@@ -891,6 +1183,135 @@ html[lang="ms"] .product-poster {
         top: 15px !important;
         right: 20px !important;
         font-size: 32px !important;
+    }
+
+    /* --- MOBILE CHAT --- */
+    .chat-container {
+        border: 2px solid rgba(255, 69, 0, 0.5) !important;
+        box-shadow: 
+            0 0 15px rgba(255, 69, 0, 0.25),
+            0 0 30px rgba(255, 140, 0, 0.1),
+            0 0 50px rgba(255, 215, 0, 0.05) !important;
+    }
+    
+    .chat-container:hover {
+        border-color: rgba(255, 69, 0, 0.8) !important;
+        box-shadow: 
+            0 0 25px rgba(255, 69, 0, 0.4),
+            0 0 50px rgba(255, 140, 0, 0.2),
+            0 0 80px rgba(255, 215, 0, 0.1) !important;
+        transform: translateY(-2px) !important;
+    }
+    
+    .chat-messages {
+        max-height: 350px !important;
+        padding: 14px !important;
+    }
+    
+    .chat-header-bar {
+        padding: 12px 16px !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        border-bottom: 1px solid rgba(255, 69, 0, 0.15) !important;
+    }
+    
+    .chat-header-title {
+        font-size: 14px !important;
+        color: #FFD700 !important;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.15) !important;
+    }
+    
+    .chat-title {
+        font-size: 14px !important;
+        color: #FFD700 !important;
+        font-weight: 700 !important;
+        display: block !important;
+        width: 100% !important;
+        word-wrap: break-word !important;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.1) !important;
+    }
+    
+    .chat-header {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .chat-rating {
+        font-size: 13px !important;
+        display: inline-block !important;
+    }
+    
+    .chat-message {
+        padding: 14px 16px !important;
+        border: 1px solid rgba(255, 69, 0, 0.25) !important;
+        box-shadow: 
+            0 0 8px rgba(255, 69, 0, 0.08),
+            inset 0 0 15px rgba(255, 69, 0, 0.02) !important;
+    }
+    
+    .chat-message:hover {
+        border-color: rgba(255, 69, 0, 0.6) !important;
+        box-shadow: 
+            0 0 15px rgba(255, 69, 0, 0.15),
+            0 0 30px rgba(255, 140, 0, 0.08) !important;
+        transform: translateX(3px) !important;
+    }
+    
+    .chat-body p {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        color: #e0e0e0 !important;
+    }
+    
+    .chat-footer {
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+        border-top: 1px solid rgba(255, 69, 0, 0.1) !important;
+    }
+    
+    .chat-user {
+        font-size: 12px !important;
+        color: #FFD700 !important;
+        text-shadow: 0 0 12px rgba(255, 215, 0, 0.08) !important;
+    }
+    
+    .chat-time {
+        font-size: 11px !important;
+        color: #666 !important;
+    }
+    
+    .chat-footer-bar {
+        padding: 12px 16px !important;
+        border-top: 1px solid rgba(255, 69, 0, 0.15) !important;
+    }
+    
+    .share-experience-btn {
+        padding: 10px !important;
+        font-size: 14px !important;
+        border: 2px solid rgba(255, 69, 0, 0.25) !important;
+        box-shadow: 
+            0 0 15px rgba(220, 20, 60, 0.2),
+            0 0 30px rgba(255, 69, 0, 0.08) !important;
+    }
+    
+    .share-experience-btn:hover {
+        box-shadow: 
+            0 0 25px rgba(220, 20, 60, 0.4),
+            0 0 50px rgba(255, 69, 0, 0.2) !important;
+        border-color: rgba(255, 69, 0, 0.5) !important;
+    }
+    
+    .chat-messages::-webkit-scrollbar {
+        width: 4px !important;
+    }
+    
+    .chat-messages::-webkit-scrollbar-thumb {
+        background: #FFD700 !important;
+        border-radius: 3px !important;
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.2) !important;
     }
 
     /* --- MOBILE FLOATING CART BUTTON --- */
@@ -948,6 +1369,7 @@ html[lang="ms"] .product-poster {
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
+        color: #FFD700 !important;
     }
 
     .side-label {
@@ -960,6 +1382,7 @@ html[lang="ms"] .product-poster {
         text-align: center !important;
         width: 100% !important;
         display: block !important;
+        color: #FFD700 !important;
     }
 
     .side-icon:hover .side-label,
@@ -976,5 +1399,23 @@ html[lang="ms"] .product-poster {
 
     .side-dropdown-content {
         left: 65px !important;
+    }
+    
+    .chat-container {
+        border: 2px solid rgba(255, 69, 0, 0.4) !important;
+        box-shadow: 
+            0 0 12px rgba(255, 69, 0, 0.2),
+            0 0 25px rgba(255, 140, 0, 0.08) !important;
+    }
+    
+    .chat-message {
+        border: 1px solid rgba(255, 69, 0, 0.2) !important;
+        box-shadow: 
+            0 0 6px rgba(255, 69, 0, 0.06) !important;
+    }
+    
+    .chat-title {
+        color: #FFD700 !important;
+        text-shadow: 0 0 12px rgba(255, 215, 0, 0.1) !important;
     }
 }
