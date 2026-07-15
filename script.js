@@ -385,10 +385,14 @@ function closeLightbox() {
 /* --- WHATSAPP MODAL --- */
 /* ============================================================== */
 function getUnitPrice() {
+    // Try to get price from the visible element first
     const priceText = document.querySelector('.product-price');
-    if (!priceText) return 0;
-    const match = priceText.innerText.match(/(\d+\.?\d*)/);
-    return match ? parseFloat(match[0]) : 0;
+    if (priceText) {
+        const match = priceText.innerText.match(/(\d+\.?\d*)/);
+        if (match) return parseFloat(match[0]);
+    }
+    // Fallback to default price if element is hidden or not found
+    return 168.00; // Default price
 }
 
 function openOrderModal() {
@@ -396,6 +400,11 @@ function openOrderModal() {
     if (modal) {
         modal.classList.add('show');
         document.body.style.overflow = 'hidden';
+        // Set default quantity and update price
+        const qtySelect = document.getElementById('cust-qty-original');
+        if (qtySelect) {
+            qtySelect.value = 1;
+        }
         updateTotalPrice();
     }
 }
@@ -412,12 +421,19 @@ function updateTotalPrice() {
     const qtyOrig = parseInt(document.getElementById('cust-qty-original')?.value) || 0;
     const qtyChoc = parseInt(document.getElementById('cust-qty-chocolate')?.value) || 0;
     const qtyTotal = qtyOrig + qtyChoc;
-    const total = qtyTotal * getUnitPrice();
+    const unitPrice = getUnitPrice();
+    const total = qtyTotal * unitPrice;
     
     const totalQtyEl = document.getElementById('total-qty');
     const totalPriceEl = document.getElementById('total-price');
     if (totalQtyEl) totalQtyEl.innerText = qtyTotal;
     if (totalPriceEl) totalPriceEl.innerText = total.toFixed(2);
+    
+    // Also update the hidden price display if needed
+    const priceDisplay = document.querySelector('.product-price');
+    if (priceDisplay) {
+        priceDisplay.innerText = 'RM' + unitPrice.toFixed(2);
+    }
 }
 
 function submitOrderToWhatsApp() {
