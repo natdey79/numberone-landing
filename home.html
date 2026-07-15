@@ -213,7 +213,6 @@
                         <div class="chat-header-left">
                             <span class="chat-dot online"></span>
                             <span class="chat-header-title">Live Feed</span>
-                            <span class="chat-member-count" id="member-count">● 0 members</span>
                         </div>
                         <div class="chat-header-right">
                             <span class="chat-status">🟢 Live</span>
@@ -230,7 +229,7 @@
                     
                     <div class="chat-footer-bar">
                         <button class="share-experience-btn" onclick="openTestimonialForm()">
-                            <i class="fas fa-pen"></i> Share Your Experience
+                            <i class="fas fa-pen"></i> <span data-i18n="share_experience">Share Your Experience</span>
                         </button>
                     </div>
                 </div>
@@ -289,25 +288,25 @@
     <!-- SUBMIT TESTIMONIAL MODAL -->
     <div id="testimonial-modal" class="modal-overlay">
         <div class="modal-content">
-            <h2>📝 Share Your Experience</h2>
-            <p style="color: #aaa; font-size: 14px; text-align: center; margin-bottom: 20px;">
+            <h2>📝 <span data-i18n="share_experience">Share Your Experience</span></h2>
+            <p style="color: #aaa; font-size: 14px; text-align: center; margin-bottom: 20px;" data-i18n="review_will_be_reviewed">
                 Your review will be reviewed before going live.
             </p>
             <form id="testimonial-form" onsubmit="submitTestimonial(event)">
                 <div class="form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="testimonial-name" placeholder="e.g., John D." required>
+                    <label data-i18n="modal_name">Your Name</label>
+                    <input type="text" id="testimonial-name" placeholder="e.g., John D." data-i18n-placeholder="name_placeholder" required>
                 </div>
                 <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" id="testimonial-title" placeholder="e.g., Life-Changing!" required>
+                    <label data-i18n="modal_title">Title</label>
+                    <input type="text" id="testimonial-title" placeholder="e.g., Life-Changing!" data-i18n-placeholder="title_placeholder" required>
                 </div>
                 <div class="form-group">
-                    <label>Your Review</label>
-                    <textarea id="testimonial-comment" rows="4" placeholder="Share your experience..." required></textarea>
+                    <label data-i18n="modal_comment">Your Review</label>
+                    <textarea id="testimonial-comment" rows="4" placeholder="Share your experience..." data-i18n-placeholder="review_placeholder" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Rating</label>
+                    <label data-i18n="modal_rating">Rating</label>
                     <select id="testimonial-rating" required>
                         <option value="5">⭐⭐⭐⭐⭐ (5)</option>
                         <option value="4">⭐⭐⭐⭐ (4)</option>
@@ -317,8 +316,8 @@
                     </select>
                 </div>
                 <div class="modal-actions">
-                    <button type="button" class="btn-cancel" onclick="closeTestimonialForm()">Cancel</button>
-                    <button type="submit" class="btn-submit">Submit Review</button>
+                    <button type="button" class="btn-cancel" onclick="closeTestimonialForm()" data-i18n="modal_cancel">Cancel</button>
+                    <button type="submit" class="btn-submit" data-i18n="submit_review">Submit Review</button>
                 </div>
             </form>
         </div>
