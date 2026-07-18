@@ -329,30 +329,30 @@ html[lang="ms"] .product-poster-mobile {
     }
     .product-poster-mobile {
         display: block !important;
-        height: 220px !important;
+        height: 300px !important; /* INCREASED FROM 220px TO 300px */
         margin-bottom: 20px !important;
-        background-size: contain !important;
-        background-position: center !important;
+        background-size: contain !important; /* Keeps full width visible */
+        background-position: top center !important; /* Anchors to top so it doesn't cut off */
         background-repeat: no-repeat !important;
     }
     
     html:not([lang="en"]):not([lang="zh"]):not([lang="ms"]) .product-poster-mobile,
     html[lang="en"] .product-poster-mobile {
         background-image: url('en_background-box-mobile.jpg') !important;
-        background-size: contain !important;
-        background-position: center !important;
+        background-size: contain !important; /* Keeps full width visible */
+        background-position: top center !important; /* Anchors to top so it doesn't cut off */
         background-repeat: no-repeat !important;
     }
     html[lang="zh"] .product-poster-mobile {
         background-image: url('zh_background-box-mobile.jpg') !important;
-        background-size: contain !important;
-        background-position: center !important;
+        background-size: contain !important; /* Keeps full width visible */
+        background-position: top center !important; /* Anchors to top so it doesn't cut off */
         background-repeat: no-repeat !important;
     }
     html[lang="ms"] .product-poster-mobile {
         background-image: url('ms_background-box-mobile.jpg') !important;
-        background-size: contain !important;
-        background-position: center !important;
+        background-size: contain !important; /* Keeps full width visible */
+        background-position: top center !important; /* Anchors to top so it doesn't cut off */
         background-repeat: no-repeat !important;
     }
     
@@ -1328,7 +1328,7 @@ html[lang="ms"] .product-poster-mobile {
     }
     
     .chat-messages {
-        max-height: 500px !important;
+        max-height: 1000px !important; /* DOUBLED FROM 500px TO 1000px */
         padding: 14px !important;
     }
     
