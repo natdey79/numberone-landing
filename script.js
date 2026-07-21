@@ -1,5 +1,18 @@
+/*
+    script.js — Interactive behavior for Number One landing
+    Major responsibilities:
+      - Page section navigation (`showSection`)
+      - Internationalization (`translations`, `setLanguage`)
+      - Mobile menu toggle (`toggleMobileMenu`)
+      - Testimonial slider and autoplay controls
+      - Event listeners that wire UI controls to behavior
+
+    Note: A legacy splash-screen implementation is kept commented
+    for reference but is deliberately disabled in `home.html`.
+*/
+
 /* ============================================================== */
-/* --- SPLASH SCREEN --- */
+/* --- SPLASH SCREEN (legacy, disabled) --- */
 /* ============================================================== */
 // DISABLED - Splash screen removed from home.html
 /*
@@ -39,6 +52,12 @@ function showSection(sectionId) {
 /* ============================================================== */
 /* --- TRANSLATION DICTIONARY (BOLDED PRODUCT NAME) --- */
 /* ============================================================== */
+/*
+    translations: small in-memory dictionary used to switch visible
+    labels and localized text. Keys match `data-i18n` attributes
+    present in the DOM. Keep translations concise and safe for
+    direct insertion (this code handles HTML vs text automatically).
+*/
 const translations = {
     'en': {
         'nav_home': 'Home', 'nav_product': 'Product', 'nav_review': 'Reviews', 'nav_contact': 'Contact', 'nav_about': 'About Us', 'nav_language': 'Language',

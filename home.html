@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--
+        home.html — Main single-page site container
+        Layout overview:
+          - Left fixed `.side-panel` for navigation and language selector
+          - `main-content-area` contains logical sections: Home, Product, Review
+          - Each section uses shared classes so `script.js` can show/hide them
+          - `style.css` provides responsive layout and visual styles
+    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Number One</title>
@@ -108,11 +116,13 @@
             </section>
 
             <section class="product-main-section">
-                <div class="product-image-gallery">
-                    <img src="en_pic1.jpg" class="lang-img fiery-border" data-base="pic1.jpg">
-                    <img src="en_pic2.jpg" class="lang-img fiery-border" data-base="pic2.jpg">
-                    <img src="en_pic3.jpg" class="lang-img fiery-border" data-base="pic3.jpg">
-                    <img src="en_pic4.jpg" class="lang-img fiery-border" data-base="pic4.jpg">
+                <div class="gallery-wrapper-80">
+                    <div class="product-image-gallery">
+                        <img src="en_pic1.jpg" class="lang-img fiery-border" data-base="pic1.jpg">
+                        <img src="en_pic2.jpg" class="lang-img fiery-border" data-base="pic2.jpg">
+                        <img src="en_pic3.jpg" class="lang-img fiery-border" data-base="pic3.jpg">
+                        <img src="en_pic4.jpg" class="lang-img fiery-border" data-base="pic4.jpg">
+                    </div>
                 </div>
 
                 <!-- PRODUCT PRICE & ORDER BUTTON - HIDDEN -->
@@ -156,13 +166,14 @@
             
             <section class="product-main-section">
                 <div class="product-info-sidebar" style="flex: 1; width: 100%; max-width: 800px; margin: 0 auto;">
-                    
-                    <div class="ingredient-image-container">
-                        <img src="en_ingredient.jpg" class="lang-ingredient-img fiery-border" data-base="ingredient.jpg" alt="Product Ingredients">
-                    </div>
+                    <div class="gallery-wrapper-80">
+                        <div class="ingredient-image-container">
+                            <img src="en_ingredient.jpg" class="lang-ingredient-img fiery-border" data-base="ingredient.jpg" alt="Product Ingredients">
+                        </div>
 
-                    <div class="ingredient-image-container" style="margin-top: 25px;">
-                        <img src="en_ingredient-2.jpg" class="lang-ingredient-img fiery-border" data-base="ingredient-2.jpg" alt="Product Ingredients 2">
+                        <div class="ingredient-image-container" style="margin-top: 25px;">
+                            <img src="en_ingredient-2.jpg" class="lang-ingredient-img fiery-border" data-base="ingredient-2.jpg" alt="Product Ingredients 2">
+                        </div>
                     </div>
                     
                     <!-- ORDER BUTTON IN PRODUCT PAGE - HIDDEN -->

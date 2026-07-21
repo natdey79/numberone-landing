@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--
+        index.html - Single-file landing page
+        - Fullscreen video background (desktop & mobile)
+        - Centered logo image (desktop and mobile variants)
+        - Persistent CTA button anchored near the bottom
+        Inline CSS is used so this file is portable for quick preview.
+    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Number One</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Global reset: remove default spacing and set box model */
         * {
             margin: 0;
             padding: 0;
@@ -17,6 +25,7 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             overflow: hidden;
             background-color: #000;
+            /* hide scrollbars for the fullscreen effect */
         }
 
         .landing-shell {
@@ -34,6 +43,7 @@
             align-items: flex-start;
             overflow: hidden;
             background: #000;
+            /* Fullscreen splash area containing video, logos, and CTA */
         }
 
         .splash-video {
@@ -49,6 +59,7 @@
             z-index: 0;
             filter: brightness(0.65) contrast(1.1);
             display: block;
+            /* Background videos are absolutely positioned and cover viewport */
         }
 
         /* --- TOP IMAGE --- */
@@ -61,6 +72,7 @@
             text-align: center;
             opacity: 0;
             animation: fadeInUp 1s ease-out forwards 0.5s;
+            /* Foreground content (logo/title) placed above the video */
         }
 
         @keyframes fadeInUp {
@@ -80,6 +92,7 @@
                 drop-shadow(0 0 40px rgba(255, 140, 0, 0.4))
                 drop-shadow(0 0 80px rgba(255, 215, 0, 0.2))
                 drop-shadow(0 0 120px rgba(255, 69, 0, 0.15));
+            /* Logo image styling including glow effect */
             animation: fieryPulse 2.5s ease-in-out infinite;
             transition: filter 0.3s ease;
         }
@@ -215,6 +228,7 @@
                 font-size: 22px;
             }
 
+                /* CTA BUTTON (anchored near bottom of viewport) */
             /* Switch videos */
             .splash-video.desktop-video { display: none; }
             .splash-video.mobile-video { display: block; }
@@ -238,6 +252,7 @@
 </head>
 <body>
     <div class="landing-shell">
+                /* Primary CTA button look-and-feel */
         <div class="splash-container">
             
             <!-- DESKTOP VIDEO -->

@@ -1,3 +1,15 @@
+/*
+        style.css — Site-wide styles for Number One landing
+        Sections:
+            - Reset & basics
+            - Header and top logo
+            - Desktop side panel and icons
+            - Mobile controls and overlays
+            - Product poster / gallery layouts
+            - Responsive breakpoints
+        Keep this file focused on layout and visual presentation;
+        interactive behavior lives in `script.js`.
+*/
 /* --- RESET & BASICS --- */
 * {
     margin: 0;
@@ -172,6 +184,7 @@ header {
 }
 
 .main-content-area {
+    /* Main content is offset to make room for the fixed left side panel */
     margin-left: 100px;
 }
 
@@ -329,7 +342,7 @@ html[lang="ms"] .product-poster-mobile {
     }
     .product-poster-mobile {
         display: block !important;
-        height: 300px !important; /* INCREASED FROM 220px TO 300px */
+        height: 280px !important; /* REDUCED BY 5% FROM 350px */
         margin-bottom: 20px !important;
         background-size: contain !important; /* Keeps full width visible */
         background-position: top center !important; /* Anchors to top so it doesn't cut off */
@@ -395,8 +408,14 @@ html[lang="ms"] .product-poster-mobile {
     padding: 0 5px;
 }
 
-/* --- DESKTOP GALLERY FULL SIZE --- */
+/* --- DESKTOP GALLERY 80% WRAPPER --- */
 @media (min-width: 1101px) {
+    .gallery-wrapper-80 {
+        width: 80% !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+
     .product-image-gallery img {
         width: 100%;
         height: auto;
@@ -457,6 +476,11 @@ html[lang="ms"] .product-poster-mobile {
         width: 100% !important;
         height: auto !important;
         border-radius: 8px !important;
+    }
+    
+    .gallery-wrapper-80 {
+        width: 100% !important;
+        margin: 0 !important;
     }
 }
 
