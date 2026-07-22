@@ -9,6 +9,19 @@
 </head>
 <body>
 
+    <!-- SPLASH SCREEN - DISABLED (commented out) -->
+    <!-- 
+    <div id="productSplash" class="product-splash-screen">
+        <img src="logo.webp" alt="Number One Logo" class="splash-logo-img">
+        <div class="splash-timer" id="splashTimer">3</div>
+    </div>
+    -->
+
+    <!-- MOBILE HAMBURGER BUTTON -->
+    <div id="mobile-menu-toggle" class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+
     <!-- MOBILE OVERLAY -->
     <div id="mobile-overlay" class="mobile-overlay" onclick="toggleMobileMenu()"></div>
 
@@ -43,14 +56,13 @@
                 <span class="side-label" data-i18n="nav_about">About Us</span>
             </a>
             <div class="side-dropdown-content">
-                <a href="https://www.facebook.com/share/1EULLxnS5W/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.facebook.com/share/1RnE86tJaX/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
                 <a href="https://www.instagram.com/numberone.my" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
                 <a href="https://www.tiktok.com/@numberone.my" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
             </div>
         </div>
         
-        <!-- LANGUAGE MENU REMOVED FROM SIDE PANEL ON MOBILE (hidden via CSS) -->
-        <div class="side-dropdown-wrapper" id="side-lang-wrapper">
+        <div class="side-dropdown-wrapper">
             <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="Language">
                 <i class="fas fa-globe"></i>
                 <span class="side-label" data-i18n="nav_language">Language</span>
@@ -67,19 +79,8 @@
     <div class="main-content-area">
         <!-- HEADER - HIDDEN ON DESKTOP, VISIBLE ON MOBILE -->
         <header class="site-header">
-            <!-- LEFT GROUP: Hamburger + Language Flags -->
-            <div class="header-left-group">
-                <div class="header-hamburger" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <div class="mobile-lang-flags">
-                    <span class="mobile-lang-flag" data-lang="en" onclick="setLanguage('en')">🇬🇧</span>
-                    <span class="mobile-lang-flag" data-lang="zh" onclick="setLanguage('zh')">🇨🇳</span>
-                    <span class="mobile-lang-flag" data-lang="ms" onclick="setLanguage('ms')">🇲🇾</span>
-                </div>
-            </div>
-
-            <!-- RIGHT: Logo -->
+            <div class="header-center-logo"></div>
+            <!-- <div class="top-right-japanese">男一番</div> -->
             <img src="logo.webp" alt="Number One Logo" class="top-right-logo">
         </header>
 
@@ -115,6 +116,20 @@
                         <img src="en_pic4.webp" class="lang-img fiery-border" data-base="pic4.webp">
                     </div>
                 </div>
+
+                <!-- PRODUCT PRICE & ORDER BUTTON - HIDDEN -->
+                <!-- 
+                <div class="product-order-section">
+                    <div class="product-price-wrapper">
+                        <span class="product-price-label" data-i18n="prod_price_label">Price:</span>
+                        <span class="product-price">RM168.00</span>
+                        <span class="product-price-per" data-i18n="prod_price_per">/ box</span>
+                    </div>
+                    <button class="order-now-btn" onclick="openOrderModal()">
+                        <i class="fas fa-shopping-cart"></i> <span data-i18n="order_now_btn">Order Now</span>
+                    </button>
+                </div>
+                -->
             </section>
         </div>
 
@@ -152,6 +167,20 @@
                             <img src="en_ingredient-2.webp" class="lang-ingredient-img fiery-border" data-base="ingredient-2.webp" alt="Product Ingredients 2">
                         </div>
                     </div>
+                    
+                    <!-- ORDER BUTTON IN PRODUCT PAGE - HIDDEN -->
+                    <!-- 
+                    <div class="product-order-section" style="margin-top: 30px;">
+                        <div class="product-price-wrapper">
+                            <span class="product-price-label" data-i18n="prod_price_label">Price:</span>
+                            <span class="product-price">RM168.00</span>
+                            <span class="product-price-per" data-i18n="prod_price_per">/ box</span>
+                        </div>
+                        <button class="order-now-btn" onclick="openOrderModal()">
+                            <i class="fas fa-shopping-cart"></i> <span data-i18n="order_now_btn">Order Now</span>
+                        </button>
+                    </div>
+                    -->
                 </div>
             </section>
         </div>
