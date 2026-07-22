@@ -1157,10 +1157,10 @@ html[lang="ms"] .product-poster-mobile {
         gap: 12px !important;
     }
 
-    /* --- HAMBURGER INSIDE HEADER --- */
+    /* --- HAMBURGER INSIDE HEADER (INCREASED BY 50%) --- */
     .header-hamburger {
         color: #FFD700 !important;
-        font-size: 22px !important;
+        font-size: 33px !important; /* Increased by 50% from 22px */
         cursor: pointer !important;
         padding: 4px !important;
         line-height: 1 !important;
@@ -1172,15 +1172,15 @@ html[lang="ms"] .product-poster-mobile {
         color: #fff !important;
     }
 
-    /* --- MOBILE LANGUAGE FLAGS --- */
+    /* --- MOBILE LANGUAGE FLAGS (INCREASED BY 50%) --- */
     .mobile-lang-flags {
         display: flex !important;
         align-items: center !important;
-        gap: 6px !important;
+        gap: 8px !important; /* Slightly increased gap for bigger icons */
     }
     
     .mobile-lang-flag {
-        font-size: 20px !important;
+        font-size: 30px !important; /* Increased by 50% from 20px */
         cursor: pointer !important;
         transition: transform 0.2s ease, opacity 0.2s ease !important;
         opacity: 0.6 !important;
