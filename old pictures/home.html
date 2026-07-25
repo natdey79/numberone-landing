@@ -4,18 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Number One</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- YouTube API -->
+    <script src="https://www.youtube.com/iframe_api" defer></script>
+    
+    <style>
+        /* --- FLOATING LANGUAGE ICONS (TOP LEFT, SIDE BY SIDE, ALIGNED WITH HOME) --- */
+        .floating-lang-flags {
+            position: fixed;
+            top: 15px;
+            left: 115px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            background: transparent;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .floating-lang-btn {
+            display: block;
+            text-decoration: none;
+            padding: 4px;
+            border-radius: 12px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            background: rgba(17, 17, 17, 0.5);
+        }
+
+        .floating-lang-btn:hover {
+            background: #252525;
+            border-color: #FFD700;
+            transform: scale(1.08);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .floating-flag-img {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            transition: transform 0.25s ease;
+        }
+
+        .floating-lang-btn:hover .floating-flag-img {
+            transform: scale(1.05);
+        }
+
+        /* Hide floating flags on mobile */
+        @media (max-width: 1100px) {
+            .floating-lang-flags {
+                display: none !important;
+            }
+        }
+
+        /* Adjust side panel to remove language section */
+        .side-lang-flags {
+            display: none !important;
+        }
+        .side-menu-separator {
+            display: none !important;
+        }
+
+        /* YouTube Video Wrapper */
+        .youtube-video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #000;
+        }
+
+        .youtube-video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        /* Mobile YouTube */
+        @media (max-width: 1100px) {
+            .youtube-video-wrapper {
+                border-radius: 8px !important;
+                margin-bottom: 0 !important;
+            }
+            .youtube-video-wrapper iframe {
+                border-radius: 8px !important;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- SPLASH SCREEN - DISABLED (commented out) -->
-    <!-- 
-    <div id="productSplash" class="product-splash-screen">
-        <img src="logo.webp" alt="Number One Logo" class="splash-logo-img">
-        <div class="splash-timer" id="splashTimer">3</div>
-    </div>
-    -->
 
     <!-- MOBILE HAMBURGER BUTTON -->
     <div id="mobile-menu-toggle" class="mobile-menu-toggle" onclick="toggleMobileMenu()">
@@ -25,23 +117,43 @@
     <!-- MOBILE OVERLAY -->
     <div id="mobile-overlay" class="mobile-overlay" onclick="toggleMobileMenu()"></div>
 
-    <!-- SIDE PANEL -->
+    <!-- === FLOATING LANGUAGE ICONS (ALIGNED WITH HOME BUTTON) === -->
+    <div class="floating-lang-flags">
+        <a href="#" onclick="setLanguage('en'); return false;" class="floating-lang-btn" title="Switch to English">
+            <img src="flag-en.webp" alt="EN" class="floating-flag-img">
+        </a>
+        <a href="#" onclick="setLanguage('zh'); return false;" class="floating-lang-btn" title="Switch to Chinese">
+            <img src="flag-zh.webp" alt="中文" class="floating-flag-img">
+        </a>
+        <a href="#" onclick="setLanguage('ms'); return false;" class="floating-lang-btn" title="Switch to Malay">
+            <img src="flag-ms.webp" alt="MS" class="floating-flag-img">
+        </a>
+    </div>
+
+    <!-- SIDE PANEL (CLEANED UP - NO LANGUAGE SECTION) -->
     <div class="side-panel" id="sidePanel">
-        <a href="javascript:void(0);" onclick="showSection('section-home')" class="side-icon" title="Home">
+        
+        <!-- Home -->
+        <a href="#" onclick="showSection('section-home'); return false;" class="side-icon" title="Home">
             <i class="fas fa-home"></i>
             <span class="side-label" data-i18n="nav_home">Home</span>
         </a>
-        <a href="javascript:void(0);" onclick="showSection('section-product')" class="side-icon" title="Product">
+        
+        <!-- Product -->
+        <a href="#" onclick="showSection('section-product'); return false;" class="side-icon" title="Product">
             <i class="fas fa-box"></i>
             <span class="side-label" data-i18n="nav_product">Product</span>
         </a>
-        <a href="javascript:void(0);" onclick="showSection('section-review')" class="side-icon" title="Reviews">
+        
+        <!-- Reviews -->
+        <a href="#" onclick="showSection('section-review'); return false;" class="side-icon" title="Reviews">
             <i class="fas fa-star"></i>
             <span class="side-label" data-i18n="nav_review">Reviews</span>
         </a>
         
+        <!-- Contact Dropdown -->
         <div class="side-dropdown-wrapper">
-            <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="Contact">
+            <a href="#" onclick="return false;" class="side-icon side-dropdown-toggle" title="Contact">
                 <i class="fas fa-envelope"></i>
                 <span class="side-label" data-i18n="nav_contact">Contact</span>
             </a>
@@ -50,38 +162,39 @@
             </div>
         </div>
 
+        <!-- About Us Dropdown -->
         <div class="side-dropdown-wrapper">
-            <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="About Us">
+            <a href="#" onclick="return false;" class="side-icon side-dropdown-toggle" title="About Us">
                 <i class="fas fa-info-circle"></i>
                 <span class="side-label" data-i18n="nav_about">About Us</span>
             </a>
             <div class="side-dropdown-content">
-                <a href="https://www.facebook.com/share/1RnE86tJaX/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.facebook.com/share/1EULLxnS5W/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
                 <a href="https://www.instagram.com/numberone.my" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
                 <a href="https://www.tiktok.com/@numberone.my" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
             </div>
         </div>
-        
-        <div class="side-dropdown-wrapper">
-            <a href="javascript:void(0);" class="side-icon side-dropdown-toggle" title="Language">
-                <i class="fas fa-globe"></i>
-                <span class="side-label" data-i18n="nav_language">Language</span>
-            </a>
-            <div class="side-dropdown-content" id="langMenuHome">
-                <span class="lang-option" data-lang="en">🇬🇧 <span data-i18n="lang_en">English (EN)</span></span>
-                <span class="lang-option" data-lang="zh">🇨🇳 <span data-i18n="lang_zh">中文 (ZH)</span></span>
-                <span class="lang-option" data-lang="ms">🇲🇾 <span data-i18n="lang_ms">Bahasa Melayu (MS)</span></span>
-            </div>
-        </div>
+
     </div>
 
     <!-- MAIN CONTENT AREA -->
     <div class="main-content-area">
         <!-- HEADER - HIDDEN ON DESKTOP, VISIBLE ON MOBILE -->
         <header class="site-header">
-            <div class="header-center-logo"></div>
-            <!-- <div class="top-right-japanese">男一番</div> -->
-            <img src="logo.webp" alt="Number One Logo" class="top-right-logo">
+            <!-- LEFT GROUP: Hamburger + Language Flags -->
+            <div class="header-left-group">
+                <div class="header-hamburger" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="mobile-lang-flags">
+                    <span class="mobile-lang-flag" data-lang="en" onclick="setLanguage('en')">🇬🇧</span>
+                    <span class="mobile-lang-flag" data-lang="zh" onclick="setLanguage('zh')">🇨🇳</span>
+                    <span class="mobile-lang-flag" data-lang="ms" onclick="setLanguage('ms')">🇲🇾</span>
+                </div>
+            </div>
+
+            <!-- RIGHT: Logo -->
+            <img src="logo.webp" alt="Number One Logo" class="top-right-logo" loading="lazy">
         </header>
 
         <!-- SECTION: HOME -->
@@ -90,15 +203,15 @@
             <section class="product-poster-split">
                 <!-- Left Part (1 part) -->
                 <div class="poster-left">
-                    <img src="en_poster-logo.webp" class="poster-img poster-left-img lang-poster" data-base="poster-logo.webp" alt="Number One Logo">
+                    <img src="en_poster-logo.webp" class="poster-img poster-left-img lang-poster" data-base="poster-logo.webp" alt="Number One Logo" loading="lazy">
                 </div>
                 <!-- Middle Part (5 parts) -->
                 <div class="poster-middle">
-                    <img src="en_background-box.webp" class="poster-img poster-middle-img lang-poster" data-base="background-box.webp" alt="Number One Background">
+                    <img src="en_background-box.webp" class="poster-img poster-middle-img lang-poster" data-base="background-box.webp" alt="Number One Background" loading="lazy">
                 </div>
                 <!-- Right Part (1 part) -->
                 <div class="poster-right">
-                    <img src="en_poster-logo.webp" class="poster-img poster-right-img lang-poster" data-base="poster-logo.webp" alt="Number One Logo">
+                    <img src="en_poster-logo.webp" class="poster-img poster-right-img lang-poster" data-base="poster-logo.webp" alt="Number One Logo" loading="lazy">
                 </div>
             </section>
 
@@ -107,29 +220,22 @@
                 <!-- Pure CSS Background for mobile -->
             </section>
 
+            <!-- GALLERY WITH YOUTUBE VIDEO -->
             <section class="product-main-section">
                 <div class="gallery-wrapper-80">
                     <div class="product-image-gallery">
-                        <img src="en_pic1.webp" class="lang-img fiery-border" data-base="pic1.webp">
-                        <img src="en_pic2.webp" class="lang-img fiery-border" data-base="pic2.webp">
-                        <img src="en_pic3.webp" class="lang-img fiery-border" data-base="pic3.webp">
-                        <img src="en_pic4.webp" class="lang-img fiery-border" data-base="pic4.webp">
+                        <!-- YOUTUBE VIDEO - FIRST ITEM -->
+                        <div class="youtube-video-wrapper fiery-border">
+                            <div id="youtube-player"></div>
+                        </div>
+                        
+                        <!-- EXISTING IMAGES -->
+                        <img src="en_pic1.webp" class="lang-img fiery-border" data-base="pic1.webp" loading="lazy">
+                        <img src="en_pic2.webp" class="lang-img fiery-border" data-base="pic2.webp" loading="lazy">
+                        <img src="en_pic3.webp" class="lang-img fiery-border" data-base="pic3.webp" loading="lazy">
+                        <img src="en_pic4.webp" class="lang-img fiery-border" data-base="pic4.webp" loading="lazy">
                     </div>
                 </div>
-
-                <!-- PRODUCT PRICE & ORDER BUTTON - HIDDEN -->
-                <!-- 
-                <div class="product-order-section">
-                    <div class="product-price-wrapper">
-                        <span class="product-price-label" data-i18n="prod_price_label">Price:</span>
-                        <span class="product-price">RM168.00</span>
-                        <span class="product-price-per" data-i18n="prod_price_per">/ box</span>
-                    </div>
-                    <button class="order-now-btn" onclick="openOrderModal()">
-                        <i class="fas fa-shopping-cart"></i> <span data-i18n="order_now_btn">Order Now</span>
-                    </button>
-                </div>
-                -->
             </section>
         </div>
 
@@ -139,15 +245,15 @@
             <section class="product-poster-split">
                 <!-- Left Part (1 part) -->
                 <div class="poster-left">
-                    <img src="en_poster-logo.webp" class="poster-img poster-left-img lang-poster" data-base="poster-logo.webp" alt="Number One Logo">
+                    <img src="en_poster-logo.webp" class="poster-img poster-left-img lang-poster" data-base="poster-logo.webp" alt="Number One Logo" loading="lazy">
                 </div>
                 <!-- Middle Part (5 parts) -->
                 <div class="poster-middle">
-                    <img src="en_background-box.webp" class="poster-img poster-middle-img lang-poster" data-base="background-box.webp" alt="Number One Background">
+                    <img src="en_background-box.webp" class="poster-img poster-middle-img lang-poster" data-base="background-box.webp" alt="Number One Background" loading="lazy">
                 </div>
                 <!-- Right Part (1 part) -->
                 <div class="poster-right">
-                    <img src="en_poster-logo.webp" class="poster-img poster-right-img lang-poster" data-base="poster-logo.webp" alt="Number One Logo">
+                    <img src="en_poster-logo.webp" class="poster-img poster-right-img lang-poster" data-base="poster-logo.webp" alt="Number One Logo" loading="lazy">
                 </div>
             </section>
 
@@ -160,27 +266,13 @@
                 <div class="product-info-sidebar" style="flex: 1; width: 100%; max-width: 800px; margin: 0 auto;">
                     <div class="gallery-wrapper-80">
                         <div class="ingredient-image-container">
-                            <img src="en_ingredient.webp" class="lang-ingredient-img fiery-border" data-base="ingredient.webp" alt="Product Ingredients">
+                            <img src="en_ingredient.webp" class="lang-ingredient-img fiery-border" data-base="ingredient.webp" alt="Product Ingredients" loading="lazy">
                         </div>
 
                         <div class="ingredient-image-container" style="margin-top: 25px;">
-                            <img src="en_ingredient-2.webp" class="lang-ingredient-img fiery-border" data-base="ingredient-2.webp" alt="Product Ingredients 2">
+                            <img src="en_ingredient-2.webp" class="lang-ingredient-img fiery-border" data-base="ingredient-2.webp" alt="Product Ingredients 2" loading="lazy">
                         </div>
                     </div>
-                    
-                    <!-- ORDER BUTTON IN PRODUCT PAGE - HIDDEN -->
-                    <!-- 
-                    <div class="product-order-section" style="margin-top: 30px;">
-                        <div class="product-price-wrapper">
-                            <span class="product-price-label" data-i18n="prod_price_label">Price:</span>
-                            <span class="product-price">RM168.00</span>
-                            <span class="product-price-per" data-i18n="prod_price_per">/ box</span>
-                        </div>
-                        <button class="order-now-btn" onclick="openOrderModal()">
-                            <i class="fas fa-shopping-cart"></i> <span data-i18n="order_now_btn">Order Now</span>
-                        </button>
-                    </div>
-                    -->
                 </div>
             </section>
         </div>
@@ -191,15 +283,15 @@
             <section class="product-poster-split">
                 <!-- Left Part (1 part) -->
                 <div class="poster-left">
-                    <img src="en_poster-logo.webp" class="poster-img poster-left-img lang-poster" data-base="poster-logo.webp" alt="Number One Logo">
+                    <img src="en_poster-logo.webp" class="poster-img poster-left-img lang-poster" data-base="poster-logo.webp" alt="Number One Logo" loading="lazy">
                 </div>
                 <!-- Middle Part (5 parts) -->
                 <div class="poster-middle">
-                    <img src="en_background-box.webp" class="poster-img poster-middle-img lang-poster" data-base="background-box.webp" alt="Number One Background">
+                    <img src="en_background-box.webp" class="poster-img poster-middle-img lang-poster" data-base="background-box.webp" alt="Number One Background" loading="lazy">
                 </div>
                 <!-- Right Part (1 part) -->
                 <div class="poster-right">
-                    <img src="en_poster-logo.webp" class="poster-img poster-right-img lang-poster" data-base="poster-logo.webp" alt="Number One Logo">
+                    <img src="en_poster-logo.webp" class="poster-img poster-right-img lang-poster" data-base="poster-logo.webp" alt="Number One Logo" loading="lazy">
                 </div>
             </section>
 
@@ -245,7 +337,7 @@
     <!-- LIGHTBOX OVERLAY -->
     <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <img class="lightbox-content" id="lightbox-image" src="">
+        <img class="lightbox-content" id="lightbox-image" src="" loading="lazy">
     </div>
 
     <!-- WHATSAPP ORDER MODAL -->
@@ -331,6 +423,6 @@
         <i class="fas fa-shopping-cart"></i>
     </a>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

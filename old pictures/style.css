@@ -175,30 +175,6 @@ header {
     margin-left: 100px;
 }
 
-/* --- MOBILE HAMBURGER BUTTON --- */
-.mobile-menu-toggle {
-    display: none;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 10001;
-    background-color: #111;
-    color: #FFD700;
-    padding: 10px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 24px;
-    border: 1px solid #FFD700;
-    transition: opacity 0.3s ease;
-}
-
-.mobile-menu-toggle:hover,
-.mobile-menu-toggle:active {
-    background-color: #FFD700;
-    color: #111;
-    border-color: #FFD700;
-}
-
 /* --- MOBILE OVERLAY --- */
 .mobile-overlay {
     display: none;
@@ -329,30 +305,30 @@ html[lang="ms"] .product-poster-mobile {
     }
     .product-poster-mobile {
         display: block !important;
-        height: 332px !important; /* REDUCED BY 5% FROM 350px */
+        height: 332px !important;
         margin-bottom: 20px !important;
-        background-size: contain !important; /* Keeps full width visible */
-        background-position: top center !important; /* Anchors to top so it doesn't cut off */
+        background-size: contain !important;
+        background-position: top center !important;
         background-repeat: no-repeat !important;
     }
     
     html:not([lang="en"]):not([lang="zh"]):not([lang="ms"]) .product-poster-mobile,
     html[lang="en"] .product-poster-mobile {
         background-image: url('en_background-box-mobile.webp') !important;
-        background-size: contain !important; /* Keeps full width visible */
-        background-position: top center !important; /* Anchors to top so it doesn't cut off */
+        background-size: contain !important;
+        background-position: top center !important;
         background-repeat: no-repeat !important;
     }
     html[lang="zh"] .product-poster-mobile {
         background-image: url('zh_background-box-mobile.webp') !important;
-        background-size: contain !important; /* Keeps full width visible */
-        background-position: top center !important; /* Anchors to top so it doesn't cut off */
+        background-size: contain !important;
+        background-position: top center !important;
         background-repeat: no-repeat !important;
     }
     html[lang="ms"] .product-poster-mobile {
         background-image: url('ms_background-box-mobile.webp') !important;
-        background-size: contain !important; /* Keeps full width visible */
-        background-position: top center !important; /* Anchors to top so it doesn't cut off */
+        background-size: contain !important;
+        background-position: top center !important;
         background-repeat: no-repeat !important;
     }
     
@@ -1150,14 +1126,92 @@ html[lang="ms"] .product-poster-mobile {
     }
 }
 
+/* ============================================================== */
+/* --- MOBILE FLOATING HEADER --- */
+/* ============================================================== */
 @media (max-width: 1100px) {
     .site-header {
         display: flex !important;
-        justify-content: flex-end !important;
+        justify-content: space-between !important;
         align-items: center !important;
-        padding: 18px 40px !important;
+        padding: 14px 20px !important;
         background-color: #111 !important;
         border-bottom: 1px solid #232323 !important;
+        /* --- FLOATING HEADER SETTINGS --- */
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 9999 !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+    }
+
+    /* Push content down so it doesn't hide behind header */
+    .main-content-area {
+        padding-top: 80px !important;
+    }
+
+    .header-left-group {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+    }
+
+    /* --- HAMBURGER INSIDE HEADER (INCREASED BY 50%) --- */
+    .header-hamburger {
+        color: #FFD700 !important;
+        font-size: 33px !important; /* Increased by 50% from 22px */
+        cursor: pointer !important;
+        padding: 4px !important;
+        line-height: 1 !important;
+        transition: color 0.2s ease !important;
+    }
+
+    .header-hamburger:hover,
+    .header-hamburger:active {
+        color: #fff !important;
+    }
+
+    /* --- MOBILE LANGUAGE FLAGS (INCREASED BY 50%) --- */
+    .mobile-lang-flags {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important; /* Slightly increased gap for bigger icons */
+    }
+    
+    .mobile-lang-flag {
+        font-size: 30px !important; /* Increased by 50% from 20px */
+        cursor: pointer !important;
+        transition: transform 0.2s ease, opacity 0.2s ease !important;
+        opacity: 0.6 !important;
+        line-height: 1 !important;
+    }
+    
+    .mobile-lang-flag:hover,
+    .mobile-lang-flag:active {
+        transform: scale(1.2) !important;
+        opacity: 1 !important;
+    }
+    
+    /* Highlight active language */
+    .mobile-lang-flag.active {
+        opacity: 1 !important;
+        transform: scale(1.1) !important;
+    }
+
+    /* --- LOGO (Right side, bigger) --- */
+    .top-right-logo {
+        height: 48px !important; /* Increased by 20% from 40px */
+        width: auto !important;
+        display: block !important;
+        border-radius: 4px !important;
+    }
+}
+
+/* --- HIDE SIDE PANEL LANGUAGE ON MOBILE --- */
+@media (max-width: 1100px) {
+    #side-lang-wrapper {
+        display: none !important;
     }
 }
 
@@ -1232,7 +1286,7 @@ html[lang="ms"] .product-poster-mobile {
 
     /* --- MOBILE HAMBURGER MENU --- */
     .side-panel {
-        width: 65vw !important;
+        width: 52vw !important; /* REDUCED BY 20% FROM 65vw */
         transform: translateX(-100%) !important;
         align-items: flex-start !important;
         padding-top: 20px !important;
@@ -1241,16 +1295,6 @@ html[lang="ms"] .product-poster-mobile {
 
     .side-panel.open {
         transform: translateX(0) !important;
-    }
-
-    .mobile-menu-toggle {
-        display: block !important;
-    }
-
-    .side-panel.open ~ .mobile-menu-toggle {
-        opacity: 0 !important;
-        visibility: hidden !important;
-        pointer-events: none !important;
     }
 
     .mobile-overlay.open {
@@ -1557,5 +1601,48 @@ html[lang="ms"] .product-poster-mobile {
     .chat-title {
         color: #FFD700 !important;
         text-shadow: 0 0 12px rgba(255, 215, 0, 0.1) !important;
+    }
+}
+
+/* ============================================================== */
+/* --- YOUTUBE VIDEO WRAPPER --- */
+/* ============================================================== */
+
+.youtube-video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #000;
+}
+
+.youtube-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* Desktop YouTube */
+@media (min-width: 1101px) {
+    .youtube-video-wrapper {
+        border-radius: 12px !important;
+    }
+    .youtube-video-wrapper iframe {
+        border-radius: 12px !important;
+    }
+}
+
+/* Mobile YouTube */
+@media (max-width: 1100px) {
+    .youtube-video-wrapper {
+        border-radius: 8px !important;
+    }
+    .youtube-video-wrapper iframe {
+        border-radius: 8px !important;
     }
 }

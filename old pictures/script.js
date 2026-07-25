@@ -1,18 +1,5 @@
-/*
-    script.js — Interactive behavior for Number One landing
-    Major responsibilities:
-      - Page section navigation (`showSection`)
-      - Internationalization (`translations`, `setLanguage`)
-      - Mobile menu toggle (`toggleMobileMenu`)
-      - Testimonial slider and autoplay controls
-      - Event listeners that wire UI controls to behavior
-
-    Note: A legacy splash-screen implementation is kept commented
-    for reference but is deliberately disabled in `home.html`.
-*/
-
 /* ============================================================== */
-/* --- SPLASH SCREEN (legacy, disabled) --- */
+/* --- SPLASH SCREEN --- */
 /* ============================================================== */
 // DISABLED - Splash screen removed from home.html
 /*
@@ -52,12 +39,6 @@ function showSection(sectionId) {
 /* ============================================================== */
 /* --- TRANSLATION DICTIONARY (BOLDED PRODUCT NAME) --- */
 /* ============================================================== */
-/*
-    translations: small in-memory dictionary used to switch visible
-    labels and localized text. Keys match `data-i18n` attributes
-    present in the DOM. Keep translations concise and safe for
-    direct insertion (this code handles HTML vs text automatically).
-*/
 const translations = {
     'en': {
         'nav_home': 'Home', 'nav_product': 'Product', 'nav_review': 'Reviews', 'nav_contact': 'Contact', 'nav_about': 'About Us', 'nav_language': 'Language',
@@ -287,6 +268,14 @@ function setLanguage(langCode) {
     // UPDATE TESTIMONIALS WHEN LANGUAGE CHANGES
     refreshTestimonials();
 
+    // Update active flag highlight
+    document.querySelectorAll('.mobile-lang-flag').forEach(flag => {
+        flag.classList.remove('active');
+        if (flag.getAttribute('data-lang') === langCode) {
+            flag.classList.add('active');
+        }
+    });
+
     localStorage.setItem('preferredLanguage', langCode);
 }
 
@@ -373,12 +362,13 @@ function toggleSliderTestimonial(element) {
 /* --- EVENT LISTENERS --- */
 /* ============================================================== */
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.lang-option').forEach(option => {
-        option.addEventListener('click', function(e) {
-            e.stopPropagation();
+    // Handle both side panel and mobile flag language clicks
+    document.querySelectorAll('.lang-option, .mobile-lang-flag').forEach(element => {
+        element.addEventListener('click', function(e) {
             const lang = this.getAttribute('data-lang');
             if (lang) {
                 setLanguage(lang);
+                // Close side panel dropdown if open
                 const wrapper = this.closest('.side-dropdown-wrapper');
                 if (wrapper) wrapper.classList.remove('open');
             }
@@ -965,4 +955,65 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.side-dropdown-wrapper.open').forEach(w => w.classList.remove('open'));
         }
     });
+});
+
+/* ============================================================== */
+/* --- YOUTUBE VIDEO PLAYER FOR GALLERY --- */
+/* ============================================================== */
+
+let youtubePlayer = null;
+
+// !!! REPLACE WITH YOUR YOUTUBE VIDEO ID !!!
+// Example: https://www.youtube.com/watch?v=ABC123XYZ → "ABC123XYZ"
+const YOUTUBE_VIDEO_ID = 'R1igrTdxEAg';
+
+function onYouTubeIframeAPIReady() {
+    const playerContainer = document.getElementById('youtube-player');
+    if (!playerContainer) return;
+    
+    youtubePlayer = new YT.Player('youtube-player', {
+        height: '100%',
+        width: '100%',
+        videoId: YOUTUBE_VIDEO_ID,
+        playerVars: {
+            'autoplay': 1,
+            'mute': 1,                    // Required for autoplay
+            'loop': 1,
+            'playlist': YOUTUBE_VIDEO_ID, // Required for looping
+            'controls': 1,               // Show video controls
+            'showinfo': 0,
+            'rel': 0,
+            'modestbranding': 1,
+            'playsinline': 1,
+            'enablejsapi': 1
+        },
+        events: {
+            'onReady': function(event) {
+                event.target.playVideo();
+            },
+            'onStateChange': function(event) {
+                // Restart video when it ends (for looping)
+                if (event.data === YT.PlayerState.ENDED) {
+                    event.target.playVideo();
+                }
+            }
+        }
+    });
+}
+
+// Pause video when tab is hidden (performance optimization)
+document.addEventListener('visibilitychange', function() {
+    if (!youtubePlayer) return;
+    if (document.hidden) {
+        youtubePlayer.pauseVideo();
+    } else {
+        youtubePlayer.playVideo();
+    }
+});
+
+// Clean up when navigating away
+window.addEventListener('beforeunload', function() {
+    if (youtubePlayer) {
+        youtubePlayer.destroy();
+    }
 });

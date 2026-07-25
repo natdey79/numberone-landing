@@ -9,11 +9,14 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="style.css">
     
+    <!-- YouTube API -->
+    <script src="https://www.youtube.com/iframe_api" defer></script>
+    
     <style>
         /* --- FLOATING LANGUAGE ICONS (TOP LEFT, SIDE BY SIDE, ALIGNED WITH HOME) --- */
         .floating-lang-flags {
             position: fixed;
-            top: 15px; /* MOVED UP to align with Home button */
+            top: 15px;
             left: 115px;
             z-index: 9999;
             display: flex;
@@ -186,9 +189,22 @@
                 <!-- Pure CSS Background for mobile -->
             </section>
 
+            <!-- GALLERY WITH TALL YOUTUBE SHORTS VIDEO -->
             <section class="product-main-section">
                 <div class="gallery-wrapper-80">
                     <div class="product-image-gallery">
+                        <!-- YOUTUBE SHORTS VIDEO - TALL ON DESKTOP -->
+                        <div class="youtube-video-wrapper-shorts fiery-border">
+                            <iframe 
+                                id="youtube-main-player"
+                                src="https://www.youtube.com/embed/R1igrTdxEAg?autoplay=1&mute=1&loop=1&playlist=R1igrTdxEAg&controls=1&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&fs=1"
+                                frameborder="0"
+                                allow="autoplay; encrypted-media; fullscreen"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        
+                        <!-- EXISTING IMAGES -->
                         <img src="en_pic1.webp" class="lang-img fiery-border" data-base="pic1.webp" loading="lazy">
                         <img src="en_pic2.webp" class="lang-img fiery-border" data-base="pic2.webp" loading="lazy">
                         <img src="en_pic3.webp" class="lang-img fiery-border" data-base="pic3.webp" loading="lazy">

@@ -2,43 +2,141 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Welcome to Number One</title>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { height: 100%; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; overflow: hidden; background: #000; }
+        body, html { height: 100%; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; overflow: hidden; background: #0a0a0a; }
         
         .landing-shell { position: relative; width: 100%; min-height: 100vh; }
-        .splash-container { position: relative; width: 100%; height: 100vh; display: flex; justify-content: center; align-items: flex-start; overflow: hidden; background: #000; }
+        .splash-container { position: relative; width: 100%; height: 100vh; display: flex; justify-content: center; align-items: flex-start; overflow: hidden; background: #0a0a0a; }
+
+        /* --- STATIC BACKGROUND IMAGE (FALLBACK - LOADS INSTANTLY) --- */
+        .splash-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: #0a0a0a url('poster.webp') center center / cover no-repeat;
+            filter: brightness(0.65) contrast(1.1);
+        }
 
         /* --- VIDEO BACKGROUND --- */
-        .splash-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: 100%; height: 100%; transform: translateX(-50%) translateY(-50%); object-fit: cover; z-index: 0; filter: brightness(0.65) contrast(1.1); display: block; }
+        .splash-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: 100%;
+            height: 100%;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+            z-index: 0;
+            filter: brightness(0.65) contrast(1.1);
+            display: block;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+        
+        .splash-video.loaded {
+            opacity: 1;
+        }
+        
         .splash-video.desktop-video { display: block; }
         .splash-video.mobile-video { display: none; }
 
         /* --- CONTENT --- */
-        .splash-content { position: relative; z-index: 3; padding-top: 20px; max-width: 800px; width: 100%; text-align: center; opacity: 0; animation: fadeInUp 1s ease-out forwards 0.5s; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .splash-content { 
+            position: relative; 
+            z-index: 3; 
+            padding-top: 20px; 
+            max-width: 800px; 
+            width: 100%; 
+            text-align: center; 
+            opacity: 0; 
+            animation: fadeInUp 0.8s ease-out forwards 0.3s; 
+        }
+        @keyframes fadeInUp { 
+            from { opacity: 0; transform: translateY(30px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
         
-        .splash-logo-title { max-width: 80%; width: 600px; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.6)) drop-shadow(0 0 40px rgba(255, 140, 0, 0.4)) drop-shadow(0 0 80px rgba(255, 215, 0, 0.2)) drop-shadow(0 0 120px rgba(255, 69, 0, 0.15)); animation: fieryPulse 2.5s ease-in-out infinite; transition: filter 0.3s ease; }
+        /* --- OPTIMIZED LOGO - NO FIERY PULSE ANIMATION ON FILTER --- */
+        .splash-logo-title { 
+            max-width: 80%; 
+            width: 600px; 
+            height: auto; 
+            display: block; 
+            margin: 0 auto; 
+            /* SIMPLE STATIC GLOW - NO ANIMATION TO PREVENT LAG */
+            filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.5)) 
+                    drop-shadow(0 0 40px rgba(255, 140, 0, 0.3));
+            /* SMOOTH SCALE ANIMATION INSTEAD (MUCH FASTER) */
+            animation: gentlePulse 3s ease-in-out infinite;
+            will-change: transform;
+            transition: filter 0.4s ease;
+        }
+        
+        /* On hover, increase glow (no animation) */
+        .splash-logo-title:hover {
+            filter: drop-shadow(0 0 40px rgba(255, 69, 0, 0.9)) 
+                    drop-shadow(0 0 80px rgba(255, 140, 0, 0.6));
+            transform: scale(1.02);
+        }
+        
+        /* GENTLE PULSE - ONLY SCALE, NO FILTER ANIMATION */
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.015); }
+        }
+        
         .splash-logo-title.desktop-logo { display: block; }
         .splash-logo-title.mobile-logo { display: none; }
-        
-        @keyframes fieryPulse {
-            0% { filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.5)) drop-shadow(0 0 40px rgba(255, 140, 0, 0.3)) drop-shadow(0 0 80px rgba(255, 215, 0, 0.15)) drop-shadow(0 0 120px rgba(255, 69, 0, 0.1)); }
-            50% { filter: drop-shadow(0 0 30px rgba(255, 69, 0, 0.9)) drop-shadow(0 0 60px rgba(255, 140, 0, 0.6)) drop-shadow(0 0 100px rgba(255, 215, 0, 0.3)) drop-shadow(0 0 160px rgba(255, 69, 0, 0.2)); }
-            100% { filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.5)) drop-shadow(0 0 40px rgba(255, 140, 0, 0.3)) drop-shadow(0 0 80px rgba(255, 215, 0, 0.15)) drop-shadow(0 0 120px rgba(255, 69, 0, 0.1)); }
-        }
-        .splash-logo-title:hover { filter: drop-shadow(0 0 40px rgba(255, 69, 0, 1)) drop-shadow(0 0 80px rgba(255, 140, 0, 0.8)) drop-shadow(0 0 140px rgba(255, 215, 0, 0.4)) drop-shadow(0 0 200px rgba(255, 69, 0, 0.3)); transform: scale(1.02); transition: all 0.4s ease; }
 
         /* --- CTA BUTTON --- */
-        .cta-wrapper { position: absolute; bottom: 100px; left: 0; right: 0; z-index: 3; display: flex; justify-content: center; opacity: 0; animation: fadeInUp 1s ease-out forwards 1s; }
-        .cta-btn { display: inline-block; padding: 24px 60px; background: #dc143c; color: #fff; font-size: 26px; font-weight: 700; border: 3px solid #dc143c; border-radius: 50px; cursor: pointer; text-decoration: none; text-transform: uppercase; letter-spacing: 3px; animation: pulseSway 2.5s infinite ease-in-out; box-shadow: 0 0 30px rgba(220, 20, 60, 0.4); }
-        .cta-btn:hover { background: transparent; color: #dc143c; animation-play-state: paused; box-shadow: 0 0 50px rgba(220, 20, 60, 0.6); }
+        .cta-wrapper { 
+            position: absolute; 
+            bottom: 100px; 
+            left: 0; 
+            right: 0; 
+            z-index: 3; 
+            display: flex; 
+            justify-content: center; 
+            opacity: 0; 
+            animation: fadeInUp 0.8s ease-out forwards 0.8s; 
+        }
+        .cta-btn { 
+            display: inline-block; 
+            padding: 24px 60px; 
+            background: #dc143c; 
+            color: #fff; 
+            font-size: 26px; 
+            font-weight: 700; 
+            border: 3px solid #dc143c; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            text-decoration: none; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            animation: pulseSway 2.5s infinite ease-in-out; 
+            box-shadow: 0 0 30px rgba(220, 20, 60, 0.4); 
+            transition: all 0.3s ease;
+            will-change: transform;
+        }
+        .cta-btn:hover { 
+            background: transparent; 
+            color: #dc143c; 
+            animation-play-state: paused; 
+            box-shadow: 0 0 50px rgba(220, 20, 60, 0.6); 
+        }
         .cta-btn i { margin-right: 12px; font-size: 28px; }
+        
         @keyframes pulseSway {
             0% { transform: translateX(0px) scale(1); box-shadow: 0 0 30px rgba(220, 20, 60, 0.4); }
             25% { transform: translateX(-6px) scale(1.03); box-shadow: 0 0 50px rgba(220, 20, 60, 0.7); }
@@ -47,16 +145,37 @@
             100% { transform: translateX(0px) scale(1); box-shadow: 0 0 30px rgba(220, 20, 60, 0.4); }
         }
 
+        /* ============================================================== */
         /* --- MOBILE OVERRIDES --- */
+        /* ============================================================== */
         @media (max-width: 768px) {
             .splash-content { padding-top: 40px; }
             .splash-logo-title.desktop-logo { display: none; }
             .splash-logo-title.mobile-logo { display: block; max-width: 85%; width: 300px; }
+            
+            /* MOBILE: Simplified animation - no pulse on mobile */
+            .splash-logo-title {
+                animation: none !important;
+                filter: drop-shadow(0 0 15px rgba(255, 69, 0, 0.5));
+            }
+            
             .cta-wrapper { bottom: 80px !important; }
-            .cta-btn { padding: 18px 40px; font-size: 20px; letter-spacing: 2px; animation-duration: 2s; border-width: 2px; }
+            .cta-btn { 
+                padding: 18px 40px; 
+                font-size: 20px; 
+                letter-spacing: 2px; 
+                animation-duration: 2s; 
+                border-width: 2px; 
+            }
             .cta-btn i { font-size: 22px; }
-            .splash-video.desktop-video { display: none; }
-            .splash-video.mobile-video { display: block; }
+            
+            .splash-video.desktop-video { display: none !important; }
+            .splash-video.mobile-video { display: block !important; }
+            
+            .splash-fallback {
+                background-image: url('poster-mobile.webp') !important;
+                background-size: cover !important;
+            }
         }
         
         @media (max-width: 480px) {
@@ -64,26 +183,57 @@
             .cta-btn { padding: 14px 30px; font-size: 17px; }
             .cta-btn i { font-size: 18px; }
         }
+
+        /* --- REDUCED MOTION PREFERENCE --- */
+        @media (prefers-reduced-motion: reduce) {
+            .splash-video { 
+                opacity: 1 !important; 
+            }
+            .splash-logo-title { 
+                animation: none !important; 
+                filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.5));
+            }
+            .cta-btn { animation: none !important; }
+            .splash-content { animation: none !important; opacity: 1 !important; }
+            .cta-wrapper { animation: none !important; opacity: 1 !important; }
+        }
     </style>
 </head>
 <body>
     <div class="landing-shell">
         <div class="splash-container">
             
+            <!-- STATIC FALLBACK IMAGE (LOADS INSTANTLY) -->
+            <div class="splash-fallback"></div>
+            
             <!-- DESKTOP VIDEO -->
-            <video autoplay muted loop playsinline class="splash-video desktop-video" preload="metadata">
+            <video 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                class="splash-video desktop-video" 
+                preload="metadata"
+                poster="poster.webp">
                 <source src="intro-index.webm" type="video/webm">
             </video>
 
-            <!-- MOBILE VIDEO (Optimized with preload="metadata") -->
-            <video autoplay muted loop playsinline class="splash-video mobile-video" preload="metadata">
+            <!-- MOBILE VIDEO (OPTIMIZED) -->
+            <video 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                class="splash-video mobile-video" 
+                preload="metadata"
+                poster="poster-mobile.webp">
                 <source src="intro-index-mobile.webm" type="video/webm">
             </video>
 
             <!-- TOP IMAGES -->
             <div class="splash-content">
-                <img src="unleash-desktop.webp" alt="" class="splash-logo-title desktop-logo" loading="lazy">
-                <img src="unleash.webp" alt="" class="splash-logo-title mobile-logo" loading="lazy">
+                <img src="unleash-desktop.webp" alt="" class="splash-logo-title desktop-logo" loading="lazy" decoding="async" width="600" height="200">
+                <img src="unleash.webp" alt="" class="splash-logo-title mobile-logo" loading="lazy" decoding="async" width="300" height="100">
             </div>
 
             <!-- CTA BUTTON -->
@@ -94,5 +244,57 @@
             </div>
         </div>
     </div>
+
+    <script>
+        (function() {
+            'use strict';
+            
+            // --- OPTIMIZED VIDEO LOADING ---
+            var videos = document.querySelectorAll('.splash-video');
+            
+            function loadVideo(video) {
+                if (!video) return;
+                
+                video.addEventListener('canplaythrough', function() {
+                    video.classList.add('loaded');
+                }, { once: true });
+                
+                setTimeout(function() {
+                    video.classList.add('loaded');
+                }, 2000);
+                
+                var playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(function() {}).catch(function() {
+                        var playOnInteraction = function() {
+                            video.play().catch(function() {});
+                            document.removeEventListener('click', playOnInteraction);
+                            document.removeEventListener('touchstart', playOnInteraction);
+                        };
+                        document.addEventListener('click', playOnInteraction, { once: true });
+                        document.addEventListener('touchstart', playOnInteraction, { once: true });
+                    });
+                }
+            }
+            
+            setTimeout(function() {
+                videos.forEach(function(video) {
+                    var isDesktop = window.innerWidth > 768;
+                    var isDesktopVideo = video.classList.contains('desktop-video');
+                    var isMobileVideo = video.classList.contains('mobile-video');
+                    
+                    if ((isDesktop && isDesktopVideo) || (!isDesktop && isMobileVideo)) {
+                        loadVideo(video);
+                    }
+                });
+            }, 300);
+            
+            // --- PREVENT SCROLLING ---
+            document.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+            }, { passive: false });
+            
+        })();
+    </script>
 </body>
 </html>

@@ -956,3 +956,62 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+/* ============================================================== */
+/* --- YOUTUBE SHORTS VIDEO PLAYER --- */
+/* ============================================================== */
+
+let youtubePlayer = null;
+const YOUTUBE_VIDEO_ID = 'R1igrTdxEAg';
+
+function onYouTubeIframeAPIReady() {
+    const playerContainer = document.getElementById('youtube-main-player');
+    if (!playerContainer) return;
+    
+    youtubePlayer = new YT.Player('youtube-main-player', {
+        height: '100%',
+        width: '100%',
+        videoId: YOUTUBE_VIDEO_ID,
+        playerVars: {
+            'autoplay': 1,
+            'mute': 1,
+            'loop': 1,
+            'playlist': YOUTUBE_VIDEO_ID,
+            'controls': 1,
+            'showinfo': 0,
+            'rel': 0,
+            'modestbranding': 1,
+            'playsinline': 1,
+            'enablejsapi': 1,
+            'fs': 1,
+            'iv_load_policy': 3
+        },
+        events: {
+            'onReady': function(event) {
+                event.target.playVideo();
+            },
+            'onStateChange': function(event) {
+                if (event.data === YT.PlayerState.ENDED) {
+                    event.target.playVideo();
+                }
+            }
+        }
+    });
+}
+
+// Pause video when tab is hidden
+document.addEventListener('visibilitychange', function() {
+    if (!youtubePlayer) return;
+    if (document.hidden) {
+        youtubePlayer.pauseVideo();
+    } else {
+        youtubePlayer.playVideo();
+    }
+});
+
+// Clean up
+window.addEventListener('beforeunload', function() {
+    if (youtubePlayer) {
+        youtubePlayer.destroy();
+    }
+});
