@@ -34,14 +34,6 @@ function showSection(sectionId) {
         target.style.display = 'block';
     }
     document.querySelectorAll('.side-dropdown-wrapper.open').forEach(w => w.classList.remove('open'));
-
-    // Auto-collapse the mobile side menu after selecting Home/Product/Reviews
-    if (window.innerWidth <= 768) {
-        const panel = document.getElementById('sidePanel');
-        const overlay = document.getElementById('mobile-overlay');
-        if (panel) panel.classList.remove('open');
-        if (overlay) overlay.classList.remove('open');
-    }
 }
 
 /* ============================================================== */
@@ -535,9 +527,25 @@ function toggleTestimonial(id) {
 /* ============================================================== */
 
 // CONFIGURATION - YOUR GOOGLE APPS SCRIPT URL
-const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbyrWvEE8dNXNj8QLSzAPJ2Q9iJ-vdTp_Y683g7YvjH_yI3Tsmd4tqQaNi_8sHbfsPUiVQ/exec';
-const SHEET_API_URL = GAS_API_URL;
-const SHEET_API_POST_URL = GAS_API_URL;
+// GAS URL is now loaded from config.json so it can be updated on GitHub
+// without touching this file. FALLBACK_GAS_API_URL is only used if
+// config.json can't be fetched for some reason.
+const FALLBACK_GAS_API_URL = 'https://script.google.com/macros/s/AKfycbz2ADB7zZCitypsgS8wA7IFsHFDox8JTcP4PQQulEaWDpu6R3C8WfCh0K5mvYiMk4pQ/exec';
+
+let _gasApiUrlCache = null;
+async function getGasApiUrl() {
+    if (_gasApiUrlCache) return _gasApiUrlCache;
+    try {
+        const res = await fetch('config.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('config.json not found');
+        const cfg = await res.json();
+        _gasApiUrlCache = cfg.gasApiUrl || FALLBACK_GAS_API_URL;
+    } catch (err) {
+        console.error('Could not load config.json, using fallback URL:', err);
+        _gasApiUrlCache = FALLBACK_GAS_API_URL;
+    }
+    return _gasApiUrlCache;
+}
 
 let allTestimonials = [];
 let currentTestimonialIndex = 0;
@@ -572,8 +580,9 @@ function getTranslatedField(testimonial, fieldName) {
 // Fetch testimonials - NO FILTER (auto-publish all)
 async function fetchTestimonials() {
     try {
-        console.log('Fetching from:', SHEET_API_URL);
-        const response = await fetch(SHEET_API_URL);
+        const apiUrl = await getGasApiUrl();
+        console.log('Fetching from:', apiUrl);
+        const response = await fetch(apiUrl);
         if (!response.ok) {
             console.error('Response not OK:', response.status);
             throw new Error('Network response was not ok');
@@ -844,7 +853,8 @@ async function submitTestimonial(event) {
         console.log('Sending data via GET:', params.toString());
         
         // Send as GET request (bypasses CORS completely)
-        const response = await fetch(SHEET_API_POST_URL + '?' + params.toString(), {
+        const postUrl = await getGasApiUrl();
+        const response = await fetch(postUrl + '?' + params.toString(), {
             method: 'GET'
         });
         
