@@ -34,6 +34,14 @@ function showSection(sectionId) {
         target.style.display = 'block';
     }
     document.querySelectorAll('.side-dropdown-wrapper.open').forEach(w => w.classList.remove('open'));
+
+    // Auto-collapse the mobile side menu after selecting Home/Product/Reviews
+    if (window.innerWidth <= 768) {
+        const panel = document.getElementById('sidePanel');
+        const overlay = document.getElementById('mobile-overlay');
+        if (panel) panel.classList.remove('open');
+        if (overlay) overlay.classList.remove('open');
+    }
 }
 
 /* ============================================================== */
